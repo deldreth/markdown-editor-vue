@@ -1,0 +1,39 @@
+{
+  "name": "markdown-editor-vue",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@urql/vue": "^0.4.3",
+    "easymde": "^2.15.0",
+    "graphql": "^15.5.1",
+    "unplugin-vue-components": "^0.14.5",
+    "vue": "^3.2.6",
+    "vue-router": "^4.0.11"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.15.0",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@vitejs/plugin-vue": "^1.6.0",
+    "@vue/compiler-sfc": "^3.0.5",
+    "autoprefixer": "^10.3.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^7.17.0",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
+    "postcss": "^8.3.6",
+    "prettier": "^2.3.2",
+    "tailwindcss": "^2.2.8",
+    "vite": "^2.5.1"
+  },
+  "lint-staged": {
+    "*.{js,vue}": "eslint"
+  }
+}
