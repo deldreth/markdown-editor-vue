@@ -4,14 +4,34 @@
 
 <script setup>
 import { onMounted } from 'vue';
+import { useMutation } from '@urql/vue';
+
+const props = defineProps({
+  noteId: {
+    type: String,
+    required: true,
+  },
+});
+
+const { executeMutation: updateNote } = useMutation(
+  `
+  mutation UpdateNote($id: ID!, $content: String!) {
+    updateNote(input: {id: $id, body: $content}) {
+      id
+    }
+  }
+  `
+);
 
 onMounted(() => {
   new EasyMDE({
     element: document.getElementById('editor'),
     autosave: {
-      callback: (value) => console.log(value),
+      callback: (value) => {
+        updateNote({ id: props.noteId, content: value });
+      },
       enabled: true,
-      uniqueId: 'MyUniqueID',
+      uniqueId: props.noteId,
       delay: 500,
       submit_delay: 1000,
       timeFormat: {

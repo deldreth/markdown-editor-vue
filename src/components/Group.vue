@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <router-view />
+  <router-view :key="$route.params.noteId" />
 </template>
 
 <script setup>
