@@ -11,6 +11,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  content: {
+    type: String,
+    required: true,
+  },
 });
 
 const { executeMutation: updateNote } = useMutation(
