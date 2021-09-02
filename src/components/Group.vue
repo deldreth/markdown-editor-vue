@@ -1,7 +1,12 @@
 <template>
   <div class="group border-r">
-    <div class="flex p-4">
-      <div class="flex-1">Search</div>
+    <div class="flex p-4 border-b">
+      <el-input
+        aria-label="Search"
+        class="flex-1 mr-4"
+        aria-placeholder="Search"
+        placeholder="Search"
+      />
       <NoteAdd :group-id="groupId" />
     </div>
 
@@ -23,6 +28,7 @@
 </template>
 
 <script setup>
+import { ElInput } from 'element-plus';
 import { watch, ref } from 'vue';
 import { useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';

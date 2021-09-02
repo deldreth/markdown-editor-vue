@@ -2,7 +2,7 @@
   <div class="col-span-3 p-4">
     <div v-if="fetching">Loading...</div>
     <div v-else-if="error">{{ error }}</div>
-    <div v-else class="h-full">
+    <div v-else-if="data" class="h-full">
       <el-input
         v-model="nameInput"
         placeholder="Note title"
@@ -10,7 +10,7 @@
         class="mb-4"
       />
 
-      <Editor :note-id="$route.params.noteId" :content="data.body" />
+      <Editor :note-id="$route.params.noteId" :content="data.getNote.body" />
     </div>
   </div>
 </template>

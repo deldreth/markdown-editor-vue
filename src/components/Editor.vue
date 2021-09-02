@@ -1,10 +1,13 @@
 <template>
-  <textarea id="editor" />
+  <div class="ck-content">
+    <ckeditor v-model="modelContent" :editor="editor" :config="config" />
+  </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
 import { useMutation } from '@urql/vue';
+
+const editor = window.BalloonBlockEditor;
 
 const props = defineProps({
   noteId: {
@@ -27,39 +30,45 @@ const { executeMutation: updateNote } = useMutation(
   `
 );
 
-onMounted(() => {
-  new EasyMDE({
-    element: document.getElementById('editor'),
-    autosave: {
-      callback: (value) => {
-        updateNote({ id: props.noteId, content: value });
-      },
-      enabled: true,
-      uniqueId: props.noteId,
-      delay: 500,
-      submit_delay: 1000,
-      timeFormat: {
-        locale: 'en-US',
-        format: {
-          year: 'numeric',
-          month: 'long',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-        },
-      },
-      text: 'Autosaved: ',
+// eslint-disable-next-line vue/no-setup-props-destructure
+const modelContent = props.content;
+const config = {
+  language: 'en',
+  toolbar: {
+    items: [
+      'heading',
+      '|',
+      'bold',
+      'italic',
+      'link',
+      'underline',
+      'strikethrough',
+      'subscript',
+      'superscript',
+      'blockQuote',
+      'fontColor',
+      'fontSize',
+      '|',
+      'indent',
+      'outdent',
+      'alignment',
+      '|',
+      'bulletedList',
+      'numberedList',
+      'todoList',
+      '|',
+      'insertTable',
+      'codeBlock',
+      'horizontalLine',
+      'undo',
+      'redo',
+    ],
+  },
+  language: 'en',
+  autosave: {
+    save(editorInstance) {
+      updateNote({ id: props.noteId, content: editorInstance.getData() });
     },
-  });
-});
+  },
+};
 </script>
-
-<style>
-.EasyMDEContainer {
-  max-height: 92%;
-  height: 100%;
-}
-.EasyMDEContainer .CodeMirror {
-  height: 100%;
-}
-</style>
