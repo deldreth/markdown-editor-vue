@@ -54,7 +54,6 @@ const { executeMutation: updateNoteName } = useMutation(`
 `);
 
 const debounceUpdateNoteName = debounce((name) => {
-  console.log(noteId.value, name);
   updateNoteName({ id: noteId.value, name });
 }, 1000);
 </script>
