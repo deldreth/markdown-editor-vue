@@ -1,14 +1,15 @@
 <template>
-  <el-button
+  <button
     aria-label="Add New Note"
-    round
+    class="btn btn-primary rounded-full"
+    type="button"
     @click="createNoteAndEmit({ groupId: props.groupId })"
-    ><FontAwesomeIcon icon="plus"
-  /></el-button>
+  >
+    <FontAwesomeIcon icon="plus" />
+  </button>
 </template>
 
 <script setup>
-import { ElButton } from 'element-plus';
 import { useMutation } from '@urql/vue';
 
 const emit = defineEmits(['noteCreated']);

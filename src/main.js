@@ -11,7 +11,7 @@ import CKEditor from '@ckeditor/ckeditor5-vue';
 import { router } from './router';
 import App from './App.vue';
 
-import 'element-plus/dist/index.css';
+import './bootstrap.scss';
 import './index.css';
 
 library.add(faPlus, faTasks, faLayerGroup);

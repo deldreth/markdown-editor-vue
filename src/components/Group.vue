@@ -1,12 +1,15 @@
 <template>
   <div id="group" class="flex flex-col h-full overflow-hidden bg-gray-900">
     <div class="relative flex p-4">
-      <el-input
+      <input
         aria-label="Search Notes"
-        class="flex-1 mr-4"
+        class="form-control flex-1 mr-4"
         aria-placeholder="Search Notes"
         placeholder="Search"
+        type="text"
+        @input="debounceUpdateNoteName"
       />
+
       <NoteAdd
         :group-id="groupId"
         @note-created="listNotes({ requestPolicy: 'network-only' })"
@@ -55,7 +58,6 @@
 </template>
 
 <script setup>
-import { ElInput } from 'element-plus';
 import { watch, ref } from 'vue';
 import { useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';

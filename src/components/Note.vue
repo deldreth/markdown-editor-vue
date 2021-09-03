@@ -4,10 +4,12 @@
     <div v-else-if="error">{{ error }}</div>
     <div v-else-if="data" class="h-full">
       <div class="p-4">
-        <el-input
+        <input
           v-model="data.getNote.name"
-          placeholder="Note title"
           aria-label="Note Title"
+          class="form-control"
+          placeholder="Note title"
+          type="text"
           @input="debounceUpdateNoteName"
         />
       </div>
@@ -20,7 +22,6 @@
 </template>
 
 <script setup>
-import { ElInput, ElFormItem } from 'element-plus';
 import { ref } from 'vue';
 import { useMutation, useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
@@ -53,7 +54,7 @@ const { executeMutation: updateNoteName } = useMutation(`
   }
 `);
 
-const debounceUpdateNoteName = debounce((name) => {
-  updateNoteName({ id: noteId.value, name });
+const debounceUpdateNoteName = debounce((event) => {
+  updateNoteName({ id: noteId.value, name: event.target.value });
 }, 1000);
 </script>

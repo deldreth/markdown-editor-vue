@@ -1,22 +1,23 @@
 <template>
   <div class="flex p-4">
-    <el-input
+    <input
       v-model="groupNameInput"
       placeholder="Group Name"
-      class="flex-1 mr-4"
+      class="form-control flex-1 mr-4"
     />
 
-    <el-button
+    <button
       aria-label="Add New Group"
-      round
+      type="button"
+      class="btn btn-success rounded-full"
       @click="createGroup({ name: groupNameInput })"
-      ><FontAwesomeIcon icon="plus"
-    /></el-button>
+    >
+      <FontAwesomeIcon icon="plus" />
+    </button>
   </div>
 </template>
 
 <script setup>
-import { ElButton, ElInput } from 'element-plus';
 import { useMutation } from '@urql/vue';
 import { ref } from 'vue';
 
