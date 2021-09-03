@@ -1,31 +1,38 @@
 <template>
-  <div id="group" class="flex flex-col h-full overflow-hidden bg-gray-900">
-    <div class="relative flex p-4">
-      <input
-        aria-label="Search Notes"
-        class="form-control flex-1 mr-4"
-        aria-placeholder="Search Notes"
-        placeholder="Search"
-        type="text"
-        @input="debounceUpdateNoteName"
-      />
+  <div
+    id="group"
+    class="col-span-2 flex flex-col h-full overflow-hidden bg-gray-900"
+  >
+    <div class="p-4">
+      <NoteSearch @on-search="onSearch" />
 
-      <NoteAdd
-        :group-id="groupId"
-        @note-created="listNotes({ requestPolicy: 'network-only' })"
-      />
+      <div class="flex justify-end">
+        <NoteAdd
+          :group-id="groupId"
+          @note-created="listNotes({ requestPolicy: 'network-only' })"
+        />
+      </div>
     </div>
 
-    <div v-if="fetching">Loading...</div>
+    <div v-if="fetching">
+      <Loader />
+    </div>
 
     <div v-else-if="error">{{ error }}</div>
 
     <div v-else class="overflow-y-auto flex-1">
+      <h1 class="text-2xl p-4 border-b sticky top-0 bg-gray-900 border-pink">
+        <FontAwesomeIcon icon="layer-group" />&nbsp;{{ data.getGroup.name }}
+      </h1>
       <section
-        v-for="note in data?.listNotes.items"
+        v-for="note in searchedNotes.length
+          ? searchedNotes
+          : data?.listNotes.items"
         :key="note.id"
-        class="p-4 cursor-pointer hover:bg-purple-300"
-        :class="`${$route.params.noteId === note.id && 'bg-indigo-800'}`"
+        class="p-4 cursor-pointer hover:bg-indigo-500"
+        :class="`${
+          $route.params.noteId === note.id && 'bg-gradient-to-l from-indigo-900'
+        }`"
         @click="$router.push(`/group/${route.params.groupId}/note/${note.id}`)"
       >
         <h2 class="text-lg truncate" :title="note.name">
@@ -73,12 +80,18 @@ const {
 } = useQuery({
   query: `
     query ListNotesQuery ($groupId:ID!) {
+      getGroup(id: $groupId) {
+        name
+      }
       listNotes(filter: {groupID: {eq: $groupId}}) {
         items {
           id
           name
           body
           updatedAt
+          group {
+            name
+          }
         }
       }
     }
@@ -92,4 +105,11 @@ watch(
     groupId.value = nextGroupId;
   }
 );
+
+const searchedNotes = ref([]);
+const onSearch = (term) => {
+  searchedNotes.value = data.value.listNotes.items.filter(({ name }) =>
+    name.includes(term)
+  );
+};
 </script>

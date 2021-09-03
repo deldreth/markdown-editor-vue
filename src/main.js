@@ -4,6 +4,9 @@ import {
   faPlus,
   faTasks,
   faLayerGroup,
+  faSearch,
+  faTimes,
+  faEdit,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import CKEditor from '@ckeditor/ckeditor5-vue';
@@ -14,7 +17,7 @@ import App from './App.vue';
 import './bootstrap.scss';
 import './index.css';
 
-library.add(faPlus, faTasks, faLayerGroup);
+library.add(faPlus, faTasks, faLayerGroup, faSearch, faTimes, faEdit);
 
 const app = createApp(App);
 app

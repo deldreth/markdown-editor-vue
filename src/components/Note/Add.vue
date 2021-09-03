@@ -1,11 +1,11 @@
 <template>
   <button
     aria-label="Add New Note"
-    class="btn btn-primary rounded-full"
+    class="btn btn-success btn-sm rounded-full"
     type="button"
     @click="createNoteAndEmit({ groupId: props.groupId })"
   >
-    <FontAwesomeIcon icon="plus" />
+    Add Note&nbsp;<FontAwesomeIcon icon="plus" />
   </button>
 </template>
 
