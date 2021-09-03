@@ -1,15 +1,20 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-markdowneditornuxt-dev-11936-authRole",
-      "UnauthRoleArn": "arn:aws:iam::626181852121:role/amplify-markdowneditornuxt-dev-11936-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::626181852121:role/amplify-markdowneditornuxt-dev-11936-authRole",
+      "AuthRoleName": "amplify-editorvue-dev-193724-authRole",
+      "UnauthRoleArn": "arn:aws:iam::626181852121:role/amplify-editorvue-dev-193724-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::626181852121:role/amplify-editorvue-dev-193724-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-markdowneditornuxt-dev-11936-deployment",
-      "UnauthRoleName": "amplify-markdowneditornuxt-dev-11936-unauthRole",
-      "StackName": "amplify-markdowneditornuxt-dev-11936",
-      "StackId": "arn:aws:cloudformation:us-east-1:626181852121:stack/amplify-markdowneditornuxt-dev-11936/b4ffa4f0-0888-11ec-9cb1-12ef7eb14249",
-      "AmplifyAppId": "d2a3o6nznbwnl1"
+      "DeploymentBucketName": "amplify-editorvue-dev-193724-deployment",
+      "UnauthRoleName": "amplify-editorvue-dev-193724-unauthRole",
+      "StackName": "amplify-editorvue-dev-193724",
+      "StackId": "arn:aws:cloudformation:us-east-1:626181852121:stack/amplify-editorvue-dev-193724/e4cb9320-0d0f-11ec-a027-0a720c487c5f",
+      "AmplifyAppId": "d2unzhorrni3si"
+    },
+    "categories": {
+      "auth": {
+        "editorvueb03f6108": {}
+      }
     }
   }
 }

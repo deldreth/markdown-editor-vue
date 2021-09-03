@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "EditorVue",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "autheditorvueb03f6108",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
