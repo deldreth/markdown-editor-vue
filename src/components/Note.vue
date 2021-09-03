@@ -1,5 +1,5 @@
 <template>
-  <div class="col-span-3 bg-gray-200">
+  <div class="col-span-3 bg-purple-200">
     <div v-if="fetching">Loading...</div>
     <div v-else-if="error">{{ error }}</div>
     <div v-else-if="data" class="h-full">

@@ -25,7 +25,7 @@
         :class="`${$route.params.noteId === note.id && 'bg-purple-200'}`"
         @click="$router.push(`/group/${route.params.groupId}/note/${note.id}`)"
       >
-        <h2 class="text-lg truncate">
+        <h2 class="text-lg truncate" :title="note.name">
           {{ note.name }}
         </h2>
 
@@ -45,7 +45,7 @@
           v-if="!!(tasks = $filters.countTasks(note.body))"
           class="text-xs mt-1"
         >
-          <FontAwesomeIcon icon="tasks" />{{ tasks }}
+          <FontAwesomeIcon icon="tasks" />&nbsp;{{ tasks }}
         </p>
       </section>
     </div>

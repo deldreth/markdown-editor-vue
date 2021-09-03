@@ -1,6 +1,10 @@
 import { createApp } from 'vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faTasks } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlus,
+  faTasks,
+  faLayerGroup,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import CKEditor from '@ckeditor/ckeditor5-vue';
 
@@ -10,7 +14,7 @@ import App from './App.vue';
 import 'element-plus/dist/index.css';
 import './index.css';
 
-library.add(faPlus, faTasks);
+library.add(faPlus, faTasks, faLayerGroup);
 
 const app = createApp(App);
 app
