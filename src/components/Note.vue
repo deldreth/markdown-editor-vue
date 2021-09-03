@@ -1,5 +1,5 @@
 <template>
-  <div class="col-span-3 bg-purple-200">
+  <div class="col-span-3 bg-gray-800">
     <div v-if="fetching">Loading...</div>
     <div v-else-if="error">{{ error }}</div>
     <div v-else-if="data" class="h-full">
@@ -12,7 +12,7 @@
         />
       </div>
 
-      <div class="p-4">
+      <div class="pr-4 pl-4 pb-4">
         <Editor :note-id="$route.params.noteId" :content="data.getNote.body" />
       </div>
     </div>

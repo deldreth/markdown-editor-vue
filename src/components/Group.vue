@@ -1,5 +1,5 @@
 <template>
-  <div id="group" class="flex flex-col h-full overflow-hidden bg-purple-100">
+  <div id="group" class="flex flex-col h-full overflow-hidden bg-gray-900">
     <div class="relative flex p-4">
       <el-input
         aria-label="Search Notes"
@@ -22,7 +22,7 @@
         v-for="note in data?.listNotes.items"
         :key="note.id"
         class="p-4 cursor-pointer hover:bg-purple-300"
-        :class="`${$route.params.noteId === note.id && 'bg-purple-200'}`"
+        :class="`${$route.params.noteId === note.id && 'bg-indigo-800'}`"
         @click="$router.push(`/group/${route.params.groupId}/note/${note.id}`)"
       >
         <h2 class="text-lg truncate" :title="note.name">
