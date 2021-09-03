@@ -1,25 +1,52 @@
 <template>
-  <div class="group border-r">
-    <div class="flex p-4 border-b">
+  <div id="group" class="flex flex-col h-full overflow-hidden bg-purple-100">
+    <div class="relative flex p-4">
       <el-input
-        aria-label="Search"
+        aria-label="Search Notes"
         class="flex-1 mr-4"
-        aria-placeholder="Search"
+        aria-placeholder="Search Notes"
         placeholder="Search"
       />
-      <NoteAdd :group-id="groupId" />
+      <NoteAdd
+        :group-id="groupId"
+        @note-created="listNotes({ requestPolicy: 'network-only' })"
+      />
     </div>
 
     <div v-if="fetching">Loading...</div>
+
     <div v-else-if="error">{{ error }}</div>
-    <div v-else>
+
+    <div v-else class="overflow-y-auto flex-1">
       <section
         v-for="note in data?.listNotes.items"
         :key="note.id"
-        class="border-b p-4 cursor-pointer hover:bg-gray-100"
+        class="p-4 cursor-pointer hover:bg-purple-300"
+        :class="`${$route.params.noteId === note.id && 'bg-purple-200'}`"
         @click="$router.push(`/group/${route.params.groupId}/note/${note.id}`)"
       >
-        <h2 class="text-xl">{{ note.name }}</h2>
+        <h2 class="text-lg truncate">
+          {{ note.name }}
+        </h2>
+
+        <p class="truncate text-sm mt-1">
+          <span class="font-semibold">{{
+            $filters.formatDate(note.updatedAt)
+          }}</span>
+          <span v-if="note.body"
+            >&nbsp;{{
+              // eslint-disable-next-line vue/no-parsing-error
+              note.body.replace(/<[^>]*>?/gm, '').substring(0, 60)
+            }}</span
+          >
+        </p>
+
+        <p
+          v-if="!!(tasks = $filters.countTasks(note.body))"
+          class="text-xs mt-1"
+        >
+          <FontAwesomeIcon icon="tasks" />{{ tasks }}
+        </p>
       </section>
     </div>
   </div>
@@ -36,13 +63,20 @@ import { useRoute } from 'vue-router';
 const route = useRoute();
 const groupId = ref(route.params.groupId);
 
-const { fetching, data, error } = useQuery({
+const {
+  fetching,
+  data,
+  error,
+  executeQuery: listNotes,
+} = useQuery({
   query: `
     query ListNotesQuery ($groupId:ID!) {
       listNotes(filter: {groupID: {eq: $groupId}}) {
         items {
           id
           name
+          body
+          updatedAt
         }
       }
     }
