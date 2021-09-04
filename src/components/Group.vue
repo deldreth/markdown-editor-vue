@@ -1,7 +1,14 @@
 <template>
   <div
     id="group"
-    class="col-span-2 flex flex-col h-full overflow-hidden bg-gray-900"
+    class="
+      col-span-1
+      xl:col-span-2
+      flex flex-col
+      h-full
+      overflow-hidden
+      bg-gray-900
+    "
   >
     <div class="p-4">
       <NoteSearch @on-search="onSearch" />

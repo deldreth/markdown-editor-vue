@@ -17,6 +17,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.0-4",
     "@urql/exchange-auth": "^0.1.6",
     "@urql/vue": "^0.4.3",
+    "@vueuse/core": "^6.1.0",
     "aws-amplify": "^4.2.6",
     "bootstrap": "^5.1.0",
     "graphql": "^15.5.1",

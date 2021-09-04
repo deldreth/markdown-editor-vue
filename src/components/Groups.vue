@@ -18,6 +18,7 @@
           hover:bg-indigo-500
           flex
           justify-between
+          items-center
         "
         :class="`${
           $route.params.groupId === group.id &&
@@ -36,13 +37,42 @@
         </div>
       </section>
     </div>
+
+    <div
+      v-if="!userInfoLoading && userInfo"
+      class="
+        border-t border-purple
+        flex flex
+        items-center
+        justify-between
+        pb-8
+        pl-4
+        pr-4
+        pt-8
+      "
+    >
+      {{ userInfo.username }}
+
+      <button
+        type="button"
+        class="btn btn-outline-warning btn-sm"
+        @click="onSignOut"
+      >
+        <FontAwesomeIcon icon="sign-out-alt" />&nbsp;Sign Out
+      </button>
+    </div>
   </div>
 
   <router-view />
 </template>
 
 <script setup>
-import { useQuery } from '@urql/vue';
+import { useQuery, useClientHandle } from '@urql/vue';
+import { useAsyncState } from '@vueuse/core';
+import { Auth } from 'aws-amplify';
+
+const client = useClientHandle();
+console.log(client);
 
 const { fetching, data, error } = useQuery({
   query: `
@@ -61,4 +91,16 @@ const { fetching, data, error } = useQuery({
     }
   `,
 });
+
+const { state: userInfo, ready: userInfoLoading } = useAsyncState(
+  Auth.currentUserInfo()
+);
+
+async function onSignOut(event) {
+  event.preventDefault();
+
+  await Auth.signOut();
+
+  window.location.href = '/';
+}
 </script>
