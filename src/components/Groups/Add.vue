@@ -26,6 +26,8 @@
 import { useMutation } from '@urql/vue';
 import { ref } from 'vue';
 
+const emit = defineEmits(['added']);
+
 const groupNameInput = ref('');
 
 const { executeMutation: createGroup } = useMutation(
@@ -47,7 +49,7 @@ const validateCreateGroup = async (event) => {
 
   if (form.checkValidity()) {
     await createGroup({ name: groupNameInput.value });
-
+    emit('added');
     groupNameInput.value = '';
   } else {
     form.classList.add('was-validated');

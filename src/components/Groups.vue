@@ -1,14 +1,19 @@
 <template>
   <div id="groups" class="flex flex-col h-full overflow-hidden bg-gray-800">
-    <GroupsAdd />
+    <GroupsAdd @added="getListGroups({ requestPolicy: 'network-only' })" />
 
-    <div v-if="fetching"><Loader /></div>
+    <div class="overflow-y-auto flex-1">
+      <div v-if="fetching && !data?.listGroups.items"><Loader /></div>
 
-    <div v-else-if="error">{{ error }}</div>
+      <div v-else-if="error">{{ error }}</div>
 
-    <div v-else class="overflow-y-auto flex-1">
       <section
-        v-for="group in data?.listGroups.items"
+        v-for="group in data?.listGroups.items
+          .slice(0)
+          .sort(({ name: nameA }, { name: nameB }) =>
+            nameA.localeCompare(nameB)
+          )"
+        v-else
         :key="group.id"
         class="
           p-2
@@ -67,14 +72,16 @@
 </template>
 
 <script setup>
-import { useQuery, useClientHandle } from '@urql/vue';
+import { useQuery } from '@urql/vue';
 import { useAsyncState } from '@vueuse/core';
 import { Auth } from 'aws-amplify';
 
-const client = useClientHandle();
-console.log(client);
-
-const { fetching, data, error } = useQuery({
+const {
+  fetching,
+  data,
+  error,
+  executeQuery: getListGroups,
+} = useQuery({
   query: `
     {
       listGroups {

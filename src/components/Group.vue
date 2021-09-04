@@ -31,10 +31,14 @@
       <h1 class="text-2xl p-4 border-b sticky top-0 bg-gray-900 border-pink">
         <FontAwesomeIcon icon="layer-group" />&nbsp;{{ data.getGroup.name }}
       </h1>
+
       <section
         v-for="note in searchedNotes.length
           ? searchedNotes
-          : data?.listNotes.items"
+          : data?.listNotes.items
+              .slice(0)
+              .sort((a, b) => new Date(a.updatedAt) - new Date(b.updatedAt))
+              .reverse()"
         :key="note.id"
         class="p-4 cursor-pointer hover:bg-indigo-500"
         :class="`${
@@ -115,8 +119,12 @@ watch(
 
 const searchedNotes = ref([]);
 const onSearch = (term) => {
-  searchedNotes.value = data.value.listNotes.items.filter(({ name }) =>
-    name.includes(term)
-  );
+  if (term) {
+    searchedNotes.value = data.value.listNotes.items.filter(({ name }) =>
+      name.includes(term)
+    );
+  } else {
+    searchedNotes.value = [];
+  }
 };
 </script>
