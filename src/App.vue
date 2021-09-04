@@ -3,16 +3,28 @@
 </template>
 
 <script setup>
-import { createClient, provideClient } from '@urql/vue';
+import {
+  createClient,
+  provideClient,
+  dedupExchange,
+  cacheExchange,
+  fetchExchange,
+} from '@urql/vue';
+import { authExchange } from '@urql/exchange-auth';
+
+import { getAuth, addAuthToOperation } from './authExchange';
 
 const client = createClient({
   url: 'http://192.168.1.185:20002/graphql',
-  fetchOptions: {
-    headers: {
-      Authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZDhjYTUyOC00OTMxLTQyNTQtOTI3My1lYTVlZTg1M2YyNzEiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6Ly9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbS91cy1lYXN0LTFfZmFrZSIsInBob25lX251bWJlcl92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzp1c2VybmFtZSI6InVzZXIxIiwiYXVkIjoiMmhpZmEwOTZiM2EyNG12bTNwaHNrdWFxaTMiLCJldmVudF9pZCI6ImIxMmEzZTJmLTdhMzYtNDkzYy04NWIzLTIwZDgxOGJkNzhhMSIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxOTc0MjY0NDEyLCJwaG9uZV9udW1iZXIiOiIrMTIwNjIwNjIwMTYiLCJleHAiOjE2MzA3MTUwOTI0LCJpYXQiOjE1NjQyNjQ0MTMsImVtYWlsIjoidXNlckBkb21haW4uY29tIn0.pvkPCYEPc5xnQQRbxyX-A09H3u-0lVGn0gqKIPCxKMU',
-    },
-  },
+  exchanges: [
+    dedupExchange,
+    cacheExchange,
+    authExchange({
+      getAuth,
+      addAuthToOperation,
+    }),
+    fetchExchange,
+  ],
 });
 
 provideClient(client);
