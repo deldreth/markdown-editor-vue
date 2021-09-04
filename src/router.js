@@ -1,18 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { Auth } from 'aws-amplify';
 
+import Index from './pages/index.vue';
+import Group from './components/Group.vue';
+import Note from './components/Note.vue';
+import Signin from './pages/Auth/Signin.vue';
+import Signup from './pages/Auth/Signup.vue';
+import Confirm from './pages/Auth/Confirm.vue';
+
 const routes = [
   {
     path: '/',
-    component: () => import('./pages/index.vue'),
+    component: Index,
     children: [
       {
         path: 'group/:groupId',
-        component: () => import('./components/Group.vue'),
+        component: Group,
         children: [
           {
             path: 'note/:noteId',
-            component: () => import('./components/Note.vue'),
+            component: Note,
           },
         ],
       },
@@ -21,18 +28,18 @@ const routes = [
   {
     name: 'login',
     path: '/auth/login',
-    component: () => import('./pages/Auth/Signin.vue'),
+    component: () => Signin,
     props: true,
   },
   {
     name: 'signup',
     path: '/auth/signup',
-    component: () => import('./pages/Auth/Signup.vue'),
+    component: () => Signup,
   },
   {
     name: 'confirm',
     path: '/auth/confirm',
-    component: () => import('./pages/Auth/Confirm.vue'),
+    component: () => Confirm,
     props: true,
   },
 ];

@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "cross-env NODE_ENV=production vite build",
     "serve": "vite preview",
     "lint": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "preinstall": "npx npm-force-resolutions"
   },
   "dependencies": {
-    "@aws-amplify/ui-components": "^1.7.5",
     "@ckeditor/ckeditor5-vue": "^2.0.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
@@ -20,7 +20,8 @@
     "@vueuse/core": "^6.1.0",
     "aws-amplify": "^4.2.6",
     "bootstrap": "^5.1.0",
-    "graphql": "^15.5.1",
+    "cross-env": "^7.0.3",
+    "graphql": "14.0.0",
     "lodash": "^4.17.21",
     "unplugin-vue-components": "^0.14.5",
     "vue": "^3.2.6",
@@ -47,5 +48,8 @@
   },
   "lint-staged": {
     "*.{js,vue}": "eslint"
+  },
+  "resolutions": {
+    "graphql": "14.0.0"
   }
 }
