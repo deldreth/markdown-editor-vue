@@ -14,7 +14,7 @@ projects:
         apiId: null
         maxDepth: 2
   EditorVue:
-    schemaPath: src/graphql/schema.json
+    schemaPath: amplify/backend/api/EditorVue/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:

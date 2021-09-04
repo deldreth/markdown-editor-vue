@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { Auth } from 'aws-amplify';
 
 const routes = [
   {
@@ -17,9 +18,41 @@ const routes = [
       },
     ],
   },
+  {
+    name: 'login',
+    path: '/auth/login',
+    component: () => import('./pages/Auth/Signin.vue'),
+    props: true,
+  },
+  {
+    name: 'signup',
+    path: '/auth/signup',
+    component: () => import('./pages/Auth/Signup.vue'),
+  },
+  {
+    name: 'confirm',
+    path: '/auth/confirm',
+    component: () => import('./pages/Auth/Confirm.vue'),
+    props: true,
+  },
 ];
 
 export const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach(async (to, from, next) => {
+  console.log(to);
+  if (!to.path.includes('auth')) {
+    try {
+      await Auth.currentSession();
+    } catch (e) {
+      console.log(e);
+      next('/auth/login');
+      return;
+    }
+  }
+
+  next();
 });

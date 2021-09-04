@@ -1,10 +1,13 @@
-type Group @model {
+type Group @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   name: String!
   notes: [Note] @connection(keyName: "byGroup", fields: ["id"])
 }
 
-type Note @model @key(name: "byGroup", fields: ["groupID"]) {
+type Note
+  @model
+  @key(name: "byGroup", fields: ["groupID"])
+  @auth(rules: [{ allow: owner }]) {
   id: ID!
   name: String!
   body: String

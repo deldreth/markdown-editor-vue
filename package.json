@@ -9,12 +9,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@aws-amplify/ui-components": "^1.7.5",
     "@ckeditor/ckeditor5-vue": "^2.0.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/vue-fontawesome": "^3.0.0-4",
     "@urql/vue": "^0.4.3",
+    "aws-amplify": "^4.2.6",
     "bootstrap": "^5.1.0",
     "graphql": "^15.5.1",
     "lodash": "^4.17.21",
