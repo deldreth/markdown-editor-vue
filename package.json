@@ -1,13 +1,11 @@
 {
-  "name": "markdown-editor-vue",
-  "version": "0.0.0",
+  "name": "wondernotes.app",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "cross-env NODE_ENV=production vite build",
-    "serve": "vite preview",
-    "lint": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "prepare": "husky install",
-    "preinstall": "npx npm-force-resolutions"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "eslint --ext \".js,.vue\" --ignore-path .gitignore ."
   },
   "dependencies": {
     "@ckeditor/ckeditor5-vue": "^2.0.1",
@@ -20,36 +18,36 @@
     "@vueuse/core": "^6.1.0",
     "aws-amplify": "^4.2.6",
     "bootstrap": "^5.1.0",
+    "core-js": "^3.6.5",
     "cross-env": "^7.0.3",
     "graphql": "14.0.0",
     "lodash": "^4.17.21",
-    "unplugin-vue-components": "^0.14.5",
     "vue": "^3.2.6",
     "vue-router": "^4.0.11"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.15.0",
+    "@babel/eslint-parser": "^7.15.4",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
-    "@vitejs/plugin-vue": "^1.6.0",
-    "@vue/compiler-sfc": "^3.0.5",
-    "autoprefixer": "^10.3.3",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "autoprefixer": "^9.8.6",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^7.17.0",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.1.2",
-    "postcss": "^8.3.6",
-    "prettier": "^2.3.2",
+    "postcss": "^7.0.36",
     "sass": "^1.39.0",
-    "tailwind-dracula": "^1.0.5",
-    "tailwindcss": "^2.2.8",
-    "vite": "^2.5.1"
+    "sass-loader": "^10.2.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.9",
+    "unplugin-vue-components": "^0.14.11"
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
   "lint-staged": {
-    "*.{js,vue}": "eslint"
-  },
-  "resolutions": {
-    "graphql": "14.0.0"
+    "*.{js,vue}": "eslint --ext \".js,.vue\" --ignore-path .gitignore ."
   }
 }

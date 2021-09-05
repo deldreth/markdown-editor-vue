@@ -45,22 +45,23 @@
 
     <hr class="w-full mb-8 mt-8" />
 
-    <a href="/auth/signup" type="button" class="btn btn-secondary block"
-      >Create New Account</a
+    <router-link to="/auth/signup" type="button" class="btn btn-secondary block"
+      >Create New Account</router-link
     >
   </LayoutAuth>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { Auth } from 'aws-amplify';
-import { useRouter } from 'vue-router';
+import { ref } from "vue";
+import { Auth } from "aws-amplify";
+import { useRouter } from "vue-router";
+import LayoutAuth from "../../layouts/LayoutAuth.vue";
 
 const router = useRouter();
 
 const signinForm = ref(null);
-const username = ref('');
-const password = ref('');
+const username = ref("");
+const password = ref("");
 
 async function onSubmit(event) {
   event.preventDefault();
@@ -71,21 +72,21 @@ async function onSubmit(event) {
   const submitButton = signinForm.value.querySelector('button[type="submit"]');
 
   try {
-    signinForm.value.classList.remove('was-validated');
-    passwordField.classList.remove('is-invalid');
-    submitButton.classList.add('disabled');
+    signinForm.value.classList.remove("was-validated");
+    passwordField.classList.remove("is-invalid");
+    submitButton.classList.add("disabled");
 
     if (!signinForm.value.checkValidity()) {
-      signinForm.value.classList.add('was-validated');
+      signinForm.value.classList.add("was-validated");
     } else {
       await Auth.signIn(username.value, password.value);
 
-      router.replace('/');
+      router.replace("/");
     }
   } catch (e) {
-    passwordField.classList.add('is-invalid');
+    passwordField.classList.add("is-invalid");
   }
 
-  submitButton.classList.remove('disabled');
+  submitButton.classList.remove("disabled");
 }
 </script>

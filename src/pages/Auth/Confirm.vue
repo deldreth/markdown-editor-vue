@@ -53,15 +53,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { Auth } from 'aws-amplify';
-import { useRoute, useRouter } from 'vue-router';
+import { ref } from "vue";
+import { Auth } from "aws-amplify";
+import { useRoute, useRouter } from "vue-router";
+import LayoutAuth from "../../layouts/LayoutAuth.vue";
 
 const route = useRoute();
 const router = useRouter();
 
 const username = ref(route.params.username);
-const code = ref('');
+const code = ref("");
 
 async function onConfirm(event) {
   event.preventDefault();
@@ -69,7 +70,7 @@ async function onConfirm(event) {
   try {
     await Auth.confirmSignUp(username.value, code.value);
 
-    router.replace({ name: 'login', params: { confirm: true } });
+    router.replace({ name: "login", params: { confirm: true } });
   } catch (e) {}
 }
 </script>

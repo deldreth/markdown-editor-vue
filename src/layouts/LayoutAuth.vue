@@ -13,13 +13,13 @@
     <div
       class="
         bg-indigo-900 bg-opacity-50
-        p-4
+        p-8
         border border-indigo-900
         rounded
         w-96
       "
     >
-      <slot />
+      <slot></slot>
     </div>
   </div>
 </template>

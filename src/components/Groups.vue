@@ -25,10 +25,10 @@
           justify-between
           items-center
         "
-        :class="`${
-          $route.params.groupId === group.id &&
-          'bg-gradient-to-l from-indigo-900'
-        }`"
+        :class="
+          `${$route.params.groupId === group.id &&
+            'bg-gradient-to-l from-indigo-900'}`
+        "
         @click="$router.push(`/group/${group.id}`)"
       >
         <h2 class="truncate text-sm">{{ group.name }}</h2>
@@ -72,16 +72,14 @@
 </template>
 
 <script setup>
-import { useQuery } from '@urql/vue';
-import { useAsyncState } from '@vueuse/core';
-import { Auth } from 'aws-amplify';
+import { useQuery } from "@urql/vue";
+import { useAsyncState } from "@vueuse/core";
+import { Auth } from "aws-amplify";
 
-const {
-  fetching,
-  data,
-  error,
-  executeQuery: getListGroups,
-} = useQuery({
+import GroupsAdd from "./Groups/Add.vue";
+import Loader from "./Loader.vue";
+
+const { fetching, data, error, executeQuery: getListGroups } = useQuery({
   query: `
     {
       listGroups {
@@ -108,6 +106,6 @@ async function onSignOut(event) {
 
   await Auth.signOut();
 
-  window.location.href = '/';
+  window.location.href = "/";
 }
 </script>

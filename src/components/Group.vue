@@ -80,6 +80,10 @@ import { watch, ref } from 'vue';
 import { useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
 
+import NoteSearch from './Note/Search.vue';
+import NoteAdd from './Note/Add.vue';
+import Loader from './Loader.vue';
+
 const route = useRoute();
 const groupId = ref(route.params.groupId);
 

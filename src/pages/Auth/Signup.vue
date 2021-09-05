@@ -70,6 +70,7 @@
 import { ref } from 'vue';
 import { Auth } from 'aws-amplify';
 import { useRouter } from 'vue-router';
+import LayoutAuth from '../../layouts/LayoutAuth.vue';
 
 const router = useRouter();
 

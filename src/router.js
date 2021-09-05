@@ -1,61 +1,53 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import { Auth } from 'aws-amplify';
-
-import Index from './pages/index.vue';
-import Group from './components/Group.vue';
-import Note from './components/Note.vue';
-import Signin from './pages/Auth/Signin.vue';
-import Signup from './pages/Auth/Signup.vue';
-import Confirm from './pages/Auth/Confirm.vue';
+import { createRouter, createWebHashHistory } from "vue-router";
+import { Auth } from "aws-amplify";
 
 const routes = [
   {
-    path: '/',
-    component: Index,
+    path: "/",
+    component: () => import("./pages/index.vue"),
     children: [
       {
-        path: 'group/:groupId',
-        component: Group,
+        path: "group/:groupId",
+        component: () => import("./components/Group.vue"),
         children: [
           {
-            path: 'note/:noteId',
-            component: Note,
+            path: "note/:noteId",
+            component: () => import("./components/Note.vue"),
           },
         ],
       },
     ],
   },
   {
-    name: 'login',
-    path: '/auth/login',
-    component: () => Signin,
+    name: "login",
+    path: "/auth/login",
+    component: () => import("./pages/Auth/Signin.vue"),
     props: true,
   },
   {
-    name: 'signup',
-    path: '/auth/signup',
-    component: () => Signup,
+    name: "signup",
+    path: "/auth/signup",
+    component: () => import("./pages/Auth/Signup.vue"),
   },
   {
-    name: 'confirm',
-    path: '/auth/confirm',
-    component: () => Confirm,
+    name: "confirm",
+    path: "/auth/confirm",
+    component: () => import("./pages/Auth/Confirm.vue"),
     props: true,
   },
 ];
 
 export const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });
 
 router.beforeEach(async (to, from, next) => {
-  if (!to.path.includes('auth')) {
+  if (!to.path.includes("auth")) {
     try {
       await Auth.currentSession();
     } catch (e) {
-      console.log(e);
-      next('/auth/login');
+      next("/auth/login");
       return;
     }
   }

@@ -23,6 +23,7 @@ import {
   fetchExchange,
 } from '@urql/vue';
 import { authExchange } from '@urql/exchange-auth';
+import Groups from '../components/Groups.vue';
 
 import { getAuth, addAuthToOperation } from '../urql/authExchange';
 
