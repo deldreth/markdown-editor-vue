@@ -31,8 +31,7 @@ import Groups from '../components/Groups.vue';
 import { getAuth, addAuthToOperation } from '../urql/authExchange';
 
 const client = createClient({
-  url: 'http://192.168.1.185:20002/graphql',
-  // url: 'https://qfzdtvzgdje3tbvnk63mwi5dta.appsync-api.us-east-1.amazonaws.com/graphql',
+  url: 'https://qfzdtvzgdje3tbvnk63mwi5dta.appsync-api.us-east-1.amazonaws.com/graphql',
   exchanges: [
     authExchange({
       getAuth,

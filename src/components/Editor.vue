@@ -1,5 +1,5 @@
 <template>
-  <div class="ck-content">
+  <div class="ck-content text-xl roboto-slab">
     <ckeditor v-model="modelContent" :editor="editor" :config="config" />
   </div>
 </template>
@@ -72,3 +72,10 @@ const config = {
   },
 };
 </script>
+
+<style scoped>
+.roboto-slab {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+}
+</style>

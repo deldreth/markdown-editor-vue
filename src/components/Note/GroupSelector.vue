@@ -2,7 +2,7 @@
   <div class="dropdown">
     <button
       id="dropdownMenuButton1"
-      class="btn btn-primary dropdown-toggle mb-4"
+      class="btn btn-primary dropdown-toggle mb-4 p-4 pl-6 pr-6"
       type="button"
       data-bs-toggle="dropdown"
       aria-expanded="false"

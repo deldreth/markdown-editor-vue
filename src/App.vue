@@ -9,7 +9,7 @@
 html,
 body {
   height: 100%;
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

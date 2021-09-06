@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <div class="pr-4 pl-4">
+      <div class="pr-4 pl-4 pb-4">
         <Editor :note-id="$route.params.noteId" :content="data.getNote.body" />
       </div>
     </div>

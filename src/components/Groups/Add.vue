@@ -15,7 +15,7 @@
         title="Add New Group"
         type="text"
       />
-      <button class="btn btn-primary rounded-full" type="submit">
+      <button class="btn btn-primary rounded-full pr-4 pl-4" type="submit">
         <FontAwesomeIcon icon="layer-group" />
       </button>
     </div>
