@@ -29,7 +29,15 @@
       <GroupName v-if="data.getGroup">{{ data.getGroup.name }}</GroupName>
 
       <GroupNotes
-        :notes="searchedNotes.length ? searchedNotes : data?.listNotes.items"
+        :notes="
+          searchedNotes.length
+            ? searchedNotes
+            : data?.listNotes.items.filter(
+                (note) =>
+                  $route.params.groupId === ALL_NOTES ||
+                  note.group?.id === $route.params.groupId
+              )
+        "
       />
 
       <GroupEditModal
@@ -44,16 +52,16 @@
 </template>
 
 <script setup>
-import { watch, ref, provide, onUpdated } from 'vue';
 import { useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
+import { watch, ref } from 'vue';
 
-import NoteSearch from './Note/Search.vue';
-import NoteAdd from './Note/Add.vue';
-import Loader from './Loader.vue';
 import GroupEditModal from './Group/Edit/Modal.vue';
-import GroupNotes from './Group/Notes.vue';
 import GroupName from './Group/Name.vue';
+import GroupNotes from './Group/Notes.vue';
+import Loader from './Loader.vue';
+import NoteAdd from './Note/Add.vue';
+import NoteSearch from './Note/Search.vue';
 
 const ALL_NOTES = 'all';
 
@@ -72,13 +80,14 @@ const {
         id
         name
       }
-      listNotes(filter: { groupID: { eq: $groupId } }) {
+      listNotes {
         items {
           id
           name
           body
           updatedAt
           group {
+            id
             name
           }
         }

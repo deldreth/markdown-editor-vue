@@ -10,26 +10,19 @@
       h-screen
     "
   >
-    <div v-if="fetching" class="h-screen flex">
-      <Loader />
-    </div>
+    <Loader v-if="fetching" />
 
     <div v-else-if="error">{{ error }}</div>
 
     <div v-else-if="data" class="h-full">
       <div class="p-4 bg-gradient-to-b from-indigo-900">
-        <div class="flex">
+        <div v-if="data.getNote.group" class="flex">
           <h1 class="text-xl mb-2 flex-1">{{ data.getNote.group.name }}</h1>
-          <div>
-            <!-- <button type="button" class="btn btn-sm btn-danger">Delete</button> -->
-          </div>
         </div>
-        <input
+
+        <FormInput
           v-model="data.getNote.name"
-          aria-label="Note Title"
-          class="form-control"
-          placeholder="Note title"
-          type="text"
+          label="Note Title"
           @input="debounceUpdateNoteName"
         />
       </div>
@@ -49,6 +42,7 @@ import debounce from 'lodash/debounce';
 
 import Loader from './Loader.vue';
 import Editor from './Editor.vue';
+import FormInput from './Form/Input.vue';
 
 const route = useRoute();
 const noteId = ref(route.params.noteId);
