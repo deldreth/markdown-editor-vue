@@ -24,6 +24,7 @@ import {
 } from '@urql/vue';
 import { authExchange } from '@urql/exchange-auth';
 import 'bootstrap/js/dist/modal';
+import 'bootstrap/js/dist/dropdown';
 
 import Groups from '../components/Groups.vue';
 

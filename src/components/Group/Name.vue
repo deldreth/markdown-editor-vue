@@ -1,5 +1,5 @@
 <template>
-  <div class="p-2 border-b sticky top-0 bg-gray-900 border-pink">
+  <div class="p-2 sticky top-0 bg-gray-900 border-b border-pink-500">
     <button
       type="button"
       data-bs-toggle="modal"

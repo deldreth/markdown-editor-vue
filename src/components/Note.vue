@@ -15,19 +15,21 @@
     <div v-else-if="error">{{ error }}</div>
 
     <div v-else-if="data" class="h-full">
-      <div class="p-4 bg-gradient-to-b from-indigo-900">
-        <div v-if="data.getNote.group" class="flex">
-          <h1 class="text-xl mb-2 flex-1">{{ data.getNote.group.name }}</h1>
+      <div class="p-4 bg-gradient-to-b from-gray-900">
+        <div v-if="data.getNote.group" class="flex -mb-6">
+          <NoteGroupSelector class="mr-4">{{
+            data.getNote.group.name
+          }}</NoteGroupSelector>
+          <FormInput
+            v-model="data.getNote.name"
+            label="Title"
+            class="flex-1"
+            @input="debounceUpdateNoteName"
+          />
         </div>
-
-        <FormInput
-          v-model="data.getNote.name"
-          label="Note Title"
-          @input="debounceUpdateNoteName"
-        />
       </div>
 
-      <div class="p-4">
+      <div class="pr-4 pl-4">
         <Editor :note-id="$route.params.noteId" :content="data.getNote.body" />
       </div>
     </div>
@@ -43,6 +45,7 @@ import debounce from 'lodash/debounce';
 import Loader from './Loader.vue';
 import Editor from './Editor.vue';
 import FormInput from './Form/Input.vue';
+import NoteGroupSelector from './Note/GroupSelector.vue';
 
 const route = useRoute();
 const noteId = ref(route.params.noteId);

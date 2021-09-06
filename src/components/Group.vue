@@ -7,18 +7,17 @@
       flex flex-col
       h-full
       overflow-hidden
+      border-l-2 border-indigo-400
       bg-gray-900
     "
   >
     <div class="p-4">
       <NoteSearch @on-search="onSearch" />
 
-      <div class="flex justify-end">
-        <NoteAdd
-          :group-id="groupId"
-          @note-created="listNotes({ requestPolicy: 'network-only' })"
-        />
-      </div>
+      <NoteAdd
+        :group-id="groupId"
+        @note-created="listNotes({ requestPolicy: 'network-only' })"
+      />
     </div>
 
     <Loader v-if="fetching" />
@@ -30,8 +29,12 @@
 
       <GroupNotes
         :notes="
-          searchedNotes.length
-            ? searchedNotes
+          searchedNotes
+            ? searchedNotes.filter(
+                (note) =>
+                  $route.params.groupId === ALL_NOTES ||
+                  note.group?.id === $route.params.groupId
+              )
             : data?.listNotes.items.filter(
                 (note) =>
                   $route.params.groupId === ALL_NOTES ||
@@ -48,7 +51,7 @@
     </div>
   </div>
 
-  <router-view :key="$route.params.noteId" />
+  <router-view :key="`${$route.params.noteId}${$route.params.noteId}`" />
 </template>
 
 <script setup>
@@ -104,14 +107,14 @@ watch(
   }
 );
 
-const searchedNotes = ref([]);
+const searchedNotes = ref(false);
 const onSearch = (term) => {
   if (term) {
     searchedNotes.value = data.value.listNotes.items.filter(({ name }) =>
       name.includes(term)
     );
   } else {
-    searchedNotes.value = [];
+    searchedNotes.value = false;
   }
 };
 </script>

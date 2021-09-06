@@ -9,7 +9,7 @@
         "
       >
         <div class="modal-header">
-          <h5 class="modal-title text-xl">Edit {{ unwrappedName }} Group</h5>
+          <h5 class="modal-title text-xl">Edit "{{ unwrappedName }}"</h5>
           <button
             type="button"
             class="btn-close"
@@ -27,6 +27,7 @@
             <button
               type="button"
               class="btn btn-success mb-8 self-end"
+              :disabled="fetching"
               @click="
                 updateGroup({
                   input: { id: props.group.id, name: unwrappedName },
@@ -100,5 +101,6 @@ const props = defineProps({
 // eslint-disable-next-line vue/no-setup-props-destructure
 const unwrappedName = props.group.name;
 
-const { executeMutation: updateGroup } = useMutation(updateGroupMutation);
+const { executeMutation: updateGroup, fetching } =
+  useMutation(updateGroupMutation);
 </script>

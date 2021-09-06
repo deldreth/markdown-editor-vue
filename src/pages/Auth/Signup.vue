@@ -60,7 +60,7 @@
       </div>
 
       <div class="flex justify-end items-center">
-        <button type="submit" class="btn btn-success">Create Account</button>
+        <button type="submit" class="btn btn-primary">Create Account</button>
       </div>
     </form>
   </LayoutAuth>
