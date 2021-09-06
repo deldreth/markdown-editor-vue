@@ -7,40 +7,61 @@
 
       <div v-else-if="error">{{ error }}</div>
 
-      <section
-        v-for="group in data?.listGroups.items
-          .slice(0)
-          .sort(({ name: nameA }, { name: nameB }) =>
-            nameA.localeCompare(nameB)
-          )"
-        v-else
-        :key="group.id"
-        class="
-          p-2
-          pr-4
-          pl-4
-          cursor-pointer
-          hover:bg-indigo-500
-          flex
-          justify-between
-          items-center
-        "
-        :class="
-          `${$route.params.groupId === group.id &&
-            'bg-gradient-to-l from-indigo-900'}`
-        "
-        @click="$router.push(`/group/${group.id}`)"
-      >
-        <h2 class="truncate text-sm">{{ group.name }}</h2>
+      <div v-else>
+        <section
+          class="
+            p-2
+            pr-4
+            pl-4
+            cursor-pointer
+            hover:bg-indigo-500
+            flex
+            justify-between
+            items-center
+          "
+          :class="`${
+            $route.params.groupId === 'all' &&
+            'bg-gradient-to-l from-indigo-900'
+          }`"
+          @click="$router.push(`/group/all`)"
+        >
+          <h2 class="text-xl">All Notes</h2>
+        </section>
 
-        <div>
-          <span v-if="group.notes.items.length" class="text-sm">
-            {{ group.notes.items.length }}&nbsp;<FontAwesomeIcon
-              icon="layer-group"
-            />
-          </span>
-        </div>
-      </section>
+        <section
+          v-for="group in data?.listGroups.items
+            .slice(0)
+            .sort(({ name: nameA }, { name: nameB }) =>
+              nameA.localeCompare(nameB)
+            )"
+          :key="group.id"
+          class="
+            p-2
+            pr-4
+            pl-4
+            cursor-pointer
+            hover:bg-indigo-500
+            flex
+            justify-between
+            items-center
+          "
+          :class="`${
+            $route.params.groupId === group.id &&
+            'bg-gradient-to-l from-indigo-900'
+          }`"
+          @click="$router.push(`/group/${group.id}`)"
+        >
+          <h2 class="truncate text-sm">{{ group.name }}</h2>
+
+          <div>
+            <span v-if="group.notes.items.length" class="text-sm">
+              {{ group.notes.items.length }}&nbsp;<FontAwesomeIcon
+                icon="layer-group"
+              />
+            </span>
+          </div>
+        </section>
+      </div>
     </div>
 
     <div
@@ -68,18 +89,23 @@
     </div>
   </div>
 
-  <router-view />
+  <router-view :key="$route.params.groupId" />
 </template>
 
 <script setup>
-import { useQuery } from "@urql/vue";
-import { useAsyncState } from "@vueuse/core";
-import { Auth } from "aws-amplify";
+import { useQuery } from '@urql/vue';
+import { useAsyncState } from '@vueuse/core';
+import { Auth } from 'aws-amplify';
 
-import GroupsAdd from "./Groups/Add.vue";
-import Loader from "./Loader.vue";
+import GroupsAdd from './Groups/Add.vue';
+import Loader from './Loader.vue';
 
-const { fetching, data, error, executeQuery: getListGroups } = useQuery({
+const {
+  fetching,
+  data,
+  error,
+  executeQuery: getListGroups,
+} = useQuery({
   query: `
     {
       listGroups {
@@ -106,6 +132,6 @@ async function onSignOut(event) {
 
   await Auth.signOut();
 
-  window.location.href = "/";
+  window.location.href = '/';
 }
 </script>

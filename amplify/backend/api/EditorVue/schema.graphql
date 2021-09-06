@@ -4,6 +4,23 @@ type Group @model @auth(rules: [{ allow: owner }]) {
   notes: [Note] @connection(keyName: "byGroup", fields: ["id"])
 }
 
+type Tag @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  tag: String!
+  notes: [TagNote] @connection(keyName: "byTag", fields: ["id"])
+}
+
+type TagNote
+  @model(queries: null)
+  @key(name: "byTag", fields: ["tagId", "noteId"])
+  @key(name: "byNote", fields: ["noteId", "tagId"]) {
+  id: ID!
+  tagId: ID!
+  noteId: ID!
+  tag: Tag! @connection(fields: ["tagId"])
+  note: Note! @connection(fields: ["noteId"])
+}
+
 type Note
   @model
   @key(name: "byGroup", fields: ["groupID"])
@@ -13,4 +30,5 @@ type Note
   body: String
   groupID: ID!
   group: Group @connection(fields: ["groupID"])
+  tags: [TagNote] @connection(keyName: "byNote", fields: ["id"])
 }
