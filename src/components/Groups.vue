@@ -1,9 +1,20 @@
 <template>
-  <div id="groups" class="flex flex-col h-full overflow-hidden bg-gray-800">
+  <div
+    id="groups"
+    class="
+      flex flex-col
+      h-full
+      overflow-hidden
+      bg-gray-800
+      col-span-4
+      md:col-span-1
+    "
+    :class="$route.params.groupId && 'hidden md:flex'"
+  >
     <GroupsAdd @added="getListGroups({ requestPolicy: 'network-only' })" />
 
     <div class="overflow-y-auto flex-1">
-      <div v-if="fetching && !data?.listGroups.items"><Loader /></div>
+      <Loader v-if="fetching" />
 
       <div v-else-if="error">{{ error }}</div>
 

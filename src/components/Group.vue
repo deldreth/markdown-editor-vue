@@ -2,7 +2,8 @@
   <div
     id="group"
     class="
-      col-span-1
+      col-span-4
+      md:col-span-2
       xl:col-span-2
       flex flex-col
       h-full
@@ -10,6 +11,7 @@
       border-l-2 border-indigo-400
       bg-gray-900
     "
+    :class="$route.params.noteId && 'hidden md:flex'"
   >
     <div class="p-4">
       <NoteSearch @on-search="onSearch" />

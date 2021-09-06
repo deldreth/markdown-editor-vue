@@ -141,7 +141,7 @@
 .ck-content > h5,
 .ck-content > h6 {
   font-size: revert;
-  font-weight: revert;
+  font-weight: 400;
 }
 
 .ck-content > p > a {

@@ -1,38 +1,43 @@
-import { createRouter, createWebHashHistory } from "vue-router";
-import { Auth } from "aws-amplify";
+import { createRouter, createWebHashHistory } from 'vue-router';
+import { Auth } from 'aws-amplify';
 
 const routes = [
   {
-    path: "/",
-    component: () => import("./pages/index.vue"),
+    path: '/',
+    component: () => import('./pages/index.vue'),
     children: [
       {
-        path: "group/:groupId",
-        component: () => import("./components/Group.vue"),
+        path: 'group/:groupId',
+        component: () => import('./components/Group.vue'),
         children: [
           {
-            path: "note/:noteId",
-            component: () => import("./components/Note.vue"),
+            path: 'note/:noteId',
+            component: () => import('./components/Note.vue'),
           },
         ],
       },
     ],
   },
   {
-    name: "login",
-    path: "/auth/login",
-    component: () => import("./pages/Auth/Signin.vue"),
+    name: 'about',
+    path: '/about',
+    component: () => import('./pages/About.vue'),
+  },
+  {
+    name: 'login',
+    path: '/auth/login',
+    component: () => import('./pages/Auth/Signin.vue'),
     props: true,
   },
   {
-    name: "signup",
-    path: "/auth/signup",
-    component: () => import("./pages/Auth/Signup.vue"),
+    name: 'signup',
+    path: '/auth/signup',
+    component: () => import('./pages/Auth/Signup.vue'),
   },
   {
-    name: "confirm",
-    path: "/auth/confirm",
-    component: () => import("./pages/Auth/Confirm.vue"),
+    name: 'confirm',
+    path: '/auth/confirm',
+    component: () => import('./pages/Auth/Confirm.vue'),
     props: true,
   },
 ];
@@ -43,11 +48,11 @@ export const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  if (!to.path.includes("auth")) {
+  if (!to.path.includes('auth')) {
     try {
       await Auth.currentSession();
     } catch (e) {
-      next("/auth/login");
+      next('/auth/login');
       return;
     }
   }

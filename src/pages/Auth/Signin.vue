@@ -1,5 +1,8 @@
 <template>
   <LayoutAuth>
+    <div class="text-center -mt-6 mb-8">
+      <router-link to="/about" class="underline">About</router-link>
+    </div>
     <form
       ref="signinForm"
       class="needs-validated"
@@ -43,11 +46,21 @@
       </div>
     </form>
 
-    <hr class="w-full mb-8 mt-8" />
-
-    <router-link to="/auth/signup" type="button" class="btn btn-secondary block"
-      >Create New Account</router-link
+    <div
+      class="
+        text-center
+        mt-12
+        -ml-8
+        -mr-8
+        -mb-8
+        bg-indigo-600
+        p-4
+        rounded-bl rounded-br
+      "
     >
+      Don't have an account?
+      <router-link to="/auth/signup" class="underline">Sign up now</router-link>
+    </div>
   </LayoutAuth>
 </template>
 

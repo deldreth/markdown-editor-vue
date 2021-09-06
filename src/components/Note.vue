@@ -2,7 +2,7 @@
   <!-- <div class="col-span-3 bg-gray-800"> -->
   <div
     class="
-      col-span-2
+      col-span-full
       xl:col-span-3
       2xl:col-span-5
       border-l-2 border-indigo-400

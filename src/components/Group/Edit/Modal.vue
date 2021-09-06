@@ -4,7 +4,7 @@
       <div
         class="
           modal-content
-          border border-indigo-300
+          border border-indigo-400
           bg-indigo-900 bg-opacity-75
         "
       >
