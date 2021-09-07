@@ -48,13 +48,6 @@ import { useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
 import { watch, ref, computed } from 'vue';
 
-import GroupEditModal from './Group/Edit/Modal.vue';
-import GroupName from './Group/Name.vue';
-import GroupNotes from './Group/Notes.vue';
-import Loader from './Loader.vue';
-import NoteAdd from './Note/Add.vue';
-import NoteSearch from './Note/Search.vue';
-
 const ALL_NOTES = 'all';
 
 const route = useRoute();

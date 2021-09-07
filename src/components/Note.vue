@@ -43,11 +43,6 @@ import { useMutation, useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
 import debounce from 'lodash/debounce';
 
-import Loader from './Loader.vue';
-import Editor from './Editor.vue';
-import FormInput from './Form/Input.vue';
-import NoteGroupSelector from './Note/GroupSelector.vue';
-
 const route = useRoute();
 const noteId = ref(route.params.noteId);
 

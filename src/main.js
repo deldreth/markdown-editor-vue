@@ -16,6 +16,19 @@ import './index.css';
 Amplify.configure(awsconfig);
 
 const app = createApp(App);
+
+const requireComponent = require.context('./components', true);
+
+requireComponent
+  .keys()
+  .filter((component) => component.includes('.vue'))
+  .forEach((fileName) => {
+    const componentConfig = requireComponent(fileName);
+    const componentName = fileName.replace(/\.\/|\/|\.vue/g, '');
+
+    app.component(componentName, componentConfig.default || componentConfig);
+  });
+
 app
   .component('FontAwesomeIcon', FontAwesomeIcon)
   .use(router)

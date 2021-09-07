@@ -108,9 +108,6 @@ import { useQuery } from '@urql/vue';
 import { useAsyncState } from '@vueuse/core';
 import { Auth } from 'aws-amplify';
 
-import GroupsAdd from './Groups/Add.vue';
-import Loader from './Loader.vue';
-
 const {
   fetching,
   data,

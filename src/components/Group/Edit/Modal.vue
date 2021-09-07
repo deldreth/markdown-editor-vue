@@ -83,7 +83,6 @@ import { ref } from 'vue';
 import { useMutation } from '@urql/vue';
 
 import { updateGroup as updateGroupMutation } from '../../../graphql/mutations';
-import FormInput from '../../Form/Input';
 
 const deleteGroupName = ref('');
 
