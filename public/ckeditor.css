@@ -160,6 +160,18 @@
   color: #fafaf8;
 }
 
+.ck-content .todo-list input[type='checkbox']:before {
+  border: 1px solid white !important;
+}
+
+.ck-content .todo-list input[checked]:before {
+  background-color: rgb(255, 255, 255) !important;
+}
+
+.ck-content .todo-list input[checked]:after {
+  border-color: rgb(49, 46, 129) !important;
+}
+
 ::-webkit-scrollbar {
   width: 20px;
 }
