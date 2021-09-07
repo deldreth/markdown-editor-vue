@@ -30,21 +30,7 @@
     <div v-else class="overflow-y-auto flex-1">
       <GroupName v-if="data.getGroup">{{ data.getGroup.name }}</GroupName>
 
-      <GroupNotes
-        :notes="
-          searchedNotes
-            ? searchedNotes.filter(
-                (note) =>
-                  $route.params.groupId === ALL_NOTES ||
-                  note.group?.id === $route.params.groupId
-              )
-            : data?.listNotes.items.filter(
-                (note) =>
-                  $route.params.groupId === ALL_NOTES ||
-                  note.group?.id === $route.params.groupId
-              )
-        "
-      />
+      <GroupNotes :notes="filteredNotes" />
 
       <GroupEditModal
         v-if="data.getGroup"
@@ -60,7 +46,7 @@
 <script setup>
 import { useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
-import { watch, ref } from 'vue';
+import { watch, ref, computed } from 'vue';
 
 import GroupEditModal from './Group/Edit/Modal.vue';
 import GroupName from './Group/Name.vue';
@@ -110,14 +96,26 @@ watch(
   }
 );
 
-const searchedNotes = ref(false);
+const searchTerm = ref(false);
+const filteredNotes = computed(() => {
+  const nextNotes = data.value.listNotes.items.filter(
+    (note) =>
+      route.params.groupId === ALL_NOTES ||
+      route.params.groupId === note.group?.id
+  );
+
+  if (searchTerm.value) {
+    return nextNotes.filter(({ name }) => name.includes(searchTerm.value));
+  }
+
+  return nextNotes;
+});
+
 const onSearch = (term) => {
   if (term) {
-    searchedNotes.value = data.value.listNotes.items.filter(({ name }) =>
-      name.includes(term)
-    );
+    searchTerm.value = term;
   } else {
-    searchedNotes.value = false;
+    searchTerm.value = false;
   }
 };
 </script>
