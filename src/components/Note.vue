@@ -5,7 +5,8 @@
       col-span-full
       xl:col-span-3
       2xl:col-span-5
-      border-l-2 border-indigo-400
+      md:border-l-2
+      border-indigo-400
       overflow-hidden overflow-y-auto
       h-screen
     "

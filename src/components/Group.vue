@@ -8,7 +8,8 @@
       flex flex-col
       h-full
       overflow-hidden
-      border-l-2 border-indigo-400
+      md:border-l-2
+      border-indigo-400
       bg-gray-900
     "
     :class="$route.params.noteId && 'hidden md:flex'"
