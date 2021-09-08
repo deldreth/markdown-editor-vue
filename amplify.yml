@@ -16,8 +16,8 @@ frontend:
       commands:
         - npm run lint
         - npm run build
-        - 'npm run release -- --prerelease --skip.changelog --message "chore(release): %s [ci skip]"'
-        - git push --follow-tags origin main
+        # - 'npm run release -- --prerelease --skip.changelog --message "chore(release): %s [skip-cd]"'
+        # - git push --follow-tags origin main
   artifacts:
     baseDirectory: dist
     files:
