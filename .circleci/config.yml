@@ -26,11 +26,11 @@ jobs:
 
       - run:
           name: Setup AWS Amplify CLI
-          command: npm install -g @aws-amplify/cli
+          command: sudo npm install -g @aws-amplify/cli
 
       - run:
           name: Pull Amplify Config
-          command: ./node_modules/.bin/amplify env pull
+          command: amplify env pull
 
       - save_cache:
           key: node-v1-{{ checksum "package-lock.json" }}
