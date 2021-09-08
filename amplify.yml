@@ -9,6 +9,8 @@ frontend:
   phases:
     preBuild:
       commands:
+        - git config user.email "$EMAIL"
+        - git config user.name "$GIT_USERNAME"
         - npm ci
     build:
       commands:
