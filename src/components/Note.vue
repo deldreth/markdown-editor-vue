@@ -16,7 +16,8 @@
     <div v-else-if="error">{{ error }}</div>
 
     <div v-else-if="data" class="h-full">
-      <div class="p-4 bg-gradient-to-b from-gray-900">
+      <div class="p-4 pl-8 pr-8">
+        <h1 class="text-2xl font-bold">Note</h1>
         <div v-if="data.getNote.group" class="flex -mb-6">
           <NoteGroupSelector class="mr-4">{{
             data.getNote.group.name
@@ -30,9 +31,7 @@
         </div>
       </div>
 
-      <div class="pr-4 pl-4 pb-4">
-        <Editor :note-id="$route.params.noteId" :content="data.getNote.body" />
-      </div>
+      <Editor :note-id="$route.params.noteId" :content="data.getNote.body" />
     </div>
   </div>
 </template>
@@ -73,7 +72,7 @@ const { executeMutation: updateNoteName } = useMutation(`
   }
 `);
 
-const debounceUpdateNoteName = debounce((event) => {
+const debounceUpdateNoteName = debounce(event => {
   updateNoteName({ id: noteId.value, name: event.target.value });
 }, 1000);
 </script>

@@ -154,10 +154,16 @@
 }
 
 .ck-editor__editable {
-  /* background-color: hsla(0, 0%, 78%, 0.5) !important; */
+  /* background-color: hsla(0, 0%, 2%, 0.5) !important; */
   /* background-color: rgba(76, 29, 149, 0.7) !important; */
-  background-color: rgba(49, 46, 129, 0.75) !important;
+  /* background-color: rgba(49, 46, 129, 0.75) !important; */
+  background-color: rgba(55, 65, 81, 0.75) !important;
   color: #fafaf8;
+  /* backdrop-filter: blur(25px); */
+}
+
+.ck-editor__editable {
+  min-height: 100%;
 }
 
 .ck-content .todo-list input[type='checkbox']:before {

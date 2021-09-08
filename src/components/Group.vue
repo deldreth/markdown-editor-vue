@@ -10,11 +10,13 @@
       overflow-hidden
       md:border-l-2
       border-indigo-400
-      bg-gray-900
+      bg-gray-800
+      bg-opacity-75
+      shadow-sm
     "
     :class="$route.params.noteId && 'hidden md:flex'"
   >
-    <div class="p-4">
+    <div class="p-4 pl-8 pr-8">
       <NoteSearch @on-search="onSearch" />
 
       <NoteAdd
@@ -53,12 +55,7 @@ const ALL_NOTES = 'all';
 const route = useRoute();
 const groupId = ref(route.params.groupId);
 
-const {
-  fetching,
-  data,
-  error,
-  executeQuery: listNotes,
-} = useQuery({
+const { fetching, data, error, executeQuery: listNotes } = useQuery({
   query: /* GraphQL */ `
     query ListNotesQuery($groupId: ID!) {
       getGroup(id: $groupId) {
@@ -84,7 +81,7 @@ const {
 
 watch(
   () => route.params.groupId,
-  (nextGroupId) => {
+  nextGroupId => {
     groupId.value = nextGroupId;
   }
 );
@@ -92,7 +89,7 @@ watch(
 const searchTerm = ref(false);
 const filteredNotes = computed(() => {
   const nextNotes = data.value.listNotes.items.filter(
-    (note) =>
+    note =>
       route.params.groupId === ALL_NOTES ||
       route.params.groupId === note.group?.id
   );
@@ -104,7 +101,7 @@ const filteredNotes = computed(() => {
   return nextNotes;
 });
 
-const onSearch = (term) => {
+const onSearch = term => {
   if (term) {
     searchTerm.value = term;
   } else {

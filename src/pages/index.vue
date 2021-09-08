@@ -1,16 +1,25 @@
 <template>
   <div
     class="
-      grid grid-cols-4
-      xl:grid-cols-6
-      2xl:grid-cols-8
-      bg-gradient-to-b
-      from-indigo-800
       h-full
       text-white
+      bg-gradient-to-r
+      from-pink-600
+      via-blue-900
+      to-purple-700
     "
   >
-    <Groups />
+    <div
+      class="
+        grid grid-cols-4
+        xl:grid-cols-6
+        2xl:grid-cols-8
+        h-full
+        bg-gradient-to-b from-gray-900 via-purple-900 to-transparent
+      "
+    >
+      <Groups />
+    </div>
   </div>
 </template>
 
@@ -25,8 +34,6 @@ import {
 import { authExchange } from '@urql/exchange-auth';
 import 'bootstrap/js/dist/modal';
 import 'bootstrap/js/dist/dropdown';
-
-import Groups from '../components/Groups.vue';
 
 import { getAuth, addAuthToOperation } from '../urql/authExchange';
 

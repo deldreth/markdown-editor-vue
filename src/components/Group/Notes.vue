@@ -2,10 +2,8 @@
   <section
     v-for="note in sortedNotes"
     :key="note.id"
-    class="p-4 cursor-pointer hover:bg-indigo-500"
-    :class="`${
-      $route.params.noteId === note.id && 'bg-gradient-to-l from-indigo-900'
-    }`"
+    class="pt-4 pb-4 pl-8 pr-8 cursor-pointer hover:bg hover:bg-indigo-800"
+    :class="`${$route.params.noteId === note.id && 'bg-indigo-900'}`"
     @click="$router.push(`/group/${$route.params.groupId}/note/${note.id}`)"
   >
     <h2 class="text-lg truncate" :title="note.name">
@@ -38,7 +36,7 @@ const props = defineProps({
 const sortedNotes = computed({
   get() {
     return props.notes
-      .map((note) => {
+      .map(note => {
         note.excerpt = note.body.replace(/<[^>]*>?/gm, '').substring(0, 60);
         return note;
       })

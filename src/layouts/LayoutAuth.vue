@@ -1,18 +1,23 @@
 <template>
   <div
-    class="
-      flex flex-col
-      justify-center
-      items-center
-      bg-gradient-to-b
-      from-indigo-800
-      h-screen
-      text-white
-      p-8
-    "
+    class="bg-gradient-to-r
+      from-pink-600
+      via-blue-900
+      to-purple-700"
   >
     <div
       class="
+      flex flex-col
+      justify-center
+      items-center
+      h-screen
+      text-white
+      p-8
+      bg-gradient-to-b from-gray-900 via-purple-900 to-transparent
+    "
+    >
+      <div
+        class="
         bg-indigo-900 bg-opacity-75
         border border-indigo-400
         rounded
@@ -20,10 +25,11 @@
         md:w-96
         p-8
       "
-    >
-      <h1 class="text-2xl text-center mb-8">WonderNotes</h1>
+      >
+        <h1 class="text-2xl text-center mb-8">WonderNotes</h1>
 
-      <slot></slot>
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>

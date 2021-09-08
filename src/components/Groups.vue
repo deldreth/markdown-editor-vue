@@ -5,9 +5,10 @@
       flex flex-col
       h-full
       overflow-hidden
-      bg-gray-800
       col-span-4
       md:col-span-1
+      bg-gray-900
+      bg-opacity-75
     "
     :class="$route.params.groupId && 'hidden md:flex'"
   >
@@ -22,21 +23,21 @@
         <section
           class="
             p-2
-            pr-4
-            pl-4
+            pr-8
+            pl-8
             cursor-pointer
-            hover:bg-indigo-500
+            hover:bg-indigo-800
             flex
             justify-between
             items-center
           "
-          :class="`${
-            $route.params.groupId === 'all' &&
-            'bg-gradient-to-l from-indigo-900'
-          }`"
+          :class="
+            `${$route.params.groupId === 'all' &&
+              'bg-gradient-to-l from-indigo-900'}`
+          "
           @click="$router.push(`/group/all`)"
         >
-          <h2 class="text-xl">All Notes</h2>
+          <h2 class="text-lg">All Notes</h2>
         </section>
 
         <section
@@ -48,18 +49,16 @@
           :key="group.id"
           class="
             p-2
-            pr-4
-            pl-4
+            pr-8
+            pl-8
             cursor-pointer
-            hover:bg-indigo-500
+            hover:bg-indigo-800
             flex
             justify-between
             items-center
+            text-sm
           "
-          :class="`${
-            $route.params.groupId === group.id &&
-            'bg-gradient-to-l from-indigo-900'
-          }`"
+          :class="`${$route.params.groupId === group.id && 'bg-indigo-900'}`"
           @click="$router.push(`/group/${group.id}`)"
         >
           <h2 class="truncate text-sm">{{ group.name }}</h2>
@@ -78,7 +77,7 @@
     <div
       v-if="!userInfoLoading && userInfo"
       class="
-        border-t border-purple
+        border-t-2 border-indigo-400
         flex flex
         items-center
         justify-between
@@ -108,12 +107,7 @@ import { useQuery } from '@urql/vue';
 import { useAsyncState } from '@vueuse/core';
 import { Auth } from 'aws-amplify';
 
-const {
-  fetching,
-  data,
-  error,
-  executeQuery: getListGroups,
-} = useQuery({
+const { fetching, data, error, executeQuery: getListGroups } = useQuery({
   query: `
     {
       listGroups {
