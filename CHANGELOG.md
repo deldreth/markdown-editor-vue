@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/deldreth/markdown-editor-vue/compare/v0.1.1...v0.1.2) (2021-09-09)
+
+
+### Features
+
+* **Editor:** allow image uploads direct to S3 ([705e920](https://github.com/deldreth/markdown-editor-vue/commit/705e920bcd4b8735898715422e1183c0bb5338a9))
+
 ### [0.1.1](https://github.com/deldreth/markdown-editor-vue/compare/v0.1.0...v0.1.1) (2021-09-09)
 
 
