@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/deldreth/markdown-editor-vue/compare/v0.1.0...v0.1.1) (2021-09-09)
+
+
+### Features
+
+* **Note:** edit modal, continue to tweak padding ([6bc3eeb](https://github.com/deldreth/markdown-editor-vue/commit/6bc3eeb98f6b02bcae5387b8eb6b31c9a5f9abff))
+
 ## 0.1.0 (2021-09-07)
 
 
