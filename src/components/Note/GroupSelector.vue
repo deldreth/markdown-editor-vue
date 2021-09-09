@@ -1,35 +1,29 @@
 <template>
-  <div class="dropdown">
-    <button
-      id="dropdownMenuButton1"
-      class="btn btn-primary dropdown-toggle mb-4 p-4 pl-6 pr-6"
-      type="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
+  <div class="form-floating">
+    <select
+      id="groupSelect"
+      class="form-select"
+      aria-label="Floating label select example"
+      aria-placeholder="Select a group"
+      placeholder="Select a group"
+      :disabled="updatingNote"
+      @change="updateNoteGroup"
     >
-      <slot></slot>
-    </button>
-    <ul
-      v-if="data?.listGroups"
-      class="dropdown-menu bg-indigo-900 bg-opacity-50"
-      aria-labelledby="dropdownMenuButton1"
-    >
-      <li v-for="group in data?.listGroups.items" :key="group.id">
-        <button
-          class="dropdown-item text-white"
-          @click="
-            updateNoteGroup({ id: $route.params.noteId, groupId: group.id })
-          "
-        >
-          {{ group.name }}
-        </button>
-      </li>
-    </ul>
+      <option value="">Select a group</option>
+      <option
+        v-for="group in data?.listGroups.items"
+        :key="group.id"
+        :value="group.id"
+        :selected="group.id === note.group?.id"
+        >{{ group.name }}</option
+      >
+    </select>
+    <label for="groupSelect">Group</label>
   </div>
 </template>
 
 <script setup>
-import { watch } from 'vue';
+import { watch, inject } from 'vue';
 import { useQuery, useMutation } from '@urql/vue';
 import { useRouter } from 'vue-router';
 
@@ -37,18 +31,27 @@ import { updateNote as updateNoteMutation } from '../../graphql/mutations';
 
 import { listGroups } from '../../graphql/queries';
 
+const note = inject('note');
 const router = useRouter();
 
+const emit = defineEmits(['updateNoteGroup']);
+
 const { fetching, data, error } = useQuery({ query: listGroups });
-watch(data, (next) => {
+watch(data, next => {
   next.listGroups.items.sort((a, b) => a.name.localeCompare(b.name));
 });
 
-const { executeMutation: updateNote } = useMutation(updateNoteMutation);
+const { fetching: updatingNote, executeMutation: updateNote } = useMutation(
+  updateNoteMutation
+);
 
-async function updateNoteGroup({ id, groupId }) {
-  await updateNote({ input: { id, groupID: groupId } });
+async function updateNoteGroup(event) {
+  await updateNote({
+    input: { id: note.value.id, groupID: event.target.value },
+  });
 
-  router.replace(`/group/${groupId}/note/${id}`);
+  router.push(`/group/${event.target.value}/note/${note.value.id}`);
+
+  emit('updateNoteGroup');
 }
 </script>

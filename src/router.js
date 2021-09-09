@@ -7,10 +7,12 @@ const routes = [
     component: () => import('./pages/index.vue'),
     children: [
       {
+        name: 'group',
         path: 'group/:groupId',
         component: () => import('./components/Group.vue'),
         children: [
           {
+            name: 'note',
             path: 'note/:noteId',
             component: () => import('./components/Note.vue'),
           },

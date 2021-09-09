@@ -1,7 +1,7 @@
 <template>
   <button
     aria-label="Add New Note"
-    class="btn btn-primary"
+    class="btn btn-link p-0"
     type="button"
     @click="createNoteAndEmit({ groupId: props.groupId })"
   >
@@ -11,6 +11,9 @@
 
 <script setup>
 import { useMutation } from '@urql/vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const emit = defineEmits(['noteCreated']);
 
@@ -35,7 +38,10 @@ const { executeMutation: createNote } = useMutation(
 );
 
 async function createNoteAndEmit(opts) {
-  await createNote(opts);
+  const { data } = await createNote(opts);
+
   emit('noteCreated');
+
+  router.push({ name: 'note', params: { noteId: data.createNote.id } });
 }
 </script>

@@ -3,8 +3,9 @@
     <input
       type="text"
       class="form-control"
-      :required="props.required"
+      :disabled="props.disabled"
       :placeholder="placeholder"
+      :required="props.required"
       :value="props.modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
     />
@@ -31,6 +32,10 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: '',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 });
 

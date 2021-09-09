@@ -16,13 +16,21 @@
     "
     :class="$route.params.noteId && 'hidden md:flex'"
   >
-    <div class="p-4 pl-8 pr-8">
-      <NoteSearch @on-search="onSearch" />
+    <div class="shadow">
+      <NoteSearch class="p-4 pl-8 pr-8" @on-search="onSearch" />
 
-      <NoteAdd
-        :group-id="groupId"
-        @note-created="listNotes({ requestPolicy: 'network-only' })"
-      />
+      <div
+        class="flex justify-between p-4 pl-8 pr-8 sticky top-0 border-b-2 border-indigo-400"
+      >
+        <GroupName v-if="data?.getGroup" class="flex-1 mr-8">{{
+          data.getGroup.name
+        }}</GroupName>
+
+        <NoteAdd
+          :group-id="groupId"
+          @note-created="listNotes({ requestPolicy: 'network-only' })"
+        />
+      </div>
     </div>
 
     <Loader v-if="fetching" />
@@ -30,8 +38,6 @@
     <div v-else-if="error">{{ error }}</div>
 
     <div v-else class="overflow-y-auto flex-1">
-      <GroupName v-if="data.getGroup">{{ data.getGroup.name }}</GroupName>
-
       <GroupNotes :notes="filteredNotes" />
 
       <GroupEditModal
