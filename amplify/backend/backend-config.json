@@ -46,5 +46,11 @@
       "type": "cicd",
       "lastPushTimeStamp": "2021-09-08T01:32:30.904Z"
     }
+  },
+  "storage": {
+    "EditorVueStorage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }

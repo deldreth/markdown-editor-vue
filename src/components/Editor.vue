@@ -6,6 +6,7 @@
 
 <script setup>
 import { useMutation } from '@urql/vue';
+import { Storage } from 'aws-amplify';
 
 const editor = window.BalloonBlockEditor;
 
@@ -62,6 +63,7 @@ const config = {
       'horizontalLine',
       'undo',
       'redo',
+      'insertImage',
     ],
   },
   language: 'en',
@@ -69,6 +71,9 @@ const config = {
     save(editorInstance) {
       updateNote({ id: props.noteId, content: editorInstance.getData() });
     },
+  },
+  AmplifyUpload: {
+    storage: Storage,
   },
 };
 </script>
