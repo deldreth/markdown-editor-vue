@@ -3,7 +3,10 @@
 import { app, protocol, BrowserWindow } from 'electron';
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer';
+import Store from 'electron-store';
 const isDevelopment = process.env.NODE_ENV !== 'production';
+
+const store = new Store();
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -11,6 +14,9 @@ protocol.registerSchemesAsPrivileged([
 ]);
 
 async function createWindow() {
+  // Restore winBounds
+  const winBounds = store.get('winBounds') || {};
+
   // Create the browser window.
   const win = new BrowserWindow({
     width: 1024,
@@ -22,9 +28,14 @@ async function createWindow() {
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
     },
     // frame: false,
+    ...winBounds,
   });
 
   win.setMenuBarVisibility(false);
+
+  win.on('close', () => {
+    store.set('winBounds', win.getBounds());
+  });
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
@@ -64,6 +75,7 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString());
     }
   }
+
   createWindow();
 });
 
