@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/deldreth/markdown-editor-vue/compare/v0.1.2...v0.2.0) (2021-09-10)
+
+
+### Features
+
+* create electron shell ([71d6ab2](https://github.com/deldreth/markdown-editor-vue/commit/71d6ab2cede01d4b9db19ab84ef97f4eba4d619f))
+
+
+### Bug Fixes
+
+* column layouts ([68ae212](https://github.com/deldreth/markdown-editor-vue/commit/68ae212e060fee29537c9099ebad3a97b3c7520b))
+* text sizing in Groups and Group navigation ([b285a46](https://github.com/deldreth/markdown-editor-vue/commit/b285a46fefdeda837ac2018170bc23db1f9e2b72))
+
 ### [0.1.2](https://github.com/deldreth/markdown-editor-vue/compare/v0.1.1...v0.1.2) (2021-09-09)
 
 
