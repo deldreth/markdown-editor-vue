@@ -23,7 +23,7 @@
               type="button"
               data-bs-toggle="modal"
               data-bs-target="#note-edit-modal"
-              class="btn btn-link pl-0 text-2xl truncate w-full text-left"
+              class="btn btn-link pl-0 truncate w-full text-left"
             >
               <FontAwesomeIcon icon="file-alt" class="mr-4" />{{
                 data.getNote.name

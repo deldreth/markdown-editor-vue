@@ -19,7 +19,7 @@
 
       <div v-else-if="error">{{ error }}</div>
 
-      <div v-else>
+      <div v-else class="text-sm">
         <section
           class="
             p-2
@@ -31,13 +31,10 @@
             justify-between
             items-center
           "
-          :class="
-            `${$route.params.groupId === 'all' &&
-              'bg-gradient-to-l from-indigo-900'}`
-          "
+          :class="`${$route.params.groupId === 'all' && 'bg-indigo-900'}`"
           @click="$router.push(`/group/all`)"
         >
-          <h2 class="text-lg">All Notes</h2>
+          <h2>All Notes</h2>
         </section>
 
         <section
@@ -56,15 +53,14 @@
             flex
             justify-between
             items-center
-            text-sm
           "
           :class="`${$route.params.groupId === group.id && 'bg-indigo-900'}`"
           @click="$router.push(`/group/${group.id}`)"
         >
-          <h2 class="truncate text-sm">{{ group.name }}</h2>
+          <h2 class="truncate">{{ group.name }}</h2>
 
           <div>
-            <span v-if="group.notes.items.length" class="text-sm">
+            <span v-if="group.notes.items.length">
               {{ group.notes.items.length }}&nbsp;<FontAwesomeIcon
                 icon="layer-group"
               />
