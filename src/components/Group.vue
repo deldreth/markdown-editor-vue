@@ -2,9 +2,8 @@
   <div
     id="group"
     class="
-      col-span-4
-      md:col-span-2
-      xl:col-span-2
+      md:col-span-1
+      2xl:col-span-2
       flex flex-col
       h-full
       overflow-hidden

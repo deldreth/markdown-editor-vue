@@ -2,10 +2,9 @@
   <!-- <div class="col-span-3 bg-gray-800"> -->
   <div
     class="
-      col-span-full
-      xl:col-span-3
+      md:col-span-2
       2xl:col-span-5
-      md:border-l-2
+      xl:border-l-2
       border-indigo-400
       overflow-hidden overflow-y-auto
       h-screen

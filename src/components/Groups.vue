@@ -2,11 +2,11 @@
   <div
     id="groups"
     class="
+      md:col-span-1
+      2xl:col-span-1
       flex flex-col
       h-full
-      overflow-hidden
-      col-span-4
-      md:col-span-1
+      overflow-hidden    
       bg-gray-900
       bg-opacity-75
     "
