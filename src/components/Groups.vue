@@ -3,7 +3,7 @@
     id="groups"
     class="
       md:col-span-1
-      2xl:col-span-1
+      2xl:col-span-2
       flex flex-col
       h-full
       overflow-hidden    

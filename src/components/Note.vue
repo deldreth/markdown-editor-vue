@@ -3,13 +3,14 @@
   <div
     class="
       md:col-span-2
-      2xl:col-span-5
+      2xl:col-span-4
       xl:border-l-2
       border-indigo-400
       overflow-hidden overflow-y-auto
       h-screen
       p-4 pl-8 pr-8
     "
+    :class="fullscreen && 'xl:col-span-full 2xl:col-span-full'"
   >
     <Loader v-if="fetching" />
 
@@ -17,19 +18,26 @@
 
     <div v-else-if="data" class="h-full">
       <div class="">
-        <div class="flex justify-between">
-          <div>
-            <button
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#note-edit-modal"
-              class="btn btn-link pl-0 truncate w-full text-left"
-            >
-              <FontAwesomeIcon icon="file-alt" class="mr-4" />{{
-                data.getNote.name
-              }}
-            </button>
-          </div>
+        <div class="flex justify-between items-center">
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#note-edit-modal"
+            class="btn btn-link -ml-4 pl-4 truncate w-full text-left"
+          >
+            <FontAwesomeIcon icon="file-alt" class="mr-4" />{{
+              data.getNote.name
+            }}
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-link -mr-4 pr-4 pl-4 text-right"
+            :class="fullscreen && 'text-blue-400'"
+            @click="toggleFullscreen"
+          >
+            <FontAwesomeIcon :icon="fullscreen ? 'compress' : 'expand'" />
+          </button>
 
           <NoteEditModal
             id="note-edit-modal"
@@ -50,6 +58,7 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 const noteId = ref(route.params.noteId);
+const fullscreen = ref(false);
 
 const { fetching, data, error } = useQuery({
   query: `
@@ -75,4 +84,8 @@ provide(
   'note',
   computed(() => data?.value.getNote)
 );
+
+function toggleFullscreen() {
+  fullscreen.value = !fullscreen.value;
+}
 </script>

@@ -8,6 +8,8 @@ import {
   faTasks,
   faTimes,
   faFileAlt,
+  faExpand,
+  faCompress,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -18,5 +20,7 @@ library.add(
   faSignOutAlt,
   faTasks,
   faTimes,
-  faFileAlt
+  faFileAlt,
+  faExpand,
+  faCompress
 );
