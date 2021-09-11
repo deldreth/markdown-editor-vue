@@ -17,44 +17,47 @@
     <div v-else-if="error">{{ error }}</div>
 
     <div v-else-if="data" class="h-full">
-      <div class="">
-        <div class="flex justify-between items-center">
-          <button
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#note-edit-modal"
-            class="btn btn-link -ml-4 pl-4 truncate w-full text-left"
-          >
-            <FontAwesomeIcon icon="file-alt" class="mr-4" />{{
-              data.getNote.name
-            }}
+      <div class="flex justify-between items-center">
+        <div v-if="$isElectron" class="flex justify-between items-center mr-8">
+          <button class="btn btn-link -ml-4 pl-4" @click="$router.go(-1)">
+            <FontAwesomeIcon icon="chevron-left" class="mr-3" />Notes
           </button>
-
-          <button
-            type="button"
-            class="btn btn-link pr-4 pl-4 text-right"
-            :class="fullscreen && 'text-blue-400'"
-            @click="toggleFullscreen"
-          >
-            <FontAwesomeIcon :icon="fullscreen ? 'compress' : 'expand'" />
-          </button>
-
-          <button
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#note-delete-modal"
-            class="btn btn-link -mr-4 pr-4 pl-4 text-right"
-          >
-            <FontAwesomeIcon icon="trash" />
-          </button>
-
-          <NoteEditModal
-            id="note-edit-modal"
-            :title="`Edit ${data.getNote.name}`"
-          />
-
-          <NoteDeleteModal id="note-delete-modal" />
         </div>
+        <button
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#note-edit-modal"
+          class="btn btn-link -ml-4 pl-4 truncate flex-1 text-left"
+        >
+          <FontAwesomeIcon icon="file-alt" class="mr-3" />{{
+            data.getNote.name
+          }}
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-link pr-4 pl-4 text-right"
+          :class="fullscreen && 'text-blue-400'"
+          @click="toggleFullscreen"
+        >
+          <FontAwesomeIcon :icon="fullscreen ? 'compress' : 'expand'" />
+        </button>
+
+        <button
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#note-delete-modal"
+          class="btn btn-link -mr-4 pr-4 pl-4 text-right"
+        >
+          <FontAwesomeIcon icon="trash" />
+        </button>
+
+        <NoteEditModal
+          id="note-edit-modal"
+          :title="`Edit ${data.getNote.name}`"
+        />
+
+        <NoteDeleteModal id="note-delete-modal" />
       </div>
 
       <Editor :note-id="$route.params.noteId" :content="data.getNote.body" />

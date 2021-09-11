@@ -11,6 +11,7 @@ import {
   faExpand,
   faCompress,
   faTrash,
+  faChevronLeft,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -24,5 +25,6 @@ library.add(
   faFileAlt,
   faExpand,
   faCompress,
-  faTrash
+  faTrash,
+  faChevronLeft
 );

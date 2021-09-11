@@ -15,6 +15,18 @@
     "
     :class="$route.params.noteId && 'hidden md:flex'"
   >
+    <div
+      v-if="$isElectron"
+      class="flex justify-between items-center pt-4 pl-4 pr-4"
+    >
+      <button
+        class="btn btn-link pl-4 pr-4"
+        @click="$router.replace({ name: 'groups' })"
+      >
+        <FontAwesomeIcon icon="chevron-left" class="mr-3" />Groups
+      </button>
+    </div>
+
     <div class="shadow">
       <NoteSearch class="p-4 pl-8 pr-8" @on-search="onSearch" />
 

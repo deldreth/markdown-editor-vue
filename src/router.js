@@ -3,6 +3,7 @@ import { Auth } from 'aws-amplify';
 
 const routes = [
   {
+    name: 'groups',
     path: '/',
     component: () => import('./pages/index.vue'),
     children: [
@@ -50,7 +51,7 @@ export const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  if (!to.path.includes('auth')) {
+  if (!to.path.includes('auth') && !to.path.includes('about')) {
     try {
       await Auth.currentSession();
     } catch (e) {

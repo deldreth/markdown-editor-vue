@@ -17,12 +17,19 @@ Amplify.configure(awsconfig);
 
 const app = createApp(App);
 
+var userAgent = navigator.userAgent.toLowerCase();
+if (userAgent.indexOf(' electron/') > -1) {
+  app.config.globalProperties.$isElectron = true;
+} else {
+  app.config.globalProperties.$isElectron = false;
+}
+
 const requireComponent = require.context('./components', true);
 
 requireComponent
   .keys()
-  .filter((component) => component.includes('.vue'))
-  .forEach((fileName) => {
+  .filter(component => component.includes('.vue'))
+  .forEach(fileName => {
     const componentConfig = requireComponent(fileName);
     const componentName = fileName.replace(/\.\/|\/|\.vue/g, '');
 
