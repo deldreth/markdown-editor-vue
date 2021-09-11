@@ -32,17 +32,28 @@
 
           <button
             type="button"
-            class="btn btn-link -mr-4 pr-4 pl-4 text-right"
+            class="btn btn-link pr-4 pl-4 text-right"
             :class="fullscreen && 'text-blue-400'"
             @click="toggleFullscreen"
           >
             <FontAwesomeIcon :icon="fullscreen ? 'compress' : 'expand'" />
           </button>
 
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#note-delete-modal"
+            class="btn btn-link -mr-4 pr-4 pl-4 text-right"
+          >
+            <FontAwesomeIcon icon="trash" />
+          </button>
+
           <NoteEditModal
             id="note-edit-modal"
             :title="`Edit ${data.getNote.name}`"
           />
+
+          <NoteDeleteModal id="note-delete-modal" />
         </div>
       </div>
 

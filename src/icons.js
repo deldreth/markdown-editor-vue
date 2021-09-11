@@ -10,6 +10,7 @@ import {
   faFileAlt,
   faExpand,
   faCompress,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -22,5 +23,6 @@ library.add(
   faTimes,
   faFileAlt,
   faExpand,
-  faCompress
+  faCompress,
+  faTrash
 );
