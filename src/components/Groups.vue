@@ -12,7 +12,10 @@
     "
     :class="$route.params.groupId && 'hidden md:flex'"
   >
-    <GroupsAdd @added="getListGroups({ requestPolicy: 'network-only' })" />
+    <div class="flex justify-between items-center p-2 pl-4 pr-4">
+      <h1 class="text-lg pl-4">Groups</h1>
+      <GroupsAdd />
+    </div>
 
     <div class="overflow-y-auto flex-1">
       <Loader v-if="fetching" />
@@ -20,53 +23,19 @@
       <div v-else-if="error">{{ error }}</div>
 
       <div v-else class="text-sm">
-        <section
-          class="
-            p-2
-            pr-8
-            pl-8
-            cursor-pointer
-            hover:bg-indigo-800
-            flex
-            justify-between
-            items-center
-          "
-          :class="`${$route.params.groupId === 'all' && 'bg-indigo-900'}`"
-          @click="$router.push(`/group/all`)"
-        >
-          <h2>All Notes</h2>
-        </section>
+        <GroupsItem id="all" name="All Notes" class="text-blue-200" />
 
-        <section
+        <GroupsItem
           v-for="group in data?.listGroups.items
             .slice(0)
             .sort(({ name: nameA }, { name: nameB }) =>
               nameA.localeCompare(nameB)
             )"
+          :id="group.id"
           :key="group.id"
-          class="
-            p-2
-            pr-8
-            pl-8
-            cursor-pointer
-            hover:bg-indigo-800
-            flex
-            justify-between
-            items-center
-          "
-          :class="`${$route.params.groupId === group.id && 'bg-indigo-900'}`"
-          @click="$router.push(`/group/${group.id}`)"
-        >
-          <h2 class="truncate">{{ group.name }}</h2>
-
-          <div>
-            <span v-if="group.notes.items.length">
-              {{ group.notes.items.length }}&nbsp;<FontAwesomeIcon
-                icon="layer-group"
-              />
-            </span>
-          </div>
-        </section>
+          :name="group.name"
+          :count="group.notes.items.length"
+        />
       </div>
     </div>
 
@@ -103,7 +72,7 @@ import { useQuery } from '@urql/vue';
 import { useAsyncState } from '@vueuse/core';
 import { Auth } from 'aws-amplify';
 
-const { fetching, data, error, executeQuery: getListGroups } = useQuery({
+const { fetching, data, error } = useQuery({
   query: `
     {
       listGroups {

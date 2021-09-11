@@ -21,14 +21,15 @@
       <div
         class="flex justify-between p-4 pl-8 pr-8 sticky top-0 border-b-2 border-indigo-400"
       >
-        <GroupName v-if="data?.getGroup" class="flex-1 mr-8">{{
+        <div v-if="$route.params.groupId === 'all'" class="flex-1 mr-8">
+          <FontAwesomeIcon icon="layer-group" class="mr-4" />All Notes
+        </div>
+
+        <GroupName v-else-if="data?.getGroup" class="flex-1 mr-8">{{
           data.getGroup.name
         }}</GroupName>
 
-        <NoteAdd
-          :group-id="groupId"
-          @note-created="listNotes({ requestPolicy: 'network-only' })"
-        />
+        <NoteAdd :group-id="groupId" />
       </div>
     </div>
 
@@ -60,7 +61,7 @@ const ALL_NOTES = 'all';
 const route = useRoute();
 const groupId = ref(route.params.groupId);
 
-const { fetching, data, error, executeQuery: listNotes } = useQuery({
+const { fetching, data, error } = useQuery({
   query: /* GraphQL */ `
     query ListNotesQuery($groupId: ID!) {
       getGroup(id: $groupId) {

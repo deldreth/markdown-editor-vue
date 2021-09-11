@@ -11,7 +11,7 @@
     </h2>
 
     <p class="text-sm leading-normal">
-      <span class="font-semibold mr-0.5 text-blue-200">{{
+      <span class="mr-0.5 text-blue-200">{{
         $filters.formatDate(note.updatedAt)
       }}</span>
       <span v-if="note.body">&ndash;{{ note.excerpt }}</span>

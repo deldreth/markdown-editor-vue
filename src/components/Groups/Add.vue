@@ -1,58 +1,25 @@
 <template>
-  <form
-    class="add-group-form pt-4 pb-8 pl-8 pr-8 needs-validated"
-    novalidate
-    @submit="validateCreateGroup"
-  >
-    <div class="input-group">
-      <input
-        v-model="groupNameInput"
-        aria-label="Add New Group"
-        aria-placeholder="New Group Name"
-        class="form-control rounded-full"
-        placeholder="New Group Name"
-        required
-        title="Add New Group"
-        type="text"
-      />
-      <button class="btn btn-primary rounded-full pr-4 pl-4" type="submit">
-        <FontAwesomeIcon icon="layer-group" />
-      </button>
-    </div>
-  </form>
+  <button class="btn btn-link pl-4 pr-4" @click="onCreateGroup">
+    Add Group <FontAwesomeIcon icon="plus" class="ml-2" />
+  </button>
 </template>
 
 <script setup>
 import { useMutation } from '@urql/vue';
-import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-const emit = defineEmits(['added']);
+import { createGroup } from '../../graphql/mutations';
 
-const groupNameInput = ref('');
+const emit = defineEmits(['groupCreated']);
+const router = useRouter();
 
-const { executeMutation: createGroup } = useMutation(
-  `
-  mutation CreateNewNote ($name: String!) {
-    createGroup(
-      input: {name: $name}
-    ) {
-      id
-    }
-  }
-`
-);
+const { executeMutation: createGroupMutation } = useMutation(createGroup);
 
-const validateCreateGroup = async event => {
-  event.preventDefault();
-  console.log('attempted');
-  const form = document.querySelector('.add-group-form');
+async function onCreateGroup() {
+  const { data } = await createGroupMutation({ input: { name: 'New Group' } });
 
-  if (form.checkValidity()) {
-    await createGroup({ name: groupNameInput.value });
-    emit('added');
-    groupNameInput.value = '';
-  } else {
-    form.classList.add('was-validated');
-  }
-};
+  emit('groupCreated');
+
+  router.push({ name: 'group', params: { groupId: data.createGroup.id } });
+}
 </script>

@@ -135,3 +135,5 @@ amplifytools.xcconfig
 
 #Electron-builder output
 /dist_electron
+
+*.vtl
