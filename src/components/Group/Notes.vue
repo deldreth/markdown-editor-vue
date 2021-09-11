@@ -19,9 +19,10 @@
 
     <p
       v-if="!!(tasks = $filters.countTasks(note.body))"
-      class="text-sm text-green-200 mt-1"
+      class="text-sm mt-1"
+      :class="tasks[0] === tasks[1] ? 'text-green-300' : 'text-red-400'"
     >
-      <FontAwesomeIcon icon="tasks" />&nbsp;{{ tasks }}
+      <FontAwesomeIcon icon="tasks" />&nbsp;{{ tasks[0] }}/{{ tasks[1] }}
     </p>
   </section>
 </template>
