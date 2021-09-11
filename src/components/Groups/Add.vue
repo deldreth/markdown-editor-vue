@@ -1,6 +1,6 @@
 <template>
   <form
-    class="add-group-form p-4 needs-validated"
+    class="add-group-form pt-4 pb-8 pl-8 pr-8 needs-validated"
     novalidate
     @submit="validateCreateGroup"
   >
@@ -42,7 +42,7 @@ const { executeMutation: createGroup } = useMutation(
 `
 );
 
-const validateCreateGroup = async (event) => {
+const validateCreateGroup = async event => {
   event.preventDefault();
   console.log('attempted');
   const form = document.querySelector('.add-group-form');
