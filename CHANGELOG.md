@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/deldreth/markdown-editor-vue/compare/v0.2.0...v0.2.1) (2021-09-11)
+
+
+### Features
+
+* add delete note action ([80046cc](https://github.com/deldreth/markdown-editor-vue/commit/80046ccf14c9a97dd7de9f7315079358b12fba46))
+* **electron:** use electron store to persist window dimensions between loads ([db4b0f5](https://github.com/deldreth/markdown-editor-vue/commit/db4b0f5cff9aab5f5168f9e4e475004ac347ff75))
+* highlight tasks in Group as red for incomplete or green for complete ([ece28d1](https://github.com/deldreth/markdown-editor-vue/commit/ece28d1f2f83b7c585f7d2032f203e394172573a))
+
 ## [0.2.0](https://github.com/deldreth/markdown-editor-vue/compare/v0.1.2...v0.2.0) (2021-09-10)
 
 
