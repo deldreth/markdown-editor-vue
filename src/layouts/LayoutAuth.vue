@@ -2,8 +2,8 @@
   <div
     class="bg-gradient-to-r
       from-pink-600
-      via-blue-900
-      to-purple-700"
+      via-purple-700
+      to-blue-700"
   >
     <div
       class="
