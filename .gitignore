@@ -137,3 +137,4 @@ amplifytools.xcconfig
 /dist_electron
 
 *.vtl
+../markdown-editor-vue/amplify/mock-data

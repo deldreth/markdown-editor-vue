@@ -52,14 +52,31 @@
         mt-12
         -ml-8
         -mr-8
+        bg-indigo-500
+        p-4
+      "
+    >
+      Don't have an account?
+      <router-link to="/auth/signup" class="underline">Sign up now</router-link>
+    </div>
+
+    <div
+      class="
+        text-center
+        -ml-8
+        -mr-8
         -mb-8
         bg-indigo-600
         p-4
         rounded-bl rounded-br
       "
     >
-      Don't have an account?
-      <router-link to="/auth/signup" class="underline">Sign up now</router-link>
+      <a
+        href="https://github.com/deldreth/wondernotes.app/releases"
+        target="_blank"
+        class="underline"
+        >Download this application.</a
+      >
     </div>
   </LayoutAuth>
 </template>
