@@ -43,6 +43,12 @@ const routes = [
     component: () => import('./pages/Auth/Confirm.vue'),
     props: true,
   },
+  {
+    name: 'changelog',
+    path: '/changelog',
+    component: () => import('./pages/Changelog.vue'),
+    props: true,
+  },
 ];
 
 export const router = createRouter({
@@ -51,7 +57,11 @@ export const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  if (!to.path.includes('auth') && !to.path.includes('about')) {
+  if (
+    !to.path.includes('auth') &&
+    !to.path.includes('about') &&
+    !to.path.includes('changelog')
+  ) {
     try {
       await Auth.currentSession();
     } catch (e) {

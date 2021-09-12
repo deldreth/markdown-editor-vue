@@ -5,7 +5,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://unpkg.com/@tailwindcss/typography@0.4.x/dist/typography.min.css');
+
 html,
 body {
   background-image: none;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6,
+.prose a,
+.prose strong {
+  color: #ffffff;
 }

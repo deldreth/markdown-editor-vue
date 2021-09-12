@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { VueShowdownPlugin } from 'vue-showdown';
 import Amplify from 'aws-amplify';
 import CKEditor from '@ckeditor/ckeditor5-vue';
 
@@ -40,6 +41,9 @@ app
   .component('FontAwesomeIcon', FontAwesomeIcon)
   .use(router)
   .use(CKEditor)
+  .use(VueShowdownPlugin, {
+    flavor: 'github',
+  })
   .mount('#app');
 
 app.config.globalProperties.$filters = {

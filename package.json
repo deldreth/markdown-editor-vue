@@ -32,7 +32,8 @@
     "lodash": "^4.17.21",
     "standard-version": "^9.3.1",
     "vue": "^3.2.6",
-    "vue-router": "^4.0.11"
+    "vue-router": "^4.0.11",
+    "vue-showdown": "^3.1.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.15.4",
@@ -49,6 +50,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^7.17.0",
     "postcss": "^7.0.36",
+    "raw-loader": "^4.0.2",
     "sass": "^1.39.0",
     "sass-loader": "^10.2.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.9",

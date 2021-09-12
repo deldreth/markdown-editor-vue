@@ -43,24 +43,35 @@
       v-if="!userInfoLoading && userInfo"
       class="
         border-t-2 border-indigo-400
-        flex flex
-        items-center
-        justify-between
         pb-8
         pl-4
         pr-4
         pt-8
       "
     >
-      {{ userInfo.username }}
-
-      <button
-        type="button"
-        class="btn btn-outline-warning btn-sm"
-        @click="onSignOut"
+      <div
+        class="flex
+        items-center
+        justify-between
+        mb-4"
       >
-        <FontAwesomeIcon icon="sign-out-alt" />&nbsp;Sign Out
-      </button>
+        {{ userInfo.username }}
+
+        <button
+          type="button"
+          class="btn btn-outline-warning btn-sm"
+          @click="onSignOut"
+        >
+          <FontAwesomeIcon icon="sign-out-alt" />&nbsp;Sign Out
+        </button>
+      </div>
+
+      <div class="flex justify-between text-xs">
+        <router-link to="/changelog">Changelog</router-link>
+        <a href="https://github.com/deldreth/wondernotes.app" target="_blank"
+          >Github</a
+        >
+      </div>
     </div>
   </div>
 
