@@ -34,10 +34,7 @@ import {
   fetchExchange,
 } from '@urql/vue';
 import { authExchange } from '@urql/exchange-auth';
-import Modal from 'bootstrap/js/dist/modal';
 import 'bootstrap/js/dist/dropdown';
-
-window.bsmodal = Modal;
 
 import {
   getAuth,

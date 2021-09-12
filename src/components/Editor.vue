@@ -4,13 +4,30 @@
   >
     <ckeditor v-model="modelContent" :editor="editor" :config="config" />
   </div>
+
+  <div class="fixed bottom-8 right-8">
+    <div
+      id="editor-save-toast"
+      class="toast"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="toast-body">{{ note.name }} saved.</div>
+    </div>
+  </div>
 </template>
 
 <script setup>
+import { inject } from 'vue';
 import { useMutation } from '@urql/vue';
 import { Storage } from 'aws-amplify';
 
+import Toast from 'bootstrap/js/dist/toast';
+
 const editor = window.BalloonBlockEditor;
+
+const note = inject('note');
 
 const props = defineProps({
   noteId: {
@@ -72,6 +89,13 @@ const config = {
   autosave: {
     save(editorInstance) {
       updateNote({ id: props.noteId, content: editorInstance.getData() });
+
+      const toast = Toast.getOrCreateInstance(
+        document.getElementById('editor-save-toast')
+      );
+      if (!toast._element.classList.contains('show')) {
+        toast.show();
+      }
     },
   },
   AmplifyUpload: {
