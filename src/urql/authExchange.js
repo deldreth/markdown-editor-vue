@@ -2,19 +2,17 @@ import { Auth } from 'aws-amplify';
 import { makeOperation } from '@urql/vue';
 
 export const getAuth = async ({ authState }) => {
-  if (!authState) {
-    try {
-      const { accessToken, refreshToken } = await Auth.currentSession();
-      if (accessToken && refreshToken) {
-        return {
-          token: accessToken.jwtToken,
-          refreshToken: refreshToken.token,
-        };
-      }
-    } catch (e) {
-      return null;
+  try {
+    const { accessToken, refreshToken } = await Auth.currentSession();
+    if (accessToken && refreshToken) {
+      return {
+        token: accessToken.jwtToken,
+        refreshToken: refreshToken.token,
+      };
+    } else {
+      await Auth.signOut();
     }
-
+  } catch (e) {
     return null;
   }
 
@@ -43,4 +41,8 @@ export const addAuthToOperation = ({ authState, operation }) => {
       },
     },
   });
+};
+
+export const didAuthError = ({ error }) => {
+  return error.response.status === 401;
 };

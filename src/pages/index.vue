@@ -39,7 +39,11 @@ import 'bootstrap/js/dist/dropdown';
 
 window.bsmodal = Modal;
 
-import { getAuth, addAuthToOperation } from '../urql/authExchange';
+import {
+  getAuth,
+  addAuthToOperation,
+  didAuthError,
+} from '../urql/authExchange';
 
 const client = createClient({
   url:
@@ -50,6 +54,7 @@ const client = createClient({
     authExchange({
       getAuth,
       addAuthToOperation,
+      didAuthError,
     }),
     dedupExchange,
     cacheExchange,
