@@ -2,37 +2,29 @@
   <div
     id="group"
     class="
-      md:col-span-1
-      2xl:col-span-2
       flex flex-col
+      md:col-span-1 2xl:col-span-2
       h-full
       overflow-hidden
-      md:border-l-2
-      border-indigo-400
-      bg-gray-800
-      bg-opacity-75
+      md:border-l-2 border-indigo-400
+      bg-gray-800 bg-opacity-75
       shadow-sm
     "
     :class="$route.params.noteId && 'hidden md:flex'"
   >
-    <div
-      v-if="$isElectron"
-      class="flex justify-between items-center pt-4 pl-4 pr-4"
-    >
-      <button
-        class="btn btn-link pl-4 pr-4"
-        @click="$router.replace({ name: 'groups' })"
-      >
-        <FontAwesomeIcon icon="chevron-left" class="mr-3" />Groups
-      </button>
-    </div>
+    <div class="pt-4 pl-8 pr-8 border-b-2 border-indigo-400">
+      <div v-if="$isElectron" class="flex justify-between items-center mb-4">
+        <FormButton
+          class="btn-link"
+          @click="$router.replace({ name: 'groups' })"
+        >
+          <FontAwesomeIcon icon="chevron-left" class="mr-3" />Groups
+        </FormButton>
+      </div>
 
-    <div class="shadow">
-      <NoteSearch class="p-4 pl-8 pr-8" @on-search="onSearch" />
+      <NoteSearch @on-search="onSearch" />
 
-      <div
-        class="flex justify-between p-4 pl-8 pr-8 sticky top-0 border-b-2 border-indigo-400"
-      >
+      <div class="flex justify-between items-center mb-4">
         <div v-if="$route.params.groupId === 'all'" class="flex-1 mr-8">
           <FontAwesomeIcon icon="layer-group" class="mr-4" />All Notes
         </div>

@@ -1,12 +1,11 @@
 <template>
-  <button
+  <FormButton
     aria-label="Add New Note"
-    class="btn btn-link p-0"
-    type="button"
+    class="btn-link"
     @click="createNoteAndEmit({ groupId: props.groupId })"
   >
     Add Note <FontAwesomeIcon icon="plus" class="ml-2" />
-  </button>
+  </FormButton>
 </template>
 
 <script setup>

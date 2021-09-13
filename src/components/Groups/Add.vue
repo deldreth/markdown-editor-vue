@@ -1,7 +1,7 @@
 <template>
-  <button class="btn btn-link pl-4 pr-4" @click="onCreateGroup">
+  <FormButton class="btn-link" @click="onCreateGroup">
     Add Group <FontAwesomeIcon icon="plus" class="ml-2" />
-  </button>
+  </FormButton>
 </template>
 
 <script setup>

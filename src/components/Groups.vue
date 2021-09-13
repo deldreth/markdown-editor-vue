@@ -12,8 +12,8 @@
     "
     :class="$route.params.groupId && 'hidden md:flex'"
   >
-    <div class="flex justify-between items-center p-2 pl-4 pr-4">
-      <h1 class="text-lg pl-4">Groups</h1>
+    <div class="flex justify-between items-center p-2 pl-8 pr-8">
+      <h1 class="text-lg">Groups</h1>
       <GroupsAdd />
     </div>
 
