@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/deldreth/wondernotes.app/compare/v0.4.0...v0.4.1) (2021-09-14)
+
+
+### Features
+
+* custom titlebar and event messaging from app to renderer process ([056b525](https://github.com/deldreth/wondernotes.app/commit/056b5253c62c46ed64d82d5b93a0368604d2f32c))
+
 ## [0.4.0](https://github.com/deldreth/wondernotes.app/compare/v0.3.0...v0.4.0) (2021-09-14)
 
 
