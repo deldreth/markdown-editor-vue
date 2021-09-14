@@ -10,7 +10,8 @@
     "electron:serve": "vue-cli-service electron:serve",
     "electron:postinstall": "electron-builder install-app-deps",
     "electron:postuninstall": "electron-builder install-app-deps",
-    "release": "standard-version"
+    "release": "standard-version",
+    "publish": "vue-cli-service electron:build -- -p always"
   },
   "main": "background.js",
   "dependencies": {
@@ -46,6 +47,7 @@
     "electron": "^13.0.0",
     "electron-builder": "^22.11.7",
     "electron-devtools-installer": "^3.1.0",
+    "electron-updater": "^4.3.9",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^7.17.0",
