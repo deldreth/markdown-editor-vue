@@ -1,5 +1,10 @@
 {
   "name": "wondernotes.app",
+  "description": "Notes taking!",
+  "author": {
+    "name": "Devin Eldreth",
+    "email": "devin@wondernotes.app"
+  },
   "version": "0.4.0",
   "private": true,
   "scripts": {
@@ -11,7 +16,7 @@
     "electron:postinstall": "electron-builder install-app-deps",
     "electron:postuninstall": "electron-builder install-app-deps",
     "release": "standard-version",
-    "publish": "vue-cli-service electron:build -- -p always"
+    "publish": "vue-cli-service electron:build --publish always"
   },
   "main": "background.js",
   "dependencies": {
