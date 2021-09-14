@@ -1,22 +1,17 @@
 <template>
-  <!-- <div class="col-span-3 bg-gray-800"> -->
   <div
     class="
-      md:col-span-2
-      2xl:col-span-4
-      xl:border-l-2
-      border-indigo-400
+      col-auto xl:col-span-2 2xl:col-span-3
       overflow-hidden overflow-y-auto
-      h-screen
       p-4 pl-8 pr-8
     "
-    :class="fullscreen && 'xl:col-span-full 2xl:col-span-full'"
+    :class="fullscreen && 'col-span-full h-screen'"
   >
     <Loader v-if="fetching" />
 
     <div v-else-if="error">{{ error }}</div>
 
-    <div v-else-if="data" class="h-full">
+    <div v-else-if="data" class="">
       <div class="flex justify-between items-center">
         <div>
           <FormButton

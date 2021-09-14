@@ -1,10 +1,11 @@
 'use strict';
 
-import { app, protocol, BrowserWindow } from 'electron';
+import { app, protocol, BrowserWindow, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer';
 import Store from 'electron-store';
+import path from 'path';
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const store = new Store();
@@ -14,12 +15,14 @@ protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } },
 ]);
 
+let win;
+
 async function createWindow() {
   // Restore winBounds
   const winBounds = store.get('winBounds') || {};
 
   // Create the browser window.
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 1024,
     height: 768,
     webPreferences: {
@@ -27,9 +30,10 @@ async function createWindow() {
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
+      preload: path.join(__static, 'preload.js'),
     },
-    // frame: false,
     ...winBounds,
+    frame: false,
   });
 
   win.setMenuBarVisibility(false);
@@ -79,6 +83,22 @@ app.on('ready', async () => {
   }
 
   createWindow();
+});
+
+ipcMain.on('minimize', async (event, data) => {
+  win.minimize();
+});
+
+ipcMain.on('maximize', async (event, data) => {
+  if (win.isMaximized()) {
+    win.unmaximize();
+  } else {
+    win.maximize();
+  }
+});
+
+ipcMain.on('close-window', async (event, data) => {
+  win.close();
 });
 
 // Exit cleanly on request from parent process in development mode.

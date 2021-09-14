@@ -2,15 +2,16 @@
   <div
     id="groups"
     class="
-      md:col-span-1
-      2xl:col-span-2
       flex flex-col
       h-full
       overflow-hidden    
-      bg-gray-900
-      bg-opacity-75
+      bg-gray-900 bg-opacity-75
+      lg:border-r-2 border-indigo-500
     "
-    :class="$route.params.groupId && 'hidden md:flex'"
+    :class="{
+      hidden: $route.params.groupId,
+      'lg:flex': $route.params.groupId,
+    }"
   >
     <div class="flex justify-between items-center p-2 pl-8 pr-8">
       <h1 class="text-lg">Groups</h1>
@@ -42,7 +43,7 @@
     <div
       v-if="!userInfoLoading && userInfo"
       class="
-        border-t-2 border-indigo-400
+        border-t-2 border-indigo-500
         pb-8
         pl-4
         pr-4

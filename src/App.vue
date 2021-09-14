@@ -1,5 +1,6 @@
 <template>
-  <router-view />
+  <TitleBar v-if="$isElectron" platform="win32" theme="dark" />
+  <router-view :class="$isElectron && 'pt-6'" />
 </template>
 
 <style>

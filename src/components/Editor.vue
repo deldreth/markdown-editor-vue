@@ -1,6 +1,6 @@
 <template>
   <div
-    class="ck-content text-xl roboto-slab pt-4 pb-8 -ml-8 -mr-8 xl:ml-0 xl:mr-0"
+    class="ck-content text-xl roboto-slab pt-4 pb-8 -ml-4 -mr-4 xl:ml-0 xl:mr-0"
   >
     <ckeditor v-model="modelContent" :editor="editor" :config="config" />
   </div>

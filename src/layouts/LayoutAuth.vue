@@ -19,7 +19,7 @@
       <div
         class="
         bg-indigo-900 bg-opacity-75
-        border border-indigo-400
+        border border-indigo-500
         rounded
         w-full
         md:w-96

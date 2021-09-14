@@ -3,16 +3,17 @@
     id="group"
     class="
       flex flex-col
-      md:col-span-1 2xl:col-span-2
       h-full
       overflow-hidden
-      md:border-l-2 border-indigo-400
       bg-gray-800 bg-opacity-75
-      shadow-sm
+      lg:border-r-2 border-indigo-500
     "
-    :class="$route.params.noteId && 'hidden md:flex'"
+    :class="{
+      hidden: $route.params.noteId,
+      'lg:flex': $route.params.noteId,
+    }"
   >
-    <div class="pt-4 pl-8 pr-8 border-b-2 border-indigo-400">
+    <div class="pt-4 pl-8 pr-8 border-b-2 border-indigo-500">
       <div v-if="$isElectron" class="flex justify-between items-center mb-4">
         <FormButton
           class="btn-link"
