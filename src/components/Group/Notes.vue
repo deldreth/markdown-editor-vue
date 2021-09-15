@@ -2,7 +2,7 @@
   <section
     v-for="note in sortedNotes"
     :key="note.id"
-    class="pt-4 pb-4 pl-8 pr-8 cursor-pointer hover:bg hover:bg-indigo-800"
+    class="mt-2 mb-2 p-4 pl-8 pr-8 cursor-pointer hover:bg hover:bg-indigo-800"
     :class="`${$route.params.noteId === note.id && 'bg-indigo-900'}`"
     @click="$router.push(`/group/${$route.params.groupId}/note/${note.id}`)"
   >

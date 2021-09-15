@@ -3,15 +3,15 @@
     class="
       col-auto xl:col-span-2 2xl:col-span-3
       overflow-hidden overflow-y-auto
-      p-4 pl-8 pr-8
+      p-4 xl:pl-8 xl:pr-8
     "
   >
     <Loader v-if="fetching" />
 
     <div v-else-if="error">{{ error }}</div>
 
-    <div v-else-if="data" class="">
-      <div class="flex justify-between items-center">
+    <div v-else-if="data">
+      <div class="flex justify-between items-center flex-wrap mb-4">
         <div>
           <FormButton
             v-if="$isElectron"
@@ -24,7 +24,7 @@
           <FormButton
             data-bs-toggle="modal"
             data-bs-target="#note-edit-modal"
-            class="btn-link truncate"
+            class="btn-link"
           >
             <FontAwesomeIcon icon="file-alt" class="mr-3" />{{
               data.getNote.name
