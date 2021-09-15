@@ -1,11 +1,9 @@
 <template>
   <div :id="props.id" class="modal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-fullscreen-md-down">
       <div
         class="
           modal-content
-          border border-indigo-500
-          bg-indigo-900 bg-opacity-75
         "
       >
         <div class="modal-header">
@@ -24,7 +22,7 @@
           <slot></slot>
         </div>
 
-        <div class="modal-footer">
+        <div v-if="$slots.footer" class="modal-footer">
           <slot name="footer"></slot>
         </div>
       </div>

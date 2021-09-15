@@ -19,6 +19,7 @@
       >
     </select>
     <label for="groupSelect">Group</label>
+    <div class="form-text">Move this note to a different group.</div>
   </div>
 </template>
 

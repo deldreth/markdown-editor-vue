@@ -1,11 +1,19 @@
 <template>
-  <FormModal :id="props.id" :title="`Edit ${unwrappedName}`">
-    <FormInput
-      v-model="unwrappedName"
-      label="Group Name"
-      :disabled="updatingGroup"
-      @input="debounceUpdateGroup"
-    />
+  <FormModal :id="props.id" title="Edit Group">
+    <div class="flex flex-col">
+      <FormInput
+        v-model="unwrappedName"
+        label="Group Name"
+        :disabled="updatingGroup"
+      />
+
+      <FormButton
+        class="btn-secondary pl-4 pr-4 self-end"
+        :disabled="updatingGroup"
+        @click="onUpdateGroup"
+        >Save</FormButton
+      >
+    </div>
 
     <!-- <hr /> -->
 
@@ -45,11 +53,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useMutation } from '@urql/vue';
-import debounce from 'lodash/debounce';
 
 import { updateGroup as updateGroupMutation } from '../../../graphql/mutations';
-
-const deleteGroupName = ref('');
 
 const props = defineProps({
   id: {
@@ -62,15 +67,13 @@ const props = defineProps({
   },
 });
 
-// eslint-disable-next-line vue/no-setup-props-destructure
-const unwrappedName = props.group.name;
+const unwrappedName = ref(props.group.name);
 
 const { executeMutation: updateGroup, fetching: updatingGroup } = useMutation(
   updateGroupMutation
 );
 
-const debounceUpdateGroup = debounce(event => {
-  console.log(unwrappedName, event.target.value);
-  updateGroup({ input: { id: props.group.id, name: event.target.value } });
-}, 1000);
+function onUpdateGroup() {
+  updateGroup({ input: { id: props.group.id, name: unwrappedName.value } });
+}
 </script>
