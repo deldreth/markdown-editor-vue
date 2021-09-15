@@ -1,6 +1,6 @@
 projects:
   MarkdownEditorNuxtAPI:
-    schemaPath: amplify/backend/api/MarkdownEditorNuxtAPI/build/schema.graphql
+    schemaPath: amplify/backend/api/EditorVue/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:

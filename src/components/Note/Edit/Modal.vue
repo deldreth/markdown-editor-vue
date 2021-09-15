@@ -9,7 +9,7 @@
       />
 
       <FormButton
-        class="btn-secondary pl-4 pr-4 self-end"
+        class="btn-secondary px-4 self-end"
         :disabled="updatingNoteName"
         @click="onUpdateNote"
         >Save</FormButton

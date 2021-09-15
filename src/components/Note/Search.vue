@@ -18,7 +18,7 @@
       >
         <FontAwesomeIcon icon="times" />
       </button>
-      <button class="btn btn-primary rounded-full pl-4 pr-4" type="submit">
+      <button class="btn btn-primary rounded-full px-4" type="submit">
         <FontAwesomeIcon icon="search" />
       </button>
     </div>

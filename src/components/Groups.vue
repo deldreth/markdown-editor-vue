@@ -13,7 +13,7 @@
       'lg:flex': $route.params.groupId,
     }"
   >
-    <div class="flex justify-between items-center p-2 pl-8 pr-8">
+    <div class="flex justify-between items-center py-2 px-8">
       <h1 class="text-lg">Groups</h1>
       <GroupsAdd />
     </div>
@@ -41,13 +41,20 @@
     </div>
 
     <div
+      class="flex justify-between items-center py-4 px-8 border-t-2 border-indigo-500"
+    >
+      <h1 class="text-lg">Tags</h1>
+    </div>
+
+    <div class="overflow-y-auto flex-1">
+      <Tags />
+    </div>
+
+    <div
       v-if="!userInfoLoading && userInfo"
       class="
         border-t-2 border-indigo-500
-        pb-8
-        pl-4
-        pr-4
-        pt-8
+        py-8 px-4
       "
     >
       <div

@@ -3,7 +3,7 @@
     class="
       col-auto xl:col-span-2 2xl:col-span-3
       overflow-hidden overflow-y-auto
-      p-4 xl:pl-8 xl:pr-8
+      p-4 xl:py-8
     "
   >
     <Loader v-if="fetching" />

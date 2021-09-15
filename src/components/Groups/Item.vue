@@ -2,14 +2,10 @@
   <section
     :id="props.id"
     class="
-      p-3
-      pr-8
-      pl-8
+      py-3 px-8
       cursor-pointer
       hover:bg-indigo-800
-      flex
-      justify-between
-      items-center
+      flex justify-between items-center
     "
     :class="`${$route.params.groupId === props.id && 'bg-indigo-900'}`"
     @click="$router.push(`/group/${props.id}`)"

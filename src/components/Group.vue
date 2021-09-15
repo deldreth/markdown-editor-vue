@@ -13,7 +13,7 @@
       'lg:flex': $route.params.noteId,
     }"
   >
-    <div class="pt-4 pl-8 pr-8 border-b-2 border-indigo-500">
+    <div class="pt-4 px-8 border-b-2 border-indigo-500">
       <div v-if="$isElectron" class="flex justify-between items-center mb-4">
         <FormButton
           class="btn-link"

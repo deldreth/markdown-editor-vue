@@ -10,10 +10,20 @@ export const createGroup = /* GraphQL */ `
       id
       name
       notes {
+        items {
+          id
+          name
+          body
+          groupID
+          createdAt
+          updatedAt
+          owner
+        }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -26,10 +36,20 @@ export const updateGroup = /* GraphQL */ `
       id
       name
       notes {
+        items {
+          id
+          name
+          body
+          groupID
+          createdAt
+          updatedAt
+          owner
+        }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -42,7 +62,218 @@ export const deleteGroup = /* GraphQL */ `
       id
       name
       notes {
+        items {
+          id
+          name
+          body
+          groupID
+          createdAt
+          updatedAt
+          owner
+        }
         nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createTag = /* GraphQL */ `
+  mutation CreateTag(
+    $input: CreateTagInput!
+    $condition: ModelTagConditionInput
+  ) {
+    createTag(input: $input, condition: $condition) {
+      id
+      tag
+      notes {
+        items {
+          id
+          tagId
+          noteId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateTag = /* GraphQL */ `
+  mutation UpdateTag(
+    $input: UpdateTagInput!
+    $condition: ModelTagConditionInput
+  ) {
+    updateTag(input: $input, condition: $condition) {
+      id
+      tag
+      notes {
+        items {
+          id
+          tagId
+          noteId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteTag = /* GraphQL */ `
+  mutation DeleteTag(
+    $input: DeleteTagInput!
+    $condition: ModelTagConditionInput
+  ) {
+    deleteTag(input: $input, condition: $condition) {
+      id
+      tag
+      notes {
+        items {
+          id
+          tagId
+          noteId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createTagNote = /* GraphQL */ `
+  mutation CreateTagNote(
+    $input: CreateTagNoteInput!
+    $condition: ModelTagNoteConditionInput
+  ) {
+    createTagNote(input: $input, condition: $condition) {
+      id
+      tagId
+      noteId
+      tag {
+        id
+        tag
+        notes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      note {
+        id
+        name
+        body
+        groupID
+        group {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
+        tags {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateTagNote = /* GraphQL */ `
+  mutation UpdateTagNote(
+    $input: UpdateTagNoteInput!
+    $condition: ModelTagNoteConditionInput
+  ) {
+    updateTagNote(input: $input, condition: $condition) {
+      id
+      tagId
+      noteId
+      tag {
+        id
+        tag
+        notes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      note {
+        id
+        name
+        body
+        groupID
+        group {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
+        tags {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteTagNote = /* GraphQL */ `
+  mutation DeleteTagNote(
+    $input: DeleteTagNoteInput!
+    $condition: ModelTagNoteConditionInput
+  ) {
+    deleteTagNote(input: $input, condition: $condition) {
+      id
+      tagId
+      noteId
+      tag {
+        id
+        tag
+        notes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      note {
+        id
+        name
+        body
+        groupID
+        group {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
+        tags {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -62,11 +293,26 @@ export const createNote = /* GraphQL */ `
       group {
         id
         name
+        notes {
+          nextToken
+        }
         createdAt
         updatedAt
+        owner
+      }
+      tags {
+        items {
+          id
+          tagId
+          noteId
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -83,11 +329,26 @@ export const updateNote = /* GraphQL */ `
       group {
         id
         name
+        notes {
+          nextToken
+        }
         createdAt
         updatedAt
+        owner
+      }
+      tags {
+        items {
+          id
+          tagId
+          noteId
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -104,11 +365,26 @@ export const deleteNote = /* GraphQL */ `
       group {
         id
         name
+        notes {
+          nextToken
+        }
         createdAt
         updatedAt
+        owner
+      }
+      tags {
+        items {
+          id
+          tagId
+          noteId
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
