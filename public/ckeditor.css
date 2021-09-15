@@ -178,6 +178,12 @@
   border-color: rgb(49, 46, 129) !important;
 }
 
+.ck-editor__top {
+  position: sticky !important;
+  top: -1rem;
+  z-index: 10;
+}
+
 ::-webkit-scrollbar {
   width: 20px;
 }

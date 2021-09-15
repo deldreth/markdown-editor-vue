@@ -5,7 +5,6 @@
       overflow-hidden overflow-y-auto
       p-4 pl-8 pr-8
     "
-    :class="fullscreen && 'col-span-full h-screen'"
   >
     <Loader v-if="fetching" />
 
@@ -33,30 +32,12 @@
           </FormButton>
         </div>
 
-        <div>
-          <FormButton
-            class="btn-link mr-8"
-            :class="fullscreen && 'text-blue-400'"
-            @click="toggleFullscreen"
-          >
-            <FontAwesomeIcon :icon="fullscreen ? 'compress' : 'expand'" />
-          </FormButton>
-
-          <FormButton
-            data-bs-toggle="modal"
-            data-bs-target="#note-delete-modal"
-            class="btn-link"
-          >
-            <FontAwesomeIcon icon="trash" />
-          </FormButton>
-        </div>
+        <NoteActions />
 
         <NoteEditModal
           id="note-edit-modal"
           :title="`Edit ${data.getNote.name}`"
         />
-
-        <NoteDeleteModal id="note-delete-modal" />
       </div>
 
       <Editor :note-id="$route.params.noteId" :content="data.getNote.body" />
@@ -71,7 +52,6 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 const noteId = ref(route.params.noteId);
-const fullscreen = ref(false);
 
 const { fetching, data, error } = useQuery({
   query: `
@@ -97,8 +77,4 @@ provide(
   'note',
   computed(() => data?.value.getNote)
 );
-
-function toggleFullscreen() {
-  fullscreen.value = !fullscreen.value;
-}
 </script>
