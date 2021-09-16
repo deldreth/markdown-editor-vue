@@ -5,8 +5,7 @@
       flex flex-col
       h-full
       overflow-hidden    
-      bg-gray-900 bg-opacity-75
-      lg:border-r-2 border-indigo-500
+      bg-black bg-opacity-40
     "
     :class="{
       hidden: $route.params.groupId,
@@ -43,11 +42,7 @@
     <div
       v-if="!userInfoLoading && userInfo"
       class="
-        border-t-2 border-indigo-500
-        pb-8
-        pl-4
-        pr-4
-        pt-8
+        py-4 px-8
       "
     >
       <div

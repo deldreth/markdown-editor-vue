@@ -1,5 +1,5 @@
 <template>
-  <div class="titlebar bg-indigo-500" :class="[styleClass, stylePlatform]">
+  <div class="titlebar bg-purple-900" :class="[styleClass, stylePlatform]">
     <div class="titlebar-resize-handle top"></div>
     <div class="titlebar-resize-handle right"></div>
     <div class="titlebar-resize-handle left"></div>
