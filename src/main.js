@@ -29,8 +29,8 @@ const requireComponent = require.context('./components', true);
 
 requireComponent
   .keys()
-  .filter(component => component.includes('.vue'))
-  .forEach(fileName => {
+  .filter((component) => component.includes('.vue'))
+  .forEach((fileName) => {
     const componentConfig = requireComponent(fileName);
     const componentName = fileName.replace(/\.\/|\/|\.vue/g, '');
 
@@ -43,6 +43,11 @@ app
   .use(CKEditor)
   .use(VueShowdownPlugin, {
     flavor: 'github',
+  })
+  .directive('focus', {
+    mounted(el) {
+      el.focus();
+    },
   })
   .mount('#app');
 

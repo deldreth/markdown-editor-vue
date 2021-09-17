@@ -11,10 +11,15 @@
   >
     <div
       class="
-        grid
-        grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5
+        grid grid-cols-1
+        lg:grid-cols-3
+        xl:grid-cols-4
+        2xl:grid-cols-5
         h-full
-        bg-gradient-to-b from-gray-900 via-purple-900 to-transparent
+        bg-gradient-to-b
+        from-gray-900
+        via-purple-900
+        to-transparent
       "
     >
       <Groups />
@@ -42,7 +47,7 @@ import {
 const client = createClient({
   url:
     process.env.NODE_ENV !== 'production'
-      ? 'http://192.168.1.185:20002/graphql'
+      ? 'http://10.95.224.160:20002/graphql'
       : 'https://qfzdtvzgdje3tbvnk63mwi5dta.appsync-api.us-east-1.amazonaws.com/graphql',
   exchanges: [
     authExchange({

@@ -7,7 +7,18 @@
     <div
       v-for="tag in tags?.listTags.items"
       :key="tag.id"
-      class="rounded-full bg-indigo-900 leading-none p-1.5 px-3.5 text-sm inline-block mr-2"
+      class="
+        rounded-full
+        bg-purple-300
+        text-black
+        leading-none
+        p-1.5
+        px-3.5
+        text-sm
+        inline-block
+        mr-4
+        mb-3
+      "
     >
       {{ tag.tag }}
     </div>
