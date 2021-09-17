@@ -1,19 +1,13 @@
 <template>
   <div
     id="group"
-    class="
-      flex flex-col
-      h-full
-      overflow-hidden
-      bg-gray-800 bg-opacity-75
-      lg:border-r-2 border-indigo-500
-    "
+    class="flex flex-col h-full overflow-hidden bg-black bg-opacity-60"
     :class="{
       hidden: $route.params.noteId,
       'lg:flex': $route.params.noteId,
     }"
   >
-    <div class="pt-4 px-8 border-b-2 border-indigo-500">
+    <div class="pt-4 pl-8 pr-8">
       <div v-if="$isElectron" class="flex justify-between items-center mb-4">
         <FormButton
           class="btn-link"
@@ -25,7 +19,7 @@
 
       <NoteSearch @on-search="onSearch" />
 
-      <div class="flex justify-between items-center mb-4">
+      <div class="flex justify-between items-center">
         <div v-if="$route.params.groupId === 'all'" class="flex-1 mr-8">
           <FontAwesomeIcon icon="layer-group" class="mr-4" />All Notes
         </div>
@@ -92,7 +86,7 @@ const { fetching, data, error } = useQuery({
 
 watch(
   () => route.params.groupId,
-  nextGroupId => {
+  (nextGroupId) => {
     groupId.value = nextGroupId;
   }
 );
@@ -100,7 +94,7 @@ watch(
 const searchTerm = ref(false);
 const filteredNotes = computed(() => {
   const nextNotes = data.value.listNotes.items.filter(
-    note =>
+    (note) =>
       route.params.groupId === ALL_NOTES ||
       route.params.groupId === note.group?.id
   );
@@ -112,7 +106,7 @@ const filteredNotes = computed(() => {
   return nextNotes;
 });
 
-const onSearch = term => {
+const onSearch = (term) => {
   if (term) {
     searchTerm.value = term;
   } else {

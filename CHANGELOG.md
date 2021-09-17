@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.2](https://github.com/deldreth/wondernotes.app/compare/v0.4.1...v0.4.2) (2021-09-16)
+
+
+### Features
+
+* adjust modal behaviors, backgrounds, and auto updating inputs ([fd5916a](https://github.com/deldreth/wondernotes.app/commit/fd5916ad47d5830e6d8e5c1fc82ba250efcaa355))
+* **note:** add actions dropdown and remove button icons ([d11e7cd](https://github.com/deldreth/wondernotes.app/commit/d11e7cdaec33793ca0160b12ab75e99291bfb05c))
+
 ### [0.4.1](https://github.com/deldreth/wondernotes.app/compare/v0.4.0...v0.4.1) (2021-09-14)
 
 

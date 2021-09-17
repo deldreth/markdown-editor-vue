@@ -1,13 +1,7 @@
 <template>
   <div
     id="groups"
-    class="
-      flex flex-col
-      h-full
-      overflow-hidden    
-      bg-gray-900 bg-opacity-75
-      lg:border-r-2 border-indigo-500
-    "
+    class="flex flex-col h-full overflow-hidden bg-black bg-opacity-40"
     :class="{
       hidden: $route.params.groupId,
       'lg:flex': $route.params.groupId,
@@ -41,7 +35,14 @@
     </div>
 
     <div
-      class="flex justify-between items-center py-4 px-8 border-t-2 border-indigo-500"
+      class="
+        flex
+        justify-between
+        items-center
+        py-4
+        px-8
+        border-t-2 border-indigo-500
+      "
     >
       <h1 class="text-lg">Tags</h1>
     </div>
@@ -50,19 +51,8 @@
       <Tags />
     </div>
 
-    <div
-      v-if="!userInfoLoading && userInfo"
-      class="
-        border-t-2 border-indigo-500
-        py-8 px-4
-      "
-    >
-      <div
-        class="flex
-        items-center
-        justify-between
-        mb-4"
-      >
+    <div v-if="!userInfoLoading && userInfo" class="py-4 px-8">
+      <div class="flex items-center justify-between mb-4">
         {{ userInfo.username }}
 
         <button
