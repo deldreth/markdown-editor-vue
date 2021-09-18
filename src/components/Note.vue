@@ -13,7 +13,7 @@
 
     <div v-else-if="error">{{ error }}</div>
 
-    <div v-else-if="data">
+    <div v-else-if="dataNote">
       <div class="mb-4">
         <div class="flex justify-between flex-1">
           <FormButton
@@ -30,81 +30,43 @@
             class="btn-link"
           >
             <FontAwesomeIcon icon="file-alt" class="mr-3" />{{
-              data.getNote.name
+              dataNote.getNote.name
             }}
           </FormButton>
 
           <NoteActions />
         </div>
 
-        <div class="flex flex-row flex-wrap items-center">
-          <div>
-            <div
-              v-for="{ tag } in data.getNote.tags.items"
-              :key="tag.id"
-              class="
-                rounded-full
-                bg-purple-300
-                text-black
-                leading-none
-                p-1.5
-                px-3.5
-                text-sm
-                inline-block
-                mr-4
-                mb-3
-              "
-            >
-              {{ tag.tag }}
-            </div>
-
-            <button
-              class="btn btn-link px-4 py-0 -ml-4 mr-4"
-              type="button"
-              @click="toggleTagInput"
-            >
-              <FontAwesomeIcon icon="plus" />
-            </button>
-          </div>
-
-          <div>
-            <input
-              v-if="showInput"
-              v-focus
-              type="text"
-              class="form-control py-1 w-full"
-              style="min-width: 232px"
-              @keydown="addTag"
-              @blur="toggleTagInput"
-            />
+        <div class="flex justify-start items-center">
+          <FontAwesomeIcon icon="tags" class="mr-2" />
+          <div class="min-w-1/2">
+            <TagsEdit />
           </div>
         </div>
 
         <NoteEditModal
           id="note-edit-modal"
-          :title="`Edit ${data.getNote.name}`"
+          :title="`Edit ${dataNote.getNote.name}`"
         />
       </div>
 
-      <Editor :note-id="$route.params.noteId" :content="data.getNote.body" />
+      <Editor
+        :note-id="$route.params.noteId"
+        :content="dataNote.getNote.body"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, provide, computed } from 'vue';
+import { ref, provide, computed, reactive } from 'vue';
 import { useMutation, useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
-
-import {
-  createTag as createTagMutation,
-  createTagNote as createTagNoteMutation,
-} from '../graphql/mutations';
 
 const route = useRoute();
 const noteId = ref(route.params.noteId);
 
-const { fetching, data, error } = useQuery({
+const { fetching, data: dataNote, error } = useQuery({
   query: `
     query GetNote($noteId: ID!) {
       getNote(id: $noteId) {
@@ -120,6 +82,8 @@ const { fetching, data, error } = useQuery({
         }
         tags {
           items {
+            tagNoteId: id
+            createdAt
             tag {
               id
               tag
@@ -134,28 +98,6 @@ const { fetching, data, error } = useQuery({
 
 provide(
   'note',
-  computed(() => data?.value.getNote)
+  computed(() => dataNote?.value.getNote)
 );
-
-const { fetching: creatingTag, executeMutation: createTag } =
-  useMutation(createTagMutation);
-const { fetching: creatingTagNote, executeMutation: createTagNote } =
-  useMutation(createTagNoteMutation);
-
-const showInput = ref(false);
-function toggleTagInput() {
-  showInput.value = !showInput.value;
-}
-
-async function addTag(event) {
-  if (event.key === 'Enter') {
-    const { data: tagData } = await createTag({
-      input: { tag: event.target.value },
-    });
-
-    const { data: tagNoteData } = await createTagNote({
-      input: { tagId: tagData.createTag.id, noteId: data.value.getNote.id },
-    });
-  }
-}
 </script>

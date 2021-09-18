@@ -47,7 +47,7 @@ import {
 const client = createClient({
   url:
     process.env.NODE_ENV !== 'production'
-      ? 'http://10.95.224.160:20002/graphql'
+      ? 'http://192.168.1.185:20002/graphql'
       : 'https://qfzdtvzgdje3tbvnk63mwi5dta.appsync-api.us-east-1.amazonaws.com/graphql',
   exchanges: [
     authExchange({
