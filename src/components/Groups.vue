@@ -34,22 +34,7 @@
       </div>
     </div>
 
-    <div
-      class="
-        flex
-        justify-between
-        items-center
-        py-4
-        px-8
-        border-t-2 border-indigo-500
-      "
-    >
-      <h1 class="text-lg">Tags</h1>
-    </div>
-
-    <div class="overflow-y-auto flex-1">
-      <Tags />
-    </div>
+    <Tags />
 
     <div v-if="!userInfoLoading && userInfo" class="py-4 px-8">
       <div class="flex items-center justify-between mb-4">

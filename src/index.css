@@ -23,3 +23,24 @@ body {
 .prose strong {
   color: #ffffff;
 }
+
+::-webkit-scrollbar {
+  width: 20px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff79c6a6;
+  opacity: 0.5;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}

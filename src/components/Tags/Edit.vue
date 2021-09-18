@@ -1,9 +1,10 @@
 <template>
   <Multiselect
-    v-model="currentTags"
+    v-model="currentTagsWritable"
     mode="tags"
     placeholder="Add Tags"
     :append-new-tag="true"
+    :can-clear="false"
     :close-on-select="false"
     :create-tag="true"
     :filter-results="true"
@@ -13,12 +14,11 @@
     @deselect="removeTag"
     @select="selectTag"
     @tag="newTag"
-    @clear="clearTags"
   />
 </template>
 
 <script setup>
-import { inject, computed } from 'vue';
+import { inject, computed, ref } from 'vue';
 import Multiselect from '@vueform/multiselect';
 import { useMutation, useQuery } from '@urql/vue';
 
@@ -47,18 +47,19 @@ const {
   executeMutation: deleteTagNote,
 } = useMutation(deleteTagNoteMutation);
 
-const currentTags = computed({
-  get() {
-    return note?.value.tags.items
-      .slice()
-      .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
-      .map(({ tag }) => tag.id);
-  },
-  set(value) {},
-});
+const currentTags = computed(() =>
+  note?.value.tags.items
+    .slice(0)
+    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+    .map(({ tag }) => tag.id)
+);
+
+// Clone the tags array so we can modify it without affecting the original
+// Prevents a UI flash during tag query
+const currentTagsWritable = ref(currentTags.value);
 
 const tags = computed(() => {
-  return dataTags?.value.listTags.items.reduce((acc, tag) => {
+  return dataTags?.value?.listTags.items.reduce((acc, tag) => {
     acc[tag.id] = tag.tag;
 
     return acc;

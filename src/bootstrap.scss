@@ -57,7 +57,7 @@
 }
 
 .multiselect-tag-remove {
-  @apply flex items-center justify-center p-1 mx-0.5 rounded-full hover:bg-black hover:bg-opacity-10 group;
+  @apply flex items-center justify-center p-0.5 mx-0.5 ml-1 rounded-full bg-black bg-opacity-20 hover:bg-opacity-30 group;
 }
 
 .multiselect-tag-remove-icon {
@@ -101,8 +101,8 @@
 }
 
 .multiselect-dropdown {
-  @apply max-h-60 absolute -left-px -right-px bottom-0 transform translate-y-full border border-gray-300 -mt-px overflow-y-scroll z-50 bg-gray-800 flex flex-col rounded-b;
   @include glass(0.3);
+  @apply max-h-60 absolute -left-px -right-px bottom-0 transform translate-y-full border-2 border-gray-300 -mt-px overflow-y-scroll z-50 flex flex-col rounded-b;
 
   &.is-top {
     @apply -translate-y-full top-px bottom-auto flex-col-reverse rounded-b-none rounded-t;

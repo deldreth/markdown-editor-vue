@@ -1,5 +1,8 @@
 import { createApp } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import {
+  FontAwesomeIcon,
+  FontAwesomeLayers,
+} from '@fortawesome/vue-fontawesome';
 import { VueShowdownPlugin } from 'vue-showdown';
 import Amplify from 'aws-amplify';
 import CKEditor from '@ckeditor/ckeditor5-vue';
@@ -29,8 +32,8 @@ const requireComponent = require.context('./components', true);
 
 requireComponent
   .keys()
-  .filter((component) => component.includes('.vue'))
-  .forEach((fileName) => {
+  .filter(component => component.includes('.vue'))
+  .forEach(fileName => {
     const componentConfig = requireComponent(fileName);
     const componentName = fileName.replace(/\.\/|\/|\.vue/g, '');
 
@@ -39,6 +42,7 @@ requireComponent
 
 app
   .component('FontAwesomeIcon', FontAwesomeIcon)
+  .component('FontAwesomeLayers', FontAwesomeLayers)
   .use(router)
   .use(CKEditor)
   .use(VueShowdownPlugin, {
