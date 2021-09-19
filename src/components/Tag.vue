@@ -1,6 +1,6 @@
 <template>
   <div
-    id="group"
+    id="tag"
     class="flex flex-col h-full overflow-hidden bg-black bg-opacity-60"
     :class="{
       hidden: $route.params.noteId,
@@ -28,7 +28,7 @@
 <script setup>
 import { useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
-import { watch, ref, computed } from 'vue';
+import { ref } from 'vue';
 
 const ALL_NOTES = 'all';
 
@@ -56,34 +56,4 @@ const { fetching, data, error } = useQuery({
   `,
   variables: { tagId },
 });
-
-// watch(
-//   () => route.params.groupId,
-//   nextGroupId => {
-//     groupId.value = nextGroupId;
-//   }
-// );
-
-const searchTerm = ref(false);
-// const filteredNotes = computed(() => {
-//   const nextNotes = data.value.getTag.notes.items.filter(
-//     note =>
-//       route.params.groupId === ALL_NOTES ||
-//       route.params.groupId === note.group?.id
-//   );
-
-//   if (searchTerm.value) {
-//     return nextNotes.filter(({ name }) => name.includes(searchTerm.value));
-//   }
-
-//   return nextNotes;
-// });
-
-// const onSearch = term => {
-//   if (term) {
-//     searchTerm.value = term;
-//   } else {
-//     searchTerm.value = false;
-//   }
-// };
 </script>
