@@ -12,7 +12,7 @@
       shadow-inner
     "
     :class="`${$route.params.noteId === note.id && 'bg-indigo-900'}`"
-    @click="$router.push(`/group/${$route.params.groupId}/note/${note.id}`)"
+    @click="$router.push(`${routePath}/note/${note.id}`)"
   >
     <h2 :title="note.name">
       {{ note.name }}
@@ -37,6 +37,12 @@
 
 <script setup>
 import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const routePath = route.params.groupId
+  ? `/group/${route.params.groupId}`
+  : `/tag/${route.params.tagId}`;
 
 const props = defineProps({
   notes: {
@@ -48,7 +54,7 @@ const props = defineProps({
 const sortedNotes = computed({
   get() {
     return props.notes
-      .map((note) => {
+      .map(note => {
         note.excerpt = note.body.replace(/<[^>]*>?/gm, ' ').substring(0, 200);
         return note;
       })

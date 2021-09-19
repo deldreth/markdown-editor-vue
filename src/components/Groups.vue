@@ -58,7 +58,7 @@
     </div>
   </div>
 
-  <router-view :key="$route.params.groupId" />
+  <router-view :key="$route.params.groupId || $route.params.tagId" />
 </template>
 
 <script setup>

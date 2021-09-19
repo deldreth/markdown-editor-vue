@@ -31,6 +31,7 @@
         rounded-sm
       "
         :class="`${$route.params.groupId === tag.id && 'bg-indigo-900'}`"
+        @click="$router.push(`/tag/${tag.id}`)"
       >
         {{ tag.tag }}
       </div>

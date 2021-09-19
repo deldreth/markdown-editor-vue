@@ -13,6 +13,7 @@ import {
   faTrash,
   faChevronLeft,
   faFileExport,
+  faTag,
   faTags,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -30,5 +31,6 @@ library.add(
   faTrash,
   faChevronLeft,
   faFileExport,
+  faTag,
   faTags
 );
