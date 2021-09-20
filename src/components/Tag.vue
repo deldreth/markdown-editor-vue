@@ -30,8 +30,6 @@ import { useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
 import { ref } from 'vue';
 
-const ALL_NOTES = 'all';
-
 const route = useRoute();
 const tagId = ref(route.params.tagId);
 

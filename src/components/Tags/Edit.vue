@@ -70,7 +70,7 @@ async function newTag(tag) {
   console.log('new', tag, currentTags.value);
 
   const { data: tagData } = await createTag({
-    input: { tag },
+    input: { tag: tag.toLowerCase() },
   });
   const { data: tagNoteData } = await createTagNote({
     input: { tagId: tagData.createTag.id, noteId: note?.value.id },
