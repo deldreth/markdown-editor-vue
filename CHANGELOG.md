@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/deldreth/markdown-editor-vue/compare/v0.4.2...v0.5.0) (2021-10-01)
+
+
+### Features
+
+* add tagging UI ([2eb9e1c](https://github.com/deldreth/markdown-editor-vue/commit/2eb9e1ca9e35fc666eba896ccee9296c5a5c5750))
+
 ### [0.4.2](https://github.com/deldreth/wondernotes.app/compare/v0.4.1...v0.4.2) (2021-09-16)
 
 
