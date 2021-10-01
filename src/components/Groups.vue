@@ -1,18 +1,13 @@
 <template>
   <div
     id="groups"
-    class="
-      flex flex-col
-      h-full
-      overflow-hidden    
-      bg-black bg-opacity-40
-    "
+    class="flex flex-col h-full overflow-hidden bg-black bg-opacity-40"
     :class="{
       hidden: $route.params.groupId,
       'lg:flex': $route.params.groupId,
     }"
   >
-    <div class="flex justify-between items-center p-2 pl-8 pr-8">
+    <div class="flex justify-between items-center py-2 px-8">
       <h1 class="text-lg">Groups</h1>
       <GroupsAdd />
     </div>
@@ -39,18 +34,10 @@
       </div>
     </div>
 
-    <div
-      v-if="!userInfoLoading && userInfo"
-      class="
-        py-4 px-8
-      "
-    >
-      <div
-        class="flex
-        items-center
-        justify-between
-        mb-4"
-      >
+    <Tags />
+
+    <div v-if="!userInfoLoading && userInfo" class="py-4 px-8">
+      <div class="flex items-center justify-between mb-4">
         {{ userInfo.username }}
 
         <button
@@ -71,7 +58,7 @@
     </div>
   </div>
 
-  <router-view :key="$route.params.groupId" />
+  <router-view :key="$route.params.groupId || $route.params.tagId" />
 </template>
 
 <script setup>

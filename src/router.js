@@ -8,6 +8,18 @@ const routes = [
     component: () => import('./pages/index.vue'),
     children: [
       {
+        name: 'tag',
+        path: 'tag/:tagId',
+        component: () => import('./components/Tag.vue'),
+        children: [
+          {
+            name: 'tagNote',
+            path: 'note/:noteId',
+            component: () => import('./components/Note.vue'),
+          },
+        ],
+      },
+      {
         name: 'group',
         path: 'group/:groupId',
         component: () => import('./components/Group.vue'),

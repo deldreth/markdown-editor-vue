@@ -1,5 +1,8 @@
 import { createApp } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import {
+  FontAwesomeIcon,
+  FontAwesomeLayers,
+} from '@fortawesome/vue-fontawesome';
 import { VueShowdownPlugin } from 'vue-showdown';
 import Amplify from 'aws-amplify';
 import CKEditor from '@ckeditor/ckeditor5-vue';
@@ -39,10 +42,16 @@ requireComponent
 
 app
   .component('FontAwesomeIcon', FontAwesomeIcon)
+  .component('FontAwesomeLayers', FontAwesomeLayers)
   .use(router)
   .use(CKEditor)
   .use(VueShowdownPlugin, {
     flavor: 'github',
+  })
+  .directive('focus', {
+    mounted(el) {
+      el.focus();
+    },
   })
   .mount('#app');
 

@@ -1,18 +1,21 @@
 <template>
   <div
     class="
-      col-auto xl:col-span-2 2xl:col-span-3
+      col-auto
+      xl:col-span-2
+      2xl:col-span-3
       overflow-hidden overflow-y-auto
-      p-4 xl:pl-8 xl:pr-8
+      p-4
+      xl:py-8
     "
   >
     <Loader v-if="fetching" />
 
     <div v-else-if="error">{{ error }}</div>
 
-    <div v-else-if="data">
-      <div class="flex justify-between items-center flex-wrap mb-4">
-        <div>
+    <div v-else-if="dataNote">
+      <div class="mb-4">
+        <div class="flex justify-between flex-1">
           <FormButton
             v-if="$isElectron"
             class="btn-link mr-8"
@@ -27,20 +30,25 @@
             class="btn-link"
           >
             <FontAwesomeIcon icon="file-alt" class="mr-3" />{{
-              data.getNote.name
+              dataNote.getNote.name
             }}
           </FormButton>
+
+          <NoteActions />
         </div>
 
-        <NoteActions />
+        <TagsEdit />
 
         <NoteEditModal
           id="note-edit-modal"
-          :title="`Edit ${data.getNote.name}`"
+          :title="`Edit ${dataNote.getNote.name}`"
         />
       </div>
 
-      <Editor :note-id="$route.params.noteId" :content="data.getNote.body" />
+      <Editor
+        :note-id="$route.params.noteId"
+        :content="dataNote.getNote.body"
+      />
     </div>
   </div>
 </template>
@@ -53,7 +61,7 @@ import { useRoute } from 'vue-router';
 const route = useRoute();
 const noteId = ref(route.params.noteId);
 
-const { fetching, data, error } = useQuery({
+const { fetching, data: dataNote, error } = useQuery({
   query: `
     query GetNote($noteId: ID!) {
       getNote(id: $noteId) {
@@ -67,6 +75,16 @@ const { fetching, data, error } = useQuery({
           id
           name
         }
+        tags {
+          items {
+            tagNoteId: id
+            createdAt
+            tag {
+              id
+              tag
+            }
+          }
+        }
       }
     }
   `,
@@ -75,6 +93,6 @@ const { fetching, data, error } = useQuery({
 
 provide(
   'note',
-  computed(() => data?.value.getNote)
+  computed(() => dataNote?.value.getNote)
 );
 </script>

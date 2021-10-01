@@ -11,10 +11,15 @@
   >
     <div
       class="
-        grid
-        grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5
+        grid grid-cols-1
+        lg:grid-cols-3
+        xl:grid-cols-4
+        2xl:grid-cols-5
         h-full
-        bg-gradient-to-b from-gray-900 via-purple-900 to-transparent
+        bg-gradient-to-b
+        from-gray-900
+        via-purple-900
+        to-transparent
       "
     >
       <Groups />

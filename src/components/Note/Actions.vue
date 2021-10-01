@@ -2,7 +2,7 @@
   <div class="btn-group">
     <button
       type="button"
-      class="btn btn-link dropdown-toggle pl-0 pr-0"
+      class="btn btn-link dropdown-toggle px-0"
       data-bs-toggle="dropdown"
       aria-expanded="false"
     >

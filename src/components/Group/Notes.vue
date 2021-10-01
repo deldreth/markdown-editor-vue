@@ -3,14 +3,16 @@
     v-for="note in sortedNotes"
     :key="note.id"
     class="
-      py-3 px-6
+      py-3
+      px-6
       mx-2
       cursor-pointer
       hover:bg hover:bg-indigo-800
       rounded-sm
-      shadow-inner"
+      shadow-inner
+    "
     :class="`${$route.params.noteId === note.id && 'bg-indigo-900'}`"
-    @click="$router.push(`/group/${$route.params.groupId}/note/${note.id}`)"
+    @click="$router.push(`${routePath}/note/${note.id}`)"
   >
     <h2 :title="note.name">
       {{ note.name }}
@@ -35,6 +37,12 @@
 
 <script setup>
 import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const routePath = route.params.groupId
+  ? `/group/${route.params.groupId}`
+  : `/tag/${route.params.tagId}`;
 
 const props = defineProps({
   notes: {

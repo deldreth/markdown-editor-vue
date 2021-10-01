@@ -2,7 +2,8 @@
   <section
     :id="props.id"
     class="
-      py-3 px-6
+      py-3
+      px-6
       mx-2
       cursor-pointer
       hover:bg-indigo-800

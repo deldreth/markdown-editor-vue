@@ -1,12 +1,7 @@
 <template>
   <div
     id="group"
-    class="
-      flex flex-col
-      h-full
-      overflow-hidden
-      bg-black bg-opacity-60
-    "
+    class="flex flex-col h-full overflow-hidden bg-black bg-opacity-60"
     :class="{
       hidden: $route.params.noteId,
       'lg:flex': $route.params.noteId,
@@ -33,7 +28,7 @@
           data.getGroup.name
         }}</GroupName>
 
-        <NoteAdd :group-id="groupId" />
+        <NoteAdd :group-id="$route.params.groupId" />
       </div>
     </div>
 
@@ -58,12 +53,11 @@
 <script setup>
 import { useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
-import { watch, ref, computed } from 'vue';
+import { ref, computed } from 'vue';
 
 const ALL_NOTES = 'all';
 
 const route = useRoute();
-const groupId = ref(route.params.groupId);
 
 const { fetching, data, error } = useQuery({
   query: /* GraphQL */ `
@@ -86,15 +80,8 @@ const { fetching, data, error } = useQuery({
       }
     }
   `,
-  variables: { groupId },
+  variables: { groupId: route.params.groupId },
 });
-
-watch(
-  () => route.params.groupId,
-  nextGroupId => {
-    groupId.value = nextGroupId;
-  }
-);
 
 const searchTerm = ref(false);
 const filteredNotes = computed(() => {
