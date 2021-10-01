@@ -9,6 +9,7 @@
       xl:py-8
     "
   >
+    {{ fetching }}
     <Loader v-if="fetching" />
 
     <div v-else-if="error">{{ error }}</div>
@@ -40,7 +41,7 @@
         <div class="flex justify-start items-center">
           <FontAwesomeIcon icon="tags" class="mr-2" />
           <div class="min-w-1/2">
-            <TagsEdit />
+            <TagsEdit :loading-notes="fetching" />
           </div>
         </div>
 
@@ -60,7 +61,7 @@
 
 <script setup>
 import { ref, provide, computed, reactive } from 'vue';
-import { useMutation, useQuery } from '@urql/vue';
+import { useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();

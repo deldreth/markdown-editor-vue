@@ -28,7 +28,7 @@
           data.getGroup.name
         }}</GroupName>
 
-        <NoteAdd :group-id="groupId" />
+        <NoteAdd :group-id="$route.params.groupId" />
       </div>
     </div>
 
@@ -53,12 +53,11 @@
 <script setup>
 import { useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
-import { watch, ref, computed } from 'vue';
+import { ref, computed } from 'vue';
 
 const ALL_NOTES = 'all';
 
 const route = useRoute();
-const groupId = ref(route.params.groupId);
 
 const { fetching, data, error } = useQuery({
   query: /* GraphQL */ `
@@ -81,20 +80,13 @@ const { fetching, data, error } = useQuery({
       }
     }
   `,
-  variables: { groupId },
+  variables: { groupId: route.params.groupId },
 });
-
-watch(
-  () => route.params.groupId,
-  (nextGroupId) => {
-    groupId.value = nextGroupId;
-  }
-);
 
 const searchTerm = ref(false);
 const filteredNotes = computed(() => {
   const nextNotes = data.value.listNotes.items.filter(
-    (note) =>
+    note =>
       route.params.groupId === ALL_NOTES ||
       route.params.groupId === note.group?.id
   );
@@ -106,7 +98,7 @@ const filteredNotes = computed(() => {
   return nextNotes;
 });
 
-const onSearch = (term) => {
+const onSearch = term => {
   if (term) {
     searchTerm.value = term;
   } else {

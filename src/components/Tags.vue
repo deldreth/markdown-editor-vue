@@ -15,7 +15,7 @@
 
     <div v-else-if="error">{{ error }}</div>
 
-    <div v-else>
+    <div v-else class="text-sm">
       <div
         v-for="tag in tags?.listTags.items"
         :key="tag.id"
@@ -30,19 +30,62 @@
         items-center
         rounded-sm
       "
-        :class="`${$route.params.groupId === tag.id && 'bg-indigo-900'}`"
+        :class="`${$route.params.tagId === tag.id && 'bg-pink-900'}`"
         @click="$router.push(`/tag/${tag.id}`)"
       >
-        {{ tag.tag }}
+        <span>{{ tag.tag }}</span>
+        <button
+          class="hover:bg-pink-600 py-0 px-1.5 rounded-full"
+          @click="onDeleteTag($event, tag.id)"
+        >
+          <FontAwesomeIcon icon="times" />
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { useQuery } from '@urql/vue';
+import { useQuery, useMutation, useClientHandle } from '@urql/vue';
+import { useRouter, useRoute } from 'vue-router';
 
-import { listTags as listTagsQuery } from '../graphql/queries';
+const router = useRouter();
+const route = useRoute();
+const clientHandle = useClientHandle();
+
+import {
+  listTags as listTagsQuery,
+  getTag as getTagQuery,
+} from '../graphql/queries';
+
+import {
+  deleteTagNote as deleteTagNoteMutation,
+  deleteTag as deleteTagMutation,
+} from '../graphql/mutations';
 
 const { fetching, data: tags, error } = useQuery({ query: listTagsQuery });
+const { executeMutation: deleteTagNote } = useMutation(deleteTagNoteMutation);
+const { executeMutation: deleteTag } = useMutation(deleteTagMutation);
+
+async function onDeleteTag(event, tagId) {
+  event.stopPropagation();
+
+  const {
+    data: { getTag },
+  } = await clientHandle.client
+    .query(getTagQuery, {
+      id: tagId,
+    })
+    .toPromise();
+
+  if (route.params.tagId === tagId) {
+    await router.replace({ name: 'groups' });
+  }
+
+  for (const tagNote of getTag.notes.items) {
+    deleteTagNote({ input: { id: tagNote.id } });
+  }
+
+  deleteTag({ input: { id: tagId } });
+}
 </script>

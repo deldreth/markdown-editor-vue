@@ -1,4 +1,5 @@
 <template>
+  {{ props.loadingNotes }}
   <Multiselect
     v-model="currentTagsWritable"
     mode="tags"
@@ -8,12 +9,18 @@
     :close-on-select="false"
     :create-tag="true"
     :filter-results="true"
-    :loading="fetchingTags || creatingTag || creatingTagNote || deletingTagNote"
+    :loading="
+      props.loadingNotes ||
+        fetchingTags ||
+        creatingTag ||
+        creatingTagNote ||
+        deletingTagNote
+    "
     :options="tags"
     :searchable="true"
-    @deselect="removeTag"
-    @select="selectTag"
-    @tag="newTag"
+    @deselect="onDeselect"
+    @select="onSelect"
+    @tag="onTag"
   />
 </template>
 
@@ -28,6 +35,13 @@ import {
   deleteTagNote as deleteTagNoteMutation,
 } from '../../graphql/mutations';
 import { listTags as listTagsQuery } from '../../graphql/queries';
+
+const props = defineProps({
+  loadingNotes: {
+    type: Boolean,
+    default: false,
+  },
+});
 
 const note = inject('note');
 
@@ -66,36 +80,33 @@ const tags = computed(() => {
   }, {});
 });
 
-async function newTag(tag) {
-  console.log('new', tag, currentTags.value);
-
+async function onTag(tag) {
   const { data: tagData } = await createTag({
     input: { tag: tag.toLowerCase() },
   });
-  const { data: tagNoteData } = await createTagNote({
+
+  await createTagNote({
     input: { tagId: tagData.createTag.id, noteId: note?.value.id },
   });
 }
 
-async function removeTag(tagId) {
-  console.log('removing', tagId);
-
+async function onDeselect(tagId) {
   const tagNoteId = note?.value.tags.items.find(
     tagNote => tagNote.tag.id === tagId
   ).tagNoteId;
 
-  const { data: tagNoteData } = await deleteTagNote({
+  await deleteTagNote({
     input: { id: tagNoteId },
   });
 }
 
-async function selectTag(tagId) {
+async function onSelect(tagId) {
   const guidRegexp = new RegExp(
     /^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$/
   );
 
   if (guidRegexp.test(tagId)) {
-    const { data: tagNoteData } = await createTagNote({
+    await createTagNote({
       input: { tagId, noteId: note?.value.id },
     });
   }
