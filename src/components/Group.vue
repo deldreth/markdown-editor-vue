@@ -32,22 +32,41 @@
       </div>
 
       <div class="flex items-center">
-        Sort By <button class="btn btn-link px-1.5">Date Modified</button>
-        <div class="flex flex-col">
-          <button
-            class="px-1 text-xs"
-            :class="{ 'text-pink-500': sortDirection === 'asc' }"
-            @click="onSortChange('asc')"
+        Sort By
+        <button
+          type="button"
+          class="btn btn-link pl-3 pr-2"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          {{ mapSortToString() }}
+        </button>
+        <ul class="dropdown-menu">
+          <li
+            class="dropdown-item text-white"
+            @click="onSortTypeChange('updatedAt')"
           >
-            <FontAwesomeIcon icon="chevron-up" /></button
-          ><button
-            class="px-1 text-xs"
-            :class="{ 'text-pink-500': sortDirection === 'desc' }"
-            @click="onSortChange('desc')"
+            Date Modified
+          </li>
+          <li
+            class="dropdown-item text-white"
+            @click="onSortTypeChange('createdAt')"
           >
-            <FontAwesomeIcon icon="chevron-down" />
-          </button>
-        </div>
+            Date Created
+          </li>
+          <li
+            class="dropdown-item text-white"
+            @click="onSortTypeChange('name')"
+          >
+            Name
+          </li>
+        </ul>
+
+        <button class="btn btn-link p-0" @click="onSortChange">
+          <FontAwesomeIcon
+            :icon="sortDirection === 'asc' ? 'chevron-up' : 'chevron-down'"
+          />
+        </button>
       </div>
     </div>
 
@@ -105,6 +124,7 @@ const { fetching, data, error } = useQuery({
 
 const searchTerm = ref(false);
 const sortDirection = ref('desc');
+const sortBy = ref('updatedAt');
 const filteredNotes = computed(() => {
   const nextNotes = data.value.listNotes.items
     .filter(
@@ -112,7 +132,13 @@ const filteredNotes = computed(() => {
         route.params.groupId === ALL_NOTES ||
         route.params.groupId === note.group?.id
     )
-    .sort((a, b) => new Date(a.updatedAt) - new Date(b.updatedAt));
+    .sort((a, b) => {
+      if (sortBy.value === 'updatedAt' || sortBy.value === 'createdAt') {
+        return new Date(a[sortBy.value]) - new Date(b[sortBy.value]);
+      }
+
+      return a[sortBy.value].localeCompare(b[sortBy.value]);
+    });
 
   if (sortDirection.value === 'desc') {
     nextNotes.reverse();
@@ -129,8 +155,24 @@ const filteredNotes = computed(() => {
   return nextNotes;
 });
 
-const onSortChange = direction => {
-  sortDirection.value = direction;
+const mapSortToString = () => {
+  switch (sortBy.value) {
+    case 'createdAt':
+      return 'Date Created';
+    case 'name':
+      return 'Name';
+    case 'updatedAt':
+    default:
+      return 'Date Modified';
+  }
+};
+
+const onSortTypeChange = type => {
+  sortBy.value = type;
+};
+
+const onSortChange = () => {
+  sortDirection.value = sortDirection.value === 'asc' ? 'desc' : 'asc';
 };
 
 const onSearch = term => {
