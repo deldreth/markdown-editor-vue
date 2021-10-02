@@ -53,13 +53,10 @@ const props = defineProps({
 
 const sortedNotes = computed({
   get() {
-    return props.notes
-      .map(note => {
-        note.excerpt = note.body.replace(/<[^>]*>?/gm, ' ').substring(0, 200);
-        return note;
-      })
-      .sort((a, b) => new Date(a.updatedAt) - new Date(b.updatedAt))
-      .reverse();
+    return props.notes.map(note => {
+      note.excerpt = note.body.replace(/<[^>]*>?/gm, ' ').substring(0, 200);
+      return note;
+    });
   },
 });
 </script>

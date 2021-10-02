@@ -30,6 +30,25 @@
 
         <NoteAdd :group-id="$route.params.groupId" />
       </div>
+
+      <div class="flex items-center">
+        Sort By <button class="btn btn-link px-1.5">Date Modified</button>
+        <div class="flex flex-col">
+          <button
+            class="px-1 text-xs"
+            :class="{ 'text-pink-500': sortDirection === 'asc' }"
+            @click="onSortChange('asc')"
+          >
+            <FontAwesomeIcon icon="chevron-up" /></button
+          ><button
+            class="px-1 text-xs"
+            :class="{ 'text-pink-500': sortDirection === 'desc' }"
+            @click="onSortChange('desc')"
+          >
+            <FontAwesomeIcon icon="chevron-down" />
+          </button>
+        </div>
+      </div>
     </div>
 
     <Loader v-if="fetching" />
@@ -54,6 +73,7 @@
 import { useQuery } from '@urql/vue';
 import { useRoute } from 'vue-router';
 import { ref, computed } from 'vue';
+import Fuse from 'fuse.js';
 
 const ALL_NOTES = 'all';
 
@@ -84,19 +104,34 @@ const { fetching, data, error } = useQuery({
 });
 
 const searchTerm = ref(false);
+const sortDirection = ref('desc');
 const filteredNotes = computed(() => {
-  const nextNotes = data.value.listNotes.items.filter(
-    note =>
-      route.params.groupId === ALL_NOTES ||
-      route.params.groupId === note.group?.id
-  );
+  const nextNotes = data.value.listNotes.items
+    .filter(
+      note =>
+        route.params.groupId === ALL_NOTES ||
+        route.params.groupId === note.group?.id
+    )
+    .sort((a, b) => new Date(a.updatedAt) - new Date(b.updatedAt));
+
+  if (sortDirection.value === 'desc') {
+    nextNotes.reverse();
+  }
+
+  const fuse = new Fuse(nextNotes, {
+    keys: ['name', 'body'],
+  });
 
   if (searchTerm.value) {
-    return nextNotes.filter(({ name }) => name.includes(searchTerm.value));
+    return fuse.search(searchTerm.value).map(({ item }) => item);
   }
 
   return nextNotes;
 });
+
+const onSortChange = direction => {
+  sortDirection.value = direction;
+};
 
 const onSearch = term => {
   if (term) {
