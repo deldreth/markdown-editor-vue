@@ -1,10 +1,9 @@
 <template>
-  <button
-    type="button"
+  <FormButton
     data-bs-toggle="modal"
     data-bs-target="#group-edit-modal"
-    class="btn btn-link p-0 truncate text-left"
+    class="btn-link truncate text-left"
   >
     <FontAwesomeIcon icon="layer-group" class="mr-4" /><slot></slot>
-  </button>
+  </FormButton>
 </template>

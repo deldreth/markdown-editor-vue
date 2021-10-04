@@ -15,8 +15,8 @@ import {
   faFileExport,
   faTag,
   faTags,
-  faChevronUp,
-  faChevronDown,
+  faArrowUp,
+  faArrowDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -35,6 +35,6 @@ library.add(
   faFileExport,
   faTag,
   faTags,
-  faChevronUp,
-  faChevronDown
+  faArrowUp,
+  faArrowDown
 );

@@ -35,7 +35,7 @@
         Sort By
         <button
           type="button"
-          class="btn btn-link pl-3 pr-2"
+          class="btn btn-link ml-2 px-2"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
@@ -62,10 +62,20 @@
           </li>
         </ul>
 
-        <button class="btn btn-link p-0" @click="onSortChange">
-          <FontAwesomeIcon
-            :icon="sortDirection === 'asc' ? 'chevron-up' : 'chevron-down'"
-          />
+        <button
+          class="px-2"
+          :class="{ 'text-pink-500': sortDirection === 'asc' }"
+          @click="onSortChange"
+        >
+          <FontAwesomeIcon icon="arrow-up" />
+        </button>
+
+        <button
+          class="px-2"
+          :class="{ 'text-pink-500': sortDirection === 'desc' }"
+          @click="onSortChange"
+        >
+          <FontAwesomeIcon icon="arrow-down" />
         </button>
       </div>
     </div>
