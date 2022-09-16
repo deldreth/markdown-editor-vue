@@ -1,0 +1,45 @@
+{
+  "version": "1",
+  "cognitoConfig": {
+    "authSelections": "identityPoolAndUserPool",
+    "requiredAttributes": [
+      "email"
+    ],
+    "resourceName": "editorvueb03f6108",
+    "serviceName": "Cognito",
+    "useDefault": "default",
+    "userpoolClientReadAttributes": [
+      "email"
+    ],
+    "userpoolClientWriteAttributes": [
+      "email"
+    ],
+    "aliasAttributes": [
+      "email"
+    ],
+    "resourceNameTruncated": "editorb03f6108",
+    "sharedId": "b03f6108",
+    "userPoolGroupList": [],
+    "userPoolName": "editorvueb03f6108_userpool_b03f6108",
+    "usernameCaseSensitive": false,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientSetAttributes": false,
+    "userpoolClientGenerateSecret": false,
+    "userpoolClientLambdaRole": "editorb03f6108_userpoolclient_lambda_role",
+    "passwordPolicyCharacters": [],
+    "passwordPolicyMinLength": 8,
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+      "SMS Text Message"
+    ],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "autoVerifiedAttributes": [
+      "email"
+    ],
+    "identityPoolName": "editorvueb03f6108_identitypool_b03f6108",
+    "allowUnauthenticatedIdentities": false
+  }
+}

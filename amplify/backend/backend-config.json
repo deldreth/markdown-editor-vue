@@ -50,7 +50,8 @@
   "storage": {
     "EditorVueStorage": {
       "service": "S3",
-      "providerPlugin": "awscloudformation"
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
     }
   }
 }

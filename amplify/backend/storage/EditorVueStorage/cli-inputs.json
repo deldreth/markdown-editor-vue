@@ -1,0 +1,13 @@
+{
+  "resourceName": "EditorVueStorage",
+  "bucketName": "editorvue6b99204495234d37a8ba89086abab839",
+  "policyUUID": "e48c7bed",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE"
+}
