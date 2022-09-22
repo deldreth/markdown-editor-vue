@@ -105,6 +105,8 @@
   /* -- Overrides the default colors used by the ckeditor5-link package. ---------------------- */
 
   --ck-color-link-default: hsl(190, 100%, 75%);
+
+  --ck-spacing-standard: 1rem;
 }
 
 .ck-content > blockquote,
@@ -153,14 +155,15 @@
   color: #eef2ff;
 }
 
+.ck-content,
 .ck-editor__editable {
-  color: #f8f9fa;
-  background-color: rgba(0, 0, 0, 0.2) !important;
-  border: none !important;
+  min-height: 100%;
 }
 
 .ck-editor__editable {
-  min-height: 100%;
+  color: #f8f9fa;
+  background-color: rgba(0, 0, 0, 0) !important;
+  border: none !important;
 }
 
 .ck-content .todo-list input[type='checkbox']:before {
@@ -177,6 +180,6 @@
 
 .ck-editor__top {
   position: sticky !important;
-  top: -1rem;
+  top: 0px;
   z-index: 10;
 }

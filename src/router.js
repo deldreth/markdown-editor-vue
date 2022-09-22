@@ -3,35 +3,19 @@ import { Auth } from 'aws-amplify';
 
 const routes = [
   {
-    name: 'groups',
+    name: 'index',
     path: '/',
     component: () => import('./pages/index.vue'),
-    children: [
-      {
-        name: 'tag',
-        path: 'tag/:tagId',
-        component: () => import('./components/Tag.vue'),
-        children: [
-          {
-            name: 'tagNote',
-            path: 'note/:noteId',
-            component: () => import('./components/Note.vue'),
-          },
-        ],
-      },
-      {
-        name: 'group',
-        path: 'group/:groupId',
-        component: () => import('./components/Group.vue'),
-        children: [
-          {
-            name: 'note',
-            path: 'note/:noteId',
-            component: () => import('./components/Note.vue'),
-          },
-        ],
-      },
-    ],
+  },
+  {
+    name: 'group',
+    path: '/group/:groupId',
+    component: () => import('./pages/index.vue'),
+  },
+  {
+    name: 'note',
+    path: '/group/:groupId/note/:noteId',
+    component: () => import('./pages/index.vue'),
   },
   {
     name: 'about',

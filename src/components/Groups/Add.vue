@@ -1,5 +1,5 @@
 <template>
-  <FormButton class="btn-link" @click="onCreateGroup">
+  <FormButton @click="onCreateGroup">
     Add Group <FontAwesomeIcon icon="plus" class="ml-2" />
   </FormButton>
 </template>

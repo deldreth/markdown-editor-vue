@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.3](https://github.com/deldreth/wondernotes.app/compare/v0.5.2...v0.5.3) (2022-09-22)
+
+### [0.5.2](https://github.com/deldreth/wondernotes.app/compare/v0.5.1...v0.5.2) (2022-09-22)
+
+
+### Bug Fixes
+
+* electron navigation ([c041ca5](https://github.com/deldreth/wondernotes.app/commit/c041ca5dd8a9dd7eb934b462d6a3d6172118dccb))
+
+### [0.5.1](https://github.com/deldreth/wondernotes.app/compare/v0.5.0...v0.5.1) (2022-09-22)
+
+
+### Features
+
+* group sorting ([709bfad](https://github.com/deldreth/wondernotes.app/commit/709bfad6b19500607077ec446945f22b17e31bab))
+* rework theme ([bc96589](https://github.com/deldreth/wondernotes.app/commit/bc96589cdbf92b70edfac42d284b312c648b4ffa))
+* search through fuse.js and adjust group sort by date ([7e4c0b1](https://github.com/deldreth/wondernotes.app/commit/7e4c0b1fb8f477df12f3f75241a02d1e3087aeae))
+
 ## [0.5.0](https://github.com/deldreth/markdown-editor-vue/compare/v0.4.2...v0.5.0) (2021-10-01)
 
 

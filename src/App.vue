@@ -1,16 +1,19 @@
 <template>
-  <TitleBar v-if="$isElectron" platform="win32" theme="dark" />
-  <router-view :class="$isElectron && 'pt-6'" />
+  <TitleBar v-if="$isElectron" platform="win32" />
+  <router-view :class="$isElectron && 'electron-app'" />
 </template>
 
 <style>
 #app {
   height: 100vh;
 }
+
+.electron-app {
+  padding-top: 28px;
+}
 html,
 body {
   height: 100%;
-  font-family: 'Roboto', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

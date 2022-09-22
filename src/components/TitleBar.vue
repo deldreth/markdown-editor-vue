@@ -1,5 +1,5 @@
 <template>
-  <div class="titlebar bg-purple-900" :class="[styleClass, stylePlatform]">
+  <div class="titlebar bg-indigo-900" :class="[styleClass, stylePlatform]">
     <div class="titlebar-resize-handle top"></div>
     <div class="titlebar-resize-handle right"></div>
     <div class="titlebar-resize-handle left"></div>
@@ -67,7 +67,7 @@
         <slot name="icon"></slot>
       </div>
 
-      <div v-if="showTitle" class="text-xs pl-8">
+      <div v-if="showTitle" class="text-xs pl-4">
         WonderNotes
       </div>
     </div>

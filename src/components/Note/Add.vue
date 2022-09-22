@@ -1,7 +1,6 @@
 <template>
   <FormButton
     aria-label="Add New Note"
-    class="btn-link"
     @click="createNoteAndEmit({ groupId: props.groupId })"
   >
     Add Note <FontAwesomeIcon icon="plus" class="ml-2" />

@@ -1,23 +1,28 @@
 <template>
   <div
     id="groups"
-    class="flex flex-col h-full overflow-hidden bg-black bg-opacity-40"
+    class="
+      md:flex flex flex-col flex-1
+      bg-slate-700 dark:bg-zinc-800 bg-opacity-90
+      md:max-w-xs
+    "
     :class="{
       hidden: $route.params.groupId,
-      'lg:flex': $route.params.groupId,
     }"
   >
-    <div class="flex justify-between items-center py-2 px-8">
-      <h1 class="text-lg">Groups</h1>
+    <div class="p-4 flex justify-between items-center bg-indigo-700">
+      <h1 class="text-lg">
+        <FontAwesomeIcon icon="layer-group" class="mr-2" /> Groups
+      </h1>
       <GroupsAdd />
     </div>
 
-    <div class="overflow-y-auto flex-1">
+    <div class="overflow-y-auto flex-1 p-4">
       <Loader v-if="fetching" />
 
       <div v-else-if="error">{{ error }}</div>
 
-      <div v-else class="text-sm">
+      <div v-else>
         <GroupsItem id="all" name="All Notes" class="text-blue-200" />
 
         <GroupsItem
@@ -34,17 +39,13 @@
       </div>
     </div>
 
-    <Tags />
+    <!--<Tags />-->
 
-    <div v-if="!userInfoLoading && userInfo" class="py-4 px-8">
-      <div class="flex items-center justify-between mb-4">
+    <div v-if="!userInfoLoading && userInfo" class="p-4">
+      <div class="flex items-center justify-between mb-2">
         {{ userInfo.username }}
 
-        <button
-          type="button"
-          class="btn btn-outline-warning btn-sm"
-          @click="onSignOut"
-        >
+        <button type="button" class="btn btn-link py-1 px-0" @click="onSignOut">
           <FontAwesomeIcon icon="sign-out-alt" />&nbsp;Sign Out
         </button>
       </div>
@@ -57,8 +58,6 @@
       </div>
     </div>
   </div>
-
-  <router-view :key="$route.params.groupId || $route.params.tagId" />
 </template>
 
 <script setup>

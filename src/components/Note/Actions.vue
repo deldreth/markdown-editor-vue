@@ -1,13 +1,13 @@
 <template>
   <div class="btn-group">
-    <button
+    <FormButton
       type="button"
-      class="btn btn-link dropdown-toggle px-0"
+      class="dropdown-toggle"
       data-bs-toggle="dropdown"
       aria-expanded="false"
     >
       Actions
-    </button>
+    </FormButton>
     <ul class="dropdown-menu">
       <!-- <li>
         <a class="dropdown-item cursor-pointer" @click="download">

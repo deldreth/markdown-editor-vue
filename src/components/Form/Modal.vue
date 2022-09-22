@@ -1,6 +1,6 @@
 <template>
   <div :id="props.id" class="modal" tabindex="-1">
-    <div class="modal-dialog modal-fullscreen-md-down">
+    <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered">
       <div
         class="
           modal-content

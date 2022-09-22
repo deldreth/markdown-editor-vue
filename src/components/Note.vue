@@ -1,54 +1,55 @@
 <template>
   <div
     class="
-      col-auto
-      xl:col-span-2
-      2xl:col-span-3
-      overflow-hidden overflow-y-auto
-      p-4
-      xl:py-8
+      flex-1
+      text-slate-900 dark:text-slate-100
+      bg-slate-100 dark:bg-zinc-700
+      overflow-hidden
     "
   >
     <Loader v-if="fetching" />
 
     <div v-else-if="error">{{ error }}</div>
 
-    <div v-else-if="dataNote">
-      <div class="mb-4">
-        <div class="flex justify-between flex-1">
-          <FormButton
-            v-if="$isElectron"
-            class="btn-link mr-8"
-            @click="$router.go(-1)"
-          >
-            <FontAwesomeIcon icon="chevron-left" class="mr-3" />Notes
-          </FormButton>
+    <div v-else-if="dataNote" class="h-full flex flex-col">
+      <div
+        class="
+          p-4  
+          flex justify-between
+          dark:bg-indigo-700
+        "
+      >
+        <FormButton
+          class="block md:hidden mr-4"
+          @click="$router.replace({ path: `/group/${route.params.groupId}` })"
+        >
+          <FontAwesomeIcon icon="chevron-left" />
+        </FormButton>
 
-          <FormButton
-            data-bs-toggle="modal"
-            data-bs-target="#note-edit-modal"
-            class="btn-link"
-          >
-            <FontAwesomeIcon icon="file-alt" class="mr-3" />{{
-              dataNote.getNote.name
-            }}
-          </FormButton>
+        <FormButton
+          data-bs-toggle="modal"
+          data-bs-target="#note-edit-modal"
+          class="truncate mr-4"
+        >
+          <FontAwesomeIcon icon="file-alt" class="mr-2" />{{
+            dataNote.getNote.name
+          }}
+        </FormButton>
 
-          <NoteActions />
-        </div>
-
-        <TagsEdit />
-
-        <NoteEditModal
-          id="note-edit-modal"
-          :title="`Edit ${dataNote.getNote.name}`"
-        />
+        <NoteActions />
       </div>
 
-      <Editor
-        :note-id="$route.params.noteId"
-        :content="dataNote.getNote.body"
+      <NoteEditModal
+        id="note-edit-modal"
+        :title="`Edit ${dataNote.getNote.name}`"
       />
+
+      <div class="overflow-y-auto">
+        <Editor
+          :note-id="$route.params.noteId"
+          :content="dataNote.getNote.body"
+        />
+      </div>
     </div>
   </div>
 </template>

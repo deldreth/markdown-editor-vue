@@ -1,82 +1,92 @@
 <template>
   <div
     id="group"
-    class="flex flex-col h-full overflow-hidden bg-black bg-opacity-60"
+    class="
+      md:flex flex-col flex-1
+      h-full overflow-hidden
+      bg-slate-500 dark:bg-zinc-900 bg-opacity-90
+      md:max-w-md
+    "
     :class="{
-      hidden: $route.params.noteId,
-      'lg:flex': $route.params.noteId,
+      hidden: $route.params.groupId && $route.params.noteId,
     }"
   >
-    <div class="pt-4 pl-8 pr-8">
-      <div v-if="$isElectron" class="flex justify-between items-center mb-4">
+    <div>
+      <div
+        class="
+          p-4
+          flex justify-between items-center
+          dark:bg-indigo-800
+          whitespace-nowrap
+        "
+      >
         <FormButton
-          class="btn-link"
-          @click="$router.replace({ name: 'groups' })"
+          class="block md:hidden mr-4"
+          @click="$router.replace({ path: '/' })"
         >
-          <FontAwesomeIcon icon="chevron-left" class="mr-3" />Groups
+          <FontAwesomeIcon icon="chevron-left" />
         </FormButton>
-      </div>
 
-      <NoteSearch @on-search="onSearch" />
+        <GroupName v-if="data?.getGroup" class="mr-4">{{
+          data.getGroup.name
+        }}</GroupName>
 
-      <div class="flex justify-between items-center">
         <div v-if="$route.params.groupId === 'all'" class="flex-1 mr-8">
           <FontAwesomeIcon icon="layer-group" class="mr-4" />All Notes
         </div>
 
-        <GroupName v-else-if="data?.getGroup" class="flex-1 mr-8">{{
-          data.getGroup.name
-        }}</GroupName>
-
         <NoteAdd :group-id="$route.params.groupId" />
       </div>
 
-      <div class="flex items-center">
-        Sort By
-        <button
-          type="button"
-          class="btn btn-link ml-2 px-2"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          {{ mapSortToString() }}
-        </button>
-        <ul class="dropdown-menu">
-          <li
-            class="dropdown-item text-white"
-            @click="onSortTypeChange('updatedAt')"
-          >
-            Date Modified
-          </li>
-          <li
-            class="dropdown-item text-white"
-            @click="onSortTypeChange('createdAt')"
-          >
-            Date Created
-          </li>
-          <li
-            class="dropdown-item text-white"
-            @click="onSortTypeChange('name')"
-          >
-            Name
-          </li>
-        </ul>
+      <NoteSearch @on-search="onSearch" />
 
-        <button
-          class="px-2"
-          :class="{ 'text-pink-500': sortDirection === 'asc' }"
-          @click="onSortChange"
-        >
-          <FontAwesomeIcon icon="arrow-up" />
-        </button>
+      <div
+        class="
+          px-4 pt-4
+          flex justify-between items-center
+        "
+      >
+        <div class="whitespace-nowrap mr-4">
+          <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort by {{ mapSortToString() }}
+          </button>
+          <ul class="dropdown-menu">
+            <li
+              class="dropdown-item text-white"
+              @click="onSortTypeChange('updatedAt')"
+            >
+              Date Modified
+            </li>
+            <li
+              class="dropdown-item text-white"
+              @click="onSortTypeChange('createdAt')"
+            >
+              Date Created
+            </li>
+            <li
+              class="dropdown-item text-white"
+              @click="onSortTypeChange('name')"
+            >
+              Name
+            </li>
+          </ul>
 
-        <button
-          class="px-2"
-          :class="{ 'text-pink-500': sortDirection === 'desc' }"
-          @click="onSortChange"
-        >
-          <FontAwesomeIcon icon="arrow-down" />
-        </button>
+          <button
+            class="px-2"
+            :class="{ 'text-pink-500': sortDirection === 'asc' }"
+            @click="onSortChange"
+          >
+            <FontAwesomeIcon icon="arrow-up" />
+          </button>
+
+          <button
+            class="px-2"
+            :class="{ 'text-pink-500': sortDirection === 'desc' }"
+            @click="onSortChange"
+          >
+            <FontAwesomeIcon icon="arrow-down" />
+          </button>
+        </div>
       </div>
     </div>
 
@@ -84,7 +94,7 @@
 
     <div v-else-if="error">{{ error }}</div>
 
-    <div v-else class="overflow-y-auto flex-1">
+    <div v-else class="overflow-y-auto flex-1 px-4 pt-2">
       <GroupNotes :notes="filteredNotes" />
 
       <GroupEditModal
@@ -94,8 +104,6 @@
       />
     </div>
   </div>
-
-  <router-view :key="`${$route.params.noteId}${$route.params.noteId}`" />
 </template>
 
 <script setup>
