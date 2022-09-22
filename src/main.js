@@ -15,7 +15,7 @@ import App from './App.vue';
 import './icons';
 
 import './bootstrap.scss';
-import './index.css';
+import './styles.css';
 
 Amplify.configure(awsconfig);
 

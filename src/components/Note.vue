@@ -1,12 +1,14 @@
 <template>
   <div
     class="
+      p-4
       col-auto
       xl:col-span-2
       2xl:col-span-3
       overflow-hidden overflow-y-auto
-      p-4
-      xl:py-8
+      text-slate-900
+      dark:text-slate-100
+      bg-slate-100 dark:bg-zinc-700
     "
   >
     <Loader v-if="fetching" />
@@ -16,19 +18,11 @@
     <div v-else-if="dataNote">
       <div class="mb-4">
         <div class="flex justify-between flex-1">
-          <FormButton
-            v-if="$isElectron"
-            class="btn-link mr-8"
-            @click="$router.go(-1)"
-          >
+          <FormButton v-if="$isElectron" @click="$router.go(-1)">
             <FontAwesomeIcon icon="chevron-left" class="mr-3" />Notes
           </FormButton>
 
-          <FormButton
-            data-bs-toggle="modal"
-            data-bs-target="#note-edit-modal"
-            class="btn-link"
-          >
+          <FormButton data-bs-toggle="modal" data-bs-target="#note-edit-modal">
             <FontAwesomeIcon icon="file-alt" class="mr-3" />{{
               dataNote.getNote.name
             }}
@@ -37,7 +31,7 @@
           <NoteActions />
         </div>
 
-        <TagsEdit />
+        <!-- <TagsEdit /> -->
 
         <NoteEditModal
           id="note-edit-modal"

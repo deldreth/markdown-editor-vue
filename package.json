@@ -16,7 +16,8 @@
     "electron:postinstall": "electron-builder install-app-deps",
     "electron:postuninstall": "electron-builder install-app-deps",
     "release": "standard-version",
-    "publish": "vue-cli-service electron:build --publish always"
+    "publish": "vue-cli-service electron:build --publish always",
+    "tailwind:watch": "tailwindcss -i ./src/index.css -o ./src/styles.css --watch"
   },
   "main": "background.js",
   "dependencies": {
@@ -59,11 +60,11 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^7.17.0",
-    "postcss": "^7.0.36",
+    "postcss": "^8",
     "raw-loader": "^4.0.2",
     "sass": "^1.39.0",
     "sass-loader": "^10.2.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.9",
+    "tailwindcss": "^3.1.8",
     "unplugin-vue-components": "^0.14.11",
     "vue-cli-plugin-electron-builder": "~2.1.1"
   },

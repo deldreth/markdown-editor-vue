@@ -1,5 +1,5 @@
 <template>
-  <div class="ck-content roboto-slab leading-relaxed text-sm md:text-base">
+  <div class="ck-content">
     <ckeditor v-model="modelContent" :editor="editor" :config="config" />
   </div>
 

@@ -1,25 +1,36 @@
 <template>
   <div
     id="group"
-    class="flex flex-col h-full overflow-hidden bg-black bg-opacity-60"
+    class="
+      flex flex-col
+      h-full overflow-hidden
+      bg-slate-500 dark:bg-zinc-900 bg-opacity-90
+    "
     :class="{
       hidden: $route.params.noteId,
       'lg:flex': $route.params.noteId,
     }"
   >
-    <div class="pt-4 pl-8 pr-8">
-      <div v-if="$isElectron" class="flex justify-between items-center mb-4">
-        <FormButton
-          class="btn-link"
-          @click="$router.replace({ name: 'groups' })"
-        >
+    <div>
+      <div
+        v-if="$isElectron"
+        class="
+          flex justify-between items-center mb-4
+        "
+      >
+        <FormButton @click="$router.replace({ name: 'groups' })">
           <FontAwesomeIcon icon="chevron-left" class="mr-3" />Groups
         </FormButton>
       </div>
 
-      <NoteSearch @on-search="onSearch" />
+      <!-- <NoteSearch @on-search="onSearch" /> -->
 
-      <div class="flex justify-between items-center">
+      <div
+        class="
+          px-4 pt-4
+          flex justify-between items-center
+        "
+      >
         <div v-if="$route.params.groupId === 'all'" class="flex-1 mr-8">
           <FontAwesomeIcon icon="layer-group" class="mr-4" />All Notes
         </div>
@@ -31,15 +42,14 @@
         <NoteAdd :group-id="$route.params.groupId" />
       </div>
 
-      <div class="flex items-center">
-        Sort By
-        <button
-          type="button"
-          class="btn btn-link ml-2 px-2"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          {{ mapSortToString() }}
+      <div
+        class="
+          px-4 pt-6
+          flex items-center
+        "
+      >
+        <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Sort by {{ mapSortToString() }}
         </button>
         <ul class="dropdown-menu">
           <li
@@ -84,7 +94,7 @@
 
     <div v-else-if="error">{{ error }}</div>
 
-    <div v-else class="overflow-y-auto flex-1">
+    <div v-else class="overflow-y-auto flex-1 px-4 pt-2">
       <GroupNotes :notes="filteredNotes" />
 
       <GroupEditModal

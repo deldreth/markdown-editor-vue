@@ -3,10 +3,10 @@
     class="
       h-full
       text-white
-      bg-gradient-to-r
+      bg-gradient-to-t
       from-pink-600
       via-purple-700
-      to-blue-700
+      to-indigo-700
     "
   >
     <div
@@ -16,10 +16,6 @@
         xl:grid-cols-4
         2xl:grid-cols-5
         h-full
-        bg-gradient-to-b
-        from-gray-900
-        via-purple-900
-        to-transparent
       "
     >
       <Groups />
@@ -49,7 +45,7 @@ console.log(process.env);
 const client = createClient({
   url:
     process.env.NODE_ENV !== 'production'
-      ? process.env.VUE_APP_API_ENDPOINT
+      ? 'http://10.95.199.85:20002/graphql'
       : 'https://qfzdtvzgdje3tbvnk63mwi5dta.appsync-api.us-east-1.amazonaws.com/graphql',
   exchanges: [
     authExchange({

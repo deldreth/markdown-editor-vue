@@ -1,23 +1,26 @@
 <template>
   <div
     id="groups"
-    class="flex flex-col h-full overflow-hidden bg-black bg-opacity-40"
+    class="
+      flex flex-col
+      bg-slate-700 dark:bg-zinc-800 bg-opacity-90
+    "
     :class="{
       hidden: $route.params.groupId,
       'lg:flex': $route.params.groupId,
     }"
   >
-    <div class="flex justify-between items-center py-2 px-8">
+    <div class="px-4 pt-4 flex justify-between items-center">
       <h1 class="text-lg">Groups</h1>
       <GroupsAdd />
     </div>
 
-    <div class="overflow-y-auto flex-1">
+    <div class="overflow-y-auto flex-1 p-4">
       <Loader v-if="fetching" />
 
       <div v-else-if="error">{{ error }}</div>
 
-      <div v-else class="text-sm">
+      <div v-else>
         <GroupsItem id="all" name="All Notes" class="text-blue-200" />
 
         <GroupsItem
@@ -36,13 +39,13 @@
 
     <Tags />
 
-    <div v-if="!userInfoLoading && userInfo" class="py-4 px-8">
+    <div v-if="!userInfoLoading && userInfo">
       <div class="flex items-center justify-between mb-4">
         {{ userInfo.username }}
 
         <button
           type="button"
-          class="btn btn-outline-warning btn-sm"
+          class="btn btn-outline-warning"
           @click="onSignOut"
         >
           <FontAwesomeIcon icon="sign-out-alt" />&nbsp;Sign Out

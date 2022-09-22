@@ -2,17 +2,15 @@
   <section
     :id="props.id"
     class="
-      py-3
-      px-6
-      mx-2
-      cursor-pointer
-      hover:bg-indigo-800
-      flex
-      justify-between
-      items-center
-      rounded-sm
+      px-2 py-1
+      mb-1 -mr-2 -ml-2
+      flex justify-between items-center
+      rounded-md
+      hover:cursor-pointer
+      hover:dark:bg-zinc-700
+      border dark:border-zinc-800
     "
-    :class="`${$route.params.groupId === props.id && 'bg-indigo-900'}`"
+    :class="`${$route.params.groupId === props.id && 'dark:border-zinc-700'}`"
     @click="$router.push(`/group/${props.id}`)"
   >
     <h2 class="truncate">{{ props.name }}</h2>
