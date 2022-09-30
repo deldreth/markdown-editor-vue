@@ -3,18 +3,30 @@
     class="
       h-full
       text-zinc-900 dark:text-white
-      bg-gradient-to-t from-pink-300 via-purple-400 to-indigo-700
+      bg-gradient-to-t from-pink-700 via-purple-700 to-indigo-700
     "
   >
     <div class="flex h-full">
       <Groups />
 
-      <Group :key="$route.params.groupId" v-if="$route.params.groupId" />
+      <Group v-if="$route.params.groupId" :key="$route.params.groupId" />
 
       <Note
         v-if="$route.params.noteId"
         :key="`${$route.params.groupId}-${$route.params.noteId}`"
       />
+
+      <div
+        v-else
+        class="
+          hidden md:flex flex-1 justify-center items-center
+          m-4
+          border-2 border-dashed border-white-400 
+          rounded-lg 
+          bg-zinc-900 bg-opacity-10 
+          text-4xl
+        "
+      ></div>
     </div>
   </div>
 </template>

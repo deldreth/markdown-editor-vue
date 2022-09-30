@@ -1,6 +1,6 @@
 <template>
-  <TitleBar v-if="$isElectron" platform="win32" />
-  <router-view :class="$isElectron && 'electron-app'" />
+  <TitleBar v-if="$isElectron" platform="win32" theme="dark" />
+  <router-view :class="{ 'electron-app': $isElectron }" />
 </template>
 
 <style>

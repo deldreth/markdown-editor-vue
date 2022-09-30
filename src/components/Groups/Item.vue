@@ -7,11 +7,17 @@
       mb-1 -mr-2 -ml-2
       rounded-md
       hover:cursor-pointer
-      hover:bg-zinc-300 hover:dark:bg-zinc-700
-      border border-zinc-300 dark:border-zinc-800
+      hover:bg-zinc-300 hover:dark:bg-zinc-700 hover:dark:border-zinc-700
+      border border-zinc-300 
     "
-    :class="`${$route.params.groupId === props.id && 'dark:border-zinc-700'}`"
-    @click="$router.push(`/group/${props.id}`)"
+    tabindex="0"
+    :class="{
+      'dark:border-zinc-700': $route.params.groupId === props.id,
+      'dark:border-zinc-800': $route.params.groupId !== props.id,
+    }"
+    @click="handleSelectGroup"
+    @keyup.enter="handleSelectGroup"
+    @keyup.space="handleSelectGroup"
   >
     <h2 class="">{{ props.name }}</h2>
 
@@ -24,6 +30,9 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 const props = defineProps({
   id: { type: [Number, String], required: true },
   name: {
@@ -35,4 +44,8 @@ const props = defineProps({
     default: 0,
   },
 });
+
+function handleSelectGroup() {
+  router.push(`/group/${props.id}`);
+}
 </script>
