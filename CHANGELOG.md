@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.4](https://github.com/deldreth/wondernotes.app/compare/v0.5.0...v0.5.4) (2022-09-30)
+
+
+### Features
+
+* group sorting ([709bfad](https://github.com/deldreth/wondernotes.app/commit/709bfad6b19500607077ec446945f22b17e31bab))
+* rework theme ([241416f](https://github.com/deldreth/wondernotes.app/commit/241416f6d9a0f9124c8036a4935d41a466581bde))
+* search through fuse.js and adjust group sort by date ([7e4c0b1](https://github.com/deldreth/wondernotes.app/commit/7e4c0b1fb8f477df12f3f75241a02d1e3087aeae))
+
 ### [0.5.3](https://github.com/deldreth/wondernotes.app/compare/v0.5.2...v0.5.3) (2022-09-22)
 
 ### [0.5.2](https://github.com/deldreth/wondernotes.app/compare/v0.5.1...v0.5.2) (2022-09-22)
