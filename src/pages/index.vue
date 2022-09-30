@@ -2,11 +2,8 @@
   <div
     class="
       h-full
-      text-white
-      bg-gradient-to-t
-      from-pink-600
-      via-purple-700
-      to-indigo-700
+      text-zinc-900 dark:text-white
+      bg-gradient-to-t from-pink-300 via-purple-400 to-indigo-700
     "
   >
     <div class="flex h-full">
@@ -42,7 +39,7 @@ import {
 const client = createClient({
   url:
     process.env.NODE_ENV !== 'production'
-      ? process.env.AMPLIFY_MOCK_ENDPOINT
+      ? process.env.VUE_APP_AMPLIFY_MOCK_ENDPOINT
       : 'https://qfzdtvzgdje3tbvnk63mwi5dta.appsync-api.us-east-1.amazonaws.com/graphql',
   exchanges: [
     authExchange({

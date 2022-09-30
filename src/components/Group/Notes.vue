@@ -6,10 +6,10 @@
       px-2 py-1
       -mx-2 mb-1 rounded-md
       hover:cursor-pointer
-      hover:dark:bg-zinc-800
+      hover:dark:bg-zinc-700
       border dark:border-zinc-900
     "
-    :class="`${$route.params.noteId === note.id && 'dark:border-zinc-800'}`"
+    :class="`${$route.params.noteId === note.id && 'dark:border-zinc-700'}`"
     @click="$router.push(`${routePath}/note/${note.id}`)"
   >
     <h2 :title="note.name">

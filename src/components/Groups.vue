@@ -3,7 +3,7 @@
     id="groups"
     class="
       md:flex flex flex-col flex-1
-      bg-slate-700 dark:bg-zinc-800 bg-opacity-90
+      bg-zinc-200 dark:bg-zinc-800 bg-opacity-90
       md:max-w-xs
     "
     :class="{
@@ -17,26 +17,24 @@
       <GroupsAdd />
     </div>
 
-    <div class="overflow-y-auto flex-1 p-4">
-      <Loader v-if="fetching" />
+    <Loader v-if="fetching" />
 
-      <div v-else-if="error">{{ error }}</div>
+    <div v-else-if="error">{{ error }}</div>
 
-      <div v-else>
-        <GroupsItem id="all" name="All Notes" class="text-blue-200" />
+    <div v-else class="overflow-y-auto flex-1 p-4">
+      <GroupsItem id="all" name="All Notes" class="text-blue-200" />
 
-        <GroupsItem
-          v-for="group in data?.listGroups.items
-            .slice(0)
-            .sort(({ name: nameA }, { name: nameB }) =>
-              nameA.localeCompare(nameB)
-            )"
-          :id="group.id"
-          :key="group.id"
-          :name="group.name"
-          :count="group.notes.items.length"
-        />
-      </div>
+      <GroupsItem
+        v-for="group in data?.listGroups.items
+          .slice(0)
+          .sort(({ name: nameA }, { name: nameB }) =>
+            nameA.localeCompare(nameB)
+          )"
+        :id="group.id"
+        :key="group.id"
+        :name="group.name"
+        :count="group.notes.items.length"
+      />
     </div>
 
     <!--<Tags />-->

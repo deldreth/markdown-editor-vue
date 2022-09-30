@@ -2,7 +2,7 @@
   <div
     id="group"
     class="
-      md:flex flex-col flex-1
+      md:flex flex flex-col flex-1
       h-full overflow-hidden
       bg-slate-500 dark:bg-zinc-900 bg-opacity-90
       md:max-w-md
@@ -94,7 +94,7 @@
 
     <div v-else-if="error">{{ error }}</div>
 
-    <div v-else class="overflow-y-auto flex-1 px-4 pt-2">
+    <div v-else class="overflow-y-auto px-4 pt-2">
       <GroupNotes :notes="filteredNotes" />
 
       <GroupEditModal
