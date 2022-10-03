@@ -17,6 +17,7 @@
     "electron:postinstall": "electron-builder install-app-deps",
     "electron:postuninstall": "electron-builder install-app-deps",
     "release": "standard-version",
+    "release:publish": "npm run release && npm run publish",
     "publish": "vue-cli-service electron:build --publish always",
     "tailwind:watch": "tailwindcss -i ./src/index.css -o ./src/styles.css --watch"
   },

@@ -11,7 +11,7 @@
       aria-live="assertive"
       aria-atomic="true"
     >
-      <div class="toast-body">{{ note.name }} saved.</div>
+      <div class="toast-body">Saved</div>
     </div>
   </div>
 </template>
@@ -83,6 +83,11 @@ const config = {
       'redo',
     ],
   },
+  typing: {
+    transformations: {
+      include: ['typography', 'symbols'],
+    },
+  },
   language: 'en',
   autosave: {
     save(editorInstance) {
@@ -101,10 +106,3 @@ const config = {
   },
 };
 </script>
-
-<style scoped>
-.roboto-slab {
-  font-family: 'Merriweather', serif;
-  font-weight: lighter;
-}
-</style>
