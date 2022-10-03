@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.5](https://github.com/deldreth/wondernotes.app/compare/v0.5.4...v0.5.5) (2022-10-03)
+
+
+### Bug Fixes
+
+* auto formatting of fractions from CKEditor ([8f7191c](https://github.com/deldreth/wondernotes.app/commit/8f7191cbff5eb2bcf7684c3f5903e0efb206282d))
+
 ### [0.5.4](https://github.com/deldreth/wondernotes.app/compare/v0.5.0...v0.5.4) (2022-09-30)
 
 
